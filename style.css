@@ -3,7 +3,6 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
     color: #000000;
-
     box-sizing: border-box;
     max-height: 1922px;
     scroll-behavior: smooth;
@@ -42,12 +41,13 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 .navbar .logo a{
   color: #fff;
   font-size: 30px;
   font-weight: 600;
-  /* make the logo centered on the left */
   display: flex;
   align-items: center;
 }
@@ -55,20 +55,11 @@ body {
 .navbar .menu li{
   list-style: none;
   display: inline-block;
-}
-
-.menuright {
-  padding-right: 30px;
-  list-style: none;
-  display: inline-block;
+  height: 30px;
 }
 
 .navbar .menu li a{
   display: block;
-  color: #000000;
-  font-size: 18px;
-  font-weight: 500;
-  margin-left: 2px;
   transition: color 0.3s ease;
 }
 
@@ -79,15 +70,29 @@ body {
 .logo{
   height: 35px;
   width: fit-content;
-  padding-left: 40px; 
 }
 
 /* menu btn styling */
 .menu-btn{
-  color: #000000;
-  font-size: 23px;
   cursor: pointer;
-  display: none;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 500;
+  /* make this micy closer to signup */
+}
+
+.menu-btn-box{
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  border-radius: 12px;
+  width: 110px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .container{
@@ -103,7 +108,7 @@ nav{
 nav ul li{
   display: inline-block;
   list-style: none;
-  margin: 10px 20px;
+  margin: 10px 10px;
 }
 
 nav ul li a{
@@ -114,7 +119,7 @@ nav ul li a{
   position: relative;
 }
 
-nav ul li a::after{
+/* nav ul li a::after{
   content: '';
   width: 0;
   height: 3px;
@@ -127,7 +132,7 @@ nav ul li a::after{
 
 nav ul li a:hover::after{
   width: 100%;
-}
+} */
 
 .hamburger{
   display: none;
