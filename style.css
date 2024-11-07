@@ -14,7 +14,7 @@ body {
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center; 
-    color: #262626;
+    color: #000000;
 }
 
 
@@ -25,9 +25,10 @@ body {
   z-index: 999;
   padding: 10px 0;
   font-family: 'Poppins', sans-serif;
-  background: #000000a6;
+  background: #ffffff;
   backdrop-filter: blur(8px);
-  box-shadow: 0 20px 30px #ffffff;
+  border-bottom: 1px solid #000000;
+  /* box-shadow: 0 20px 30px #bbb8b850; */
   transition: all 0.3s ease;
 }
 .navbar.sticky{
@@ -42,8 +43,11 @@ body {
 }
 .navbar .logo a{
   color: #fff;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 600;
+  /* make the logo centered on the left */
+  display: flex;
+  align-items: center;
 }
 
 .navbar .menu li{
