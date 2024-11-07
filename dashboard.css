@@ -32,39 +32,32 @@ body {
   /* box-shadow: 0 20px 30px #bbb8b850; */
   transition: all 0.3s ease;
 }
-.navbar.sticky{
-  padding: 15px 0;
-  background: crimson;
-}
-.navbar .max-width{
+
+.navbar .max-width {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position:  relative;
   width: 100%;
   padding-left: 40px;
   padding-right: 40px;
 }
+
 .navbar .logo a{
   color: #fff;
   font-size: 30px;
   font-weight: 600;
-  display: flex;
-  align-items: center;
 }
 
-.navbar .menu li{
+.navbar li{
   list-style: none;
   display: inline-block;
   height: 30px;
 }
 
-.navbar .menu li a{
-  display: block;
-  transition: color 0.3s ease;
-}
-
-.navbar.sticky .menu li a:hover{
-  color: #fff;
+.menu{
+  flex: 1;
+  display: flex;
 }
 
 .logo{
@@ -72,16 +65,20 @@ body {
   width: fit-content;
 }
 
-/* menu btn styling */
-.menu-btn{
+.itinerary{
+  flex: 1;
+  text-align: right;
+}
+
+.itinerary-btn .menu-btn{
   cursor: pointer;
   color: #000000;
   font-size: 18px;
   font-weight: 500;
-  /* make this micy closer to signup */
 }
 
-.menu-btn-box{
+.itinerary-btn-box {
+  display: inline-block; 
   cursor: pointer;
   background-color: rgb(0, 0, 0);
   border-radius: 12px;
@@ -89,14 +86,9 @@ body {
   height: 40px;
   text-align: center;
   line-height: 40px;
-  cursor: pointer;
   color: #ffffff;
   font-size: 18px;
   font-weight: 500;
-}
-
-.container{
-  padding: 5px 1%;
 }
 
 nav{
@@ -115,7 +107,6 @@ nav ul li a{
   color: #000000;
   align-self: center;
   text-decoration: none;
-  font-size: 25px;
   position: relative;
 }
 
@@ -133,20 +124,4 @@ nav ul li a{
 nav ul li a:hover::after{
   width: 100%;
 } */
-
-.hamburger{
-  display: none;
-  cursor: pointer;
-  padding-right: 35px;
-}
-
-.bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-  background-color: white;
-}
 
