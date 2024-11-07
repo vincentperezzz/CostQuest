@@ -1,0 +1,299 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    max-height: 1922px;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.5));
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    color: #262626;
+}
+
+.homepage_title{
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.homepage_title img {
+  width: 100%;
+  max-width: 2000px;
+  height: auto;
+}
+
+.title{
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 300px;
+  font-weight: 500;
+  line-height: 0.5;
+  position: absolute;
+  top: 42%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+
+.subtitle{
+  font-family: "Reenie Beanie", cursive;
+  font-size: 90px;
+  font-weight: 400;
+  line-height: 0.5;
+  position: absolute;
+  top: 57%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+
+/* navbar styling */
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  padding: 10px 0;
+  font-family: 'Poppins', sans-serif;
+  background: #000000a6;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 20px 30px #00000026;
+  transition: all 0.3s ease;
+}
+.navbar.sticky{
+  padding: 15px 0;
+  background: crimson;
+}
+.navbar .max-width{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.navbar .logo a{
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.navbar .menu li{
+  list-style: none;
+  display: inline-block;
+}
+
+.menuright {
+  padding-right: 30px;
+  list-style: none;
+  display: inline-block;
+}
+
+.navbar .menu li a{
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 2px;
+  transition: color 0.3s ease;
+}
+
+.navbar.sticky .menu li a:hover{
+  color: #fff;
+}
+
+.logo{
+  height: 35px;
+  width: fit-content;
+  padding-left: 40px; 
+}
+
+/* menu btn styling */
+.menu-btn{
+  color: #fff;
+  font-size: 23px;
+  cursor: pointer;
+  display: none;
+}
+
+.container{
+  padding: 5px 1%;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav ul li{
+  display: inline-block;
+  list-style: none;
+  margin: 10px 20px;
+}
+
+nav ul li a{
+  color: #000000;
+  align-self: center;
+  text-decoration: none;
+  font-size: 25px;
+  position: relative;
+}
+
+nav ul li a::after{
+  content: '';
+  width: 0;
+  height: 3px;
+  background-color: #ff004f;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  transition: 0.5s;
+}
+
+nav ul li a:hover::after{
+  width: 100%;
+}
+
+.hamburger{
+  display: none;
+  cursor: pointer;
+  padding-right: 35px;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
+/*------------about------------*/
+.division{
+  height: 6vh;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.about-col-1{
+  flex-basis: 35%;
+  padding: 20px 7%;
+  padding-right: 50px;
+}
+
+.about-col-1 img{
+  width: 100%;
+  border-radius: 15px;
+}
+.about-col-2{
+  max-width: 700px;
+  flex-basis: 60%;
+  padding: 14px 3%;
+
+}
+
+.aboutme-title{
+  font-size: 60px;
+  font-weight: 600;
+  padding-top: 25%;
+}
+.aboutme-content{
+  font-size: 20px;
+  font-weight: 500;
+  text-align: justify;
+}
+
+/*-----------interest-------------*/
+
+#interest{
+  font-weight: 600px;
+  font-size: 60px;
+}
+
+.interest-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 40px;
+  margin-top: 50px;
+}
+
+.container2{
+  padding: 18px 2%;
+}
+
+.icons{
+  width: 40px;
+  height: 40px;
+}
+
+.white{
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.interest-list div{
+  background: #262626;
+  padding: 40px;
+  font-size: 13px;
+  font-weight: 300;
+  border-radius: 10px;
+  transition: background 0.5s, transform 0.5s;
+}
+
+.interest-list div i{
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.interest-list div h2{
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.interest-list div a{
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 12px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.interest-list div:hover{
+  background: #ff004f;
+  transform: translateY(-10px);
+}
+
+/*---------contacts------------*/
+
+.container3{
+    padding: 10% 0%;
+}
+
+.container4{
+    padding: 0px 0%;
+}
+
+.contact-title{
+    font-size: 60px;
+    font-weight: 600;
+    padding-top: 0%;
+}
+
+.contact-details{
+    text-align: center;
+    font-size: small;
+}
+
+.bottomimg img{
+    width: 100%;
+    justify-content: center;
+}
