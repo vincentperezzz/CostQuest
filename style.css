@@ -201,3 +201,54 @@ nav ul li a:hover::after{
   font-weight: 250;
 }
 
+.popular-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 120px;
+  text-align: center;
+}
+
+.popular-container {
+  padding-top: 120px;
+  text-align: center;
+}
+
+.subtitle-container{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.popular-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 400px;
+  padding-right: 400px;
+}
+
+.popular-card-r1-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.popular-card-r1 {
+  flex: 1;
+  margin: 10px;
+}
+
+.popular-card-r2-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.popular-card-r2 {
+  flex: 1;
+  margin: 10px;
+}
