@@ -1,5 +1,4 @@
 <?php
-// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -22,15 +21,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_people = $_POST['num-people'];
     $budget = $_POST['budget'];
 
-    $sql = "INSERT INTO users (first_name, last_name, email, password, num_people, budget)
-            VALUES ('$first_name', '$last_name', '$email', '$password', '$num_people', '$budget')";
+    // Check if email already exists
+    $stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: dashboard.html");
-        exit();
+    if ($stmt->num_rows > 0) {
+        // Email already exists
+        echo "<script>alert('Email already exists. Please use a different email.'); window.location.href = 'signup.php';</script>";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Insert new user
+        $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, num_people, budget) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssii", $first_name, $last_name, $email, $password, $num_people, $budget);
+
+        if ($stmt->execute() === TRUE) {
+            header("Location: dashboard.html");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
     }
 
-    $conn->close();
+    $stmt->close();
 }
+
+$conn->close();
