@@ -24,7 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$first_name', '$last_name', '$email', '$password')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        header("Location: register.php");
+        exit();
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
