@@ -28,9 +28,9 @@
         <img src="icons/signup-1st-img.png"></div>
     
     <div class="login-box">
-      <div class="login-form">
+      <div class="login-form" id="login-form">
         <h1>Create an account here!</h1>
-        <form action="login.php" method="post">
+        <form action="login.php" method="post" onsubmit="toggle_Continue_SigningUp(event)"></form>
           <div class="name-row">
             <div class="textbox">
               <input type="text" placeholder="First Name" name="fname" required>
@@ -52,28 +52,41 @@
             <input type="password" placeholder="Confirm Password" name="confirm-password" required>
           </div>
 
-            <div class="textbox"></div>
-            <label for="num-people">Number of People Traveling:</label>
-            <select id="num-people" name="num-people" required>
-              <option value="" disabled selected>Select number</option>
-              <?php for ($i = 1; $i <= 100; $i++): ?>
-              <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-              <?php endfor; ?>
-            </select>
-            </div>
-
-          <input type="submit" class="btn" value="Continue Signing Up">
+          <button type="button" class="btn" onclick="toggleForms()">Continue</button>
         </form>
       </div>
 
-      
+      <div class="login-form-2" id="login-form-2">
+        <h1>Create an account here!</h1>
+        <form action="login.php" method="post">
+          <div class="name-row">
+          <div class="textbox">
+          <label for="num-people" class="label">Number of People Traveling:</label>
+          <select id="num-people" name="num-people" class="styled-dropdown" required>
+            <option value="" disabled selected>Select number</option>
+            <?php for ($i = 1; $i <= 100; $i++): ?>
+            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+            <?php endfor; ?>
+          </select>
+        </div>
+
+        <div class="textbox">
+          <input type="number" placeholder="Budget Amount" name="budget" required>
+        </div> 
+          </div>
+
+          <input type="submit" class="btn" value="Create an Account">
+        </form>
+      </div>
+
+     
     </div>
 
 <!------------Footer------------->
   <footer>
     <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
   </footer>
-   
+</body>  
 </body>
 </html>
     
