@@ -226,7 +226,7 @@ nav ul li a:hover::after{
 
 footer {
   text-align: center;
-  background: url('/icons/Footer.png') no-repeat center center;
+  background: url('icons/Footer.png') no-repeat center center;
   background-size: cover;
   padding: 10px 0;
   width: 100%;
