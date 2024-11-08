@@ -1,0 +1,254 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #000000;
+  box-sizing: border-box;
+  max-height: 1922px;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background: white;
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center; 
+  color: #000000;
+}
+
+
+/* navbar styling */
+.navbar{
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  padding: 10px 0;
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #000000;
+  /* box-shadow: 0 20px 30px #bbb8b850; */
+  transition: all 0.3s ease;
+}
+.navbar.sticky{
+  padding: 15px 0;
+  background: crimson;
+}
+.navbar .max-width{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.navbar .logo a{
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .menu li{
+  list-style: none;
+  display: inline-block;
+  height: 30px;
+}
+
+.navbar .menu li a{
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.navbar.sticky .menu li a:hover{
+  color: #fff;
+}
+
+.logo{
+  height: 35px;
+  width: fit-content;
+}
+
+/* menu btn styling */
+.menu-btn{
+  cursor: pointer;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.menu-btn-box{
+  cursor: pointer;
+  background-color: rgb(0, 0, 0);
+  border-radius: 12px;
+  width: 110px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.container{
+  padding: 5px 1%;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav ul li{
+  display: inline-block;
+  list-style: none;
+  margin: 10px 10px;
+}
+
+nav ul li a{
+  color: #000000;
+  align-self: center;
+  text-decoration: none;
+  font-size: 25px;
+  position: relative;
+}
+
+/* nav ul li a::after{
+  content: '';
+  width: 0;
+  height: 3px;
+  background-color: #ff004f;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  transition: 0.5s;
+}
+
+nav ul li a:hover::after{
+  width: 100%;
+} */
+
+.hamburger{
+  display: none;
+  cursor: pointer;
+  padding-right: 35px;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
+/* Homepage */
+
+.homepage-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.counter-container {
+  position: absolute;
+  top: 620px; 
+  left: 50%; 
+  display: flex;
+  transform: translate(-50%, -50%); 
+  width: 45%;
+  height: 20%;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 20px 30px #1d1c1c50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter-square, .counter-square-left, .counter-square-right {
+  width: 216px;
+  height: 80px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 700;
+  flex-direction: column;
+}
+
+.counter-square, .counter-square-left {
+  border-right: 1px solid black;
+}
+
+.counter-square, .counter-square-right {
+  border-left: 1px solid black;
+}
+
+.subtitle-container{
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 250;
+}
+
+.popular-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 120px;
+  text-align: center;
+}
+
+.popular-container {
+  padding-top: 120px;
+  text-align: center;
+}
+
+.subtitle-container{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.popular-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 400px;
+  padding-right: 400px;
+}
+
+.popular-card-r1-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.popular-card-r1 {
+  flex: 1;
+  margin: 10px;
+}
+
+.popular-card-r2-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.popular-card-r2 {
+  flex: 1;
+  margin: 10px;
+}
