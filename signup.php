@@ -29,7 +29,7 @@
             
         <div class="login-box">
             <h1>Create an account here!</h1>
-            <form action="login.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">
+            <form action="register.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">
                 <div class="name-row">
                     <div class="textbox">
                         <input type="text" placeholder="First Name" name="fname" required>
@@ -49,6 +49,24 @@
         
                 <div class="textbox">
                     <input type="password" placeholder="Confirm Password" name="confirm-password" required>
+                </div>
+
+                <div class="name-row">
+                    <div class="textbox">
+                        <label for="num-people" class="label">Number of People Traveling:</label>
+                        <select id="num-people" name="num-people" class="styled-dropdown">
+                            <?php for ($i = 1; $i <= 100; $i++): ?>
+                            <option value="<?php echo $i; ?>" <?php echo $i == 1 ? 'selected' : ''; ?>><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                  <label for="budget" class="form-label">Budget Amount:</label>
+                  <div class="textbox">
+                      <input type="number" id="budget" name="budget" required>
+                  </div>
                 </div>
         
                 <button type="submit" class="btn">Continue</button>
