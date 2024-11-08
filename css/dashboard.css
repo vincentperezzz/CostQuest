@@ -85,6 +85,10 @@ body {
   font-weight: 500;
 }
 
+.itinerary-btn-box:hover {
+  background: #555555;
+}
+
 .itinerary-btn-box a {
     color: #ffffff; 
     text-decoration: none; 

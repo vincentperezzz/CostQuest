@@ -94,6 +94,10 @@ body {
   font-weight: 500;
 }
 
+.menu-btn-box:hover {
+  background: #555555;
+}
+
 .container{
   padding: 5px 1%;
 }

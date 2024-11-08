@@ -76,8 +76,8 @@ body {
 .menu-btn{
   cursor: pointer;
   color: #000000;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .menu-btn-box{
@@ -92,6 +92,10 @@ body {
   color: #ffffff;
   font-size: 18px;
   font-weight: 500;
+}
+
+.menu-btn-box:hover {
+  background: #555555;
 }
 
 .container{
@@ -151,104 +155,51 @@ nav ul li a:hover::after{
 
 /* Homepage */
 
-.homepage-img {
+.login-img {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 100px;
 }
 
-.counter-container {
-  position: absolute;
-  top: 620px; 
-  left: 50%; 
-  display: flex;
-  transform: translate(-50%, -50%); 
-  width: 45%;
-  height: 20%;
-  border-radius: 20px;
-  background-color: white;
-  box-shadow: 0 20px 30px #1d1c1c50;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-box {
+  background: #ffffff;
+  padding: 60px;
+  width: 800px;
+  text-align: left;
+  margin: 0 auto;
 }
 
-.counter-square, .counter-square-left, .counter-square-right {
-  width: 216px;
-  height: 80px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  font-weight: 700;
-  flex-direction: column;
+.login-form h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333333;
 }
 
-.counter-square, .counter-square-left {
-  border-right: 1px solid black;
+.textbox {
+  margin-bottom: 20px;
 }
 
-.counter-square, .counter-square-right {
-  border-left: 1px solid black;
-}
-
-.subtitle-container{
-  justify-content: center;
-  align-items: center;
+.textbox input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 16px;
-  font-weight: 250;
 }
 
-.popular-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 120px;
-  text-align: center;
-}
-
-.popular-container {
-  padding-top: 120px;
-  text-align: center;
-}
-
-.subtitle-container{
-  text-align: center;
-  padding-top: 20px;
-}
-
-.popular-card-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 20px;
-  padding-left: 400px;
-  padding-right: 400px;
-}
-
-.popular-card-r1-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.btn {
   width: 100%;
+  background: #000000;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.popular-card-r1 {
-  flex: 1;
-  margin: 10px;
-}
-
-.popular-card-r2-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.popular-card-r2 {
-  flex: 1;
-  margin: 10px;
+.btn:hover {
+  background: #555555;
 }
