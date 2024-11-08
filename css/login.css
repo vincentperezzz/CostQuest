@@ -55,7 +55,7 @@ body {
 .navbar .menu li{
   list-style: none;
   display: inline-block;
-  height: 30px;
+  height: 25px;
 }
 
 .navbar .menu li a{
