@@ -7,23 +7,6 @@ window.addEventListener('scroll', function() {
     }
   });
 
-  function toggleForms() {
-    var loginForm = document.getElementById('login-form');
-    var loginForm2 = document.getElementById('login-form-2');
-    
-    if (loginForm && loginForm2) {
-        if (loginForm.style.display === "block" || loginForm.style.display === "") {
-            loginForm.style.display = "none";
-            loginForm2.style.display = "block";
-        } else {
-            loginForm.style.display = "block";
-            loginForm2.style.display = "none";
-        }
-    } else {
-        console.error('One or both elements not found');
-    }
-}
-
 function toggle_Continue_SigningUp(event) {
   //console log that the button is working
   console.log('Button clicked');

@@ -24,64 +24,41 @@
         </nav>
         </header>
 <!------------Login Body------------->
-    <div class="login-img">
-        <img src="icons/signup-1st-img.png"></div>
+       <div class="login-img">
+        <img src="icons/signup-1st-img.png">
+    </div>
+            
+        <div class="login-box">
+            <h1>Tell us more about you!</h1>
+            <form action="dashboard.html" method="post" onsubmit="toggle_Continue_SigningUp(event)">
+            <div class="name-row">
+                <div class="textbox">
+                    <label for="num-people" class="label">Number of People Traveling:</label>
+                    <select id="num-people" name="num-people" class="styled-dropdown">
+                        <option value="" disabled selected>1</option>
+                        <?php for ($i = 1; $i <= 100; $i++): ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </div>
+            </div>
     
-    <div class="login-box">
-      <div class="login-form" id="login-form">
-        <h1>Create an account here!</h1>
-        <form action="login.php" method="post" onsubmit="toggle_Continue_SigningUp(event)"></form>
-          <div class="name-row">
-            <div class="textbox">
-              <input type="text" placeholder="First Name" name="fname" required>
+            <div class="form-group">
+              <label for="budget" class="form-label">Budget Amount:</label>
+              <div class="textbox">
+                  <input type="number" id="budget" name="budget" required>
+              </div>
             </div>
-            <div class="textbox">
-              <input type="text" placeholder="Last Name" name="lname" required>
-            </div>
-          </div>
-  
-          <div class="textbox">
-            <input type="text" placeholder="Email" name="email" required>
-          </div>
+            
 
-          <div class="textbox">
-            <input type="password" placeholder="Password" name="password" required>
-          </div>
-
-          <div class="textbox">
-            <input type="password" placeholder="Confirm Password" name="confirm-password" required>
-          </div>
-
-          <button type="button" class="btn" onclick="toggleForms()">Continue</button>
-        </form>
-      </div>
-
-      <div class="login-form-2" id="login-form-2">
-        <h1>Create an account here!</h1>
-        <form action="login.php" method="post">
-          <div class="name-row">
-          <div class="textbox">
-          <label for="num-people" class="label">Number of People Traveling:</label>
-          <select id="num-people" name="num-people" class="styled-dropdown" required>
-            <option value="" disabled selected>Select number</option>
-            <?php for ($i = 1; $i <= 100; $i++): ?>
-            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-            <?php endfor; ?>
-          </select>
+                <button type="submit" class="btn">Create an Account</button>
+            </form>
         </div>
-
-        <div class="textbox">
-          <input type="number" placeholder="Budget Amount" name="budget" required>
-        </div> 
-          </div>
-
-          <input type="submit" class="btn" value="Create an Account">
-        </form>
       </div>
-
      
     </div>
 
+    <div class="spacing"></div>
 <!------------Footer------------->
   <footer>
     <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>

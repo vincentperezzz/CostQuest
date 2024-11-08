@@ -174,19 +174,8 @@ nav ul li a:hover::after{
   margin: 0 auto;
 }
 
-.login-form {
-  display: block;
-}
-
-.login-form-2 {
-  display: none;
-}
-
-
-.login-form h1 {
+.login-box h1 {
   margin-bottom: 20px;
-  font-size: 24px;
-  color: #333333;
 }
 
 .name-row {
@@ -232,12 +221,33 @@ nav ul li a:hover::after{
   background-color: #f9f9f9;
   color: #333;
   transition: border-color 0.3s ease;
+  text-align: center;
+  text-align-last: center;
+  
 }
 
 .styled-dropdown:focus {
   border-color: #555;
 }
 
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-group .textbox {
+  width: 100%;
+  max-width: 296px; 
+}
+
+.form-label {
+  margin-right: 10px;
+}
+
+.spacing {
+  margin-bottom: 160px;
+}
 
 .btn {
   width: 100%;
