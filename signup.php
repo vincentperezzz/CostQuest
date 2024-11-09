@@ -40,7 +40,7 @@
                 </div>
         
                 <div class="textbox">
-                    <input type="text" placeholder="Email" name="email" required>
+                    <input type="email" placeholder="Email" name="email" required>
                 </div>
         
                 <div class="textbox">
