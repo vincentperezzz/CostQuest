@@ -16,9 +16,9 @@
         <nav class="navbar">
             <div class="max-width">
                 <ul class="menu">
-                    <li><a href="dashboard.html" class="menu-btn"><b>Home</b></a></li>
-                    <li><a href="settings.html" class="menu-btn">Settings</a></li>
-                    <li><a href="search.html" class="menu-btn">Search</a></li>
+                    <li><a href="dashboard.php" class="menu-btn"><b>Home</b></a></li>
+                    <li><a href="settings.php" class="menu-btn">Settings</a></li>
+                    <li><a href="search.php" class="menu-btn">Search</a></li>
                 </ul>
 
                 <div class="logo"><a href="#home"><img src="icons/logo.png"></a>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=egde:">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Settings </title>
+    <title> Search </title>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="icon" href="icons/webicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,9 +16,9 @@
         <nav class="navbar">
             <div class="max-width">
                 <ul class="menu">
-                    <li><a href="dashboard.html" class="menu-btn">Home</a></li>
-                    <li><a href="settings.html" class="menu-btn"><b>Settings</b></a></li>
-                    <li><a href="search.html" class="menu-btn">Search</a></li>
+                    <li><a href="dashboard.php" class="menu-btn">Home</a></li>
+                    <li><a href="settings.php" class="menu-btn">Settings</a></li>
+                    <li><a href="search.php" class="menu-btn"><b>Search</b></a></li>
                 </ul>
 
                 <div class="logo"><a href="#home"><img src="icons/logo.png"></a>
@@ -33,7 +33,16 @@
 
         </nav>
 <!------------Home------------->
-
+<?php
+    session_start();
+    if (isset($_SESSION['first_name']) && isset($_SESSION['email'])) {
+        $first_name = $_SESSION['first_name'];
+        $email = $_SESSION['email'];
+        echo "<br> <br> <br> <br> <br> <br> <p>Welcome, $first_name ($email)</p>";
+    } else {
+        echo "<p>Welcome, Guest</p>";
+    }
+    ?>
 </body>
 </html>
     
