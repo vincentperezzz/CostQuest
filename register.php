@@ -1,8 +1,11 @@
 <?php
+// Database connection
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "costquest";
+
+session_start(); // Start the session
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,11 +17,11 @@ if ($conn->connect_error) {
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = $_POST['fname'];
-    $last_name = $_POST['lname'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
-    $num_people = $_POST['num-people'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $num_people = $_POST['num_people'];
     $budget = $_POST['budget'];
 
     // Check if email already exists
@@ -36,6 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssssii", $first_name, $last_name, $email, $password, $num_people, $budget);
 
         if ($stmt->execute() === TRUE) {
+            // Store user details in session and redirect to dashboard
+            $_SESSION['first_name'] = $first_name;
+            $_SESSION['email'] = $email;
             header("Location: dashboard.html");
             exit();
         } else {

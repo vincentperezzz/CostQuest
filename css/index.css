@@ -126,21 +126,6 @@ nav ul li a{
   position: relative;
 }
 
-/* nav ul li a::after{
-  content: '';
-  width: 0;
-  height: 3px;
-  background-color: #ff004f;
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  transition: 0.5s;
-}
-
-nav ul li a:hover::after{
-  width: 100%;
-} */
-
 .hamburger{
   display: none;
   cursor: pointer;

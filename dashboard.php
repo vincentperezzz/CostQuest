@@ -18,7 +18,7 @@
                 <ul class="menu">
                     <li><a href="dashboard.html" class="menu-btn"><b>Home</b></a></li>
                     <li><a href="settings.html" class="menu-btn">Settings</a></li>
-                    <li><a href="search.html"menu-btn">Search</a></li>
+                    <li><a href="search.html" class="menu-btn">Search</a></li>
                 </ul>
 
                 <div class="logo"><a href="#home"><img src="icons/logo.png"></a>
@@ -33,7 +33,16 @@
 
         </nav>
 <!------------Home------------->
-
+<?php
+    session_start();
+    if (isset($_SESSION['first_name']) && isset($_SESSION['email'])) {
+        $first_name = $_SESSION['first_name'];
+        $email = $_SESSION['email'];
+        echo "<br> <br> <br> <br> <br> <br> <p>Welcome, $first_name ($email)</p>";
+    } else {
+        echo "<p>Welcome, Guest</p>";
+    }
+    ?>
 </body>
 </html>
     
