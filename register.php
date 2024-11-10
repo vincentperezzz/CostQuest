@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->num_rows > 0) {
         // Email already exists
-        echo "<script>alert('Email already exists. Please use a different email.'); window.location.href = 'signup.php';</script>";
+        echo "<script> window.location.href = 'signup.php?alert=1'; </script>";
     } else {
         // Insert new user
         $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, num_people, budget) VALUES (?, ?, ?, ?, ?, ?)");
