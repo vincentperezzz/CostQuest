@@ -56,7 +56,7 @@
 
   <?php
 if (isset($_GET['alert']) && $_GET['alert'] == 1) {
-    echo "<script> createAlert('Opps!','','Invalid email or password.','danger',true,true,'pageMessages'); </script>";
+    echo "<script> createAlert(' Opps!','','Invalid email or password.','danger',true,true,'pageMessages'); </script>";
 }
 ?>
 </body>

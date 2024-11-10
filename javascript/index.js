@@ -18,19 +18,13 @@ function toggle_Continue_SigningUp(event) {
   var confirmPassword = document.querySelector('input[name="confirm-password"]').value;
 
   if (!lname || !email || !password || !confirmPassword) {
-    alert('All fields are required.');
-    event.preventDefault();
-    return false;
-  }
-
-  if (!email.includes('@')) {
-    alert('Please enter a valid email address.');
+    createAlert('Warning','','All fields are required.','warning',true,true,'pageMessages');
     event.preventDefault();
     return false;
   }
 
   if (password !== confirmPassword) {
-    alert('Passwords do not match.');
+    createAlert('Opps!','','Passwords do not match.','danger',true,true,'pageMessages');
     event.preventDefault();
     return false;
   }

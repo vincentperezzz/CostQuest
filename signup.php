@@ -80,13 +80,7 @@
         
                 <button type="submit" class="btn">Continue</button>
             </form>
-            <div class="container">
-  <button class="btn btn-danger" onclick="createAlert('Opps!','','Invalid email or password.','danger',true,true,'pageMessages');">Add Danger Alert</button>
-  <button class="btn btn-success" onclick="createAlert('','Nice Work!','Here is a bunch of text about some stuff that happened.','success',true,false,'pageMessages');">Add Success Alert</button>
-  <button class="btn btn-info" onclick="createAlert('BTDubs','','Here is a bunch of text about some stuff that happened.','info',true,false,'pageMessages');">Add Info Alert</button>
-  <button class="btn btn-warning" onclick="createAlert('Warning','','Email already exists. Please use a different email.','warning',true,true,'pageMessages');">Add Warning Alert</button>
-</div>
-
+            
         </div>
         
         <!------------Footer------------->
