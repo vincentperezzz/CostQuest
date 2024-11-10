@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Store user details in session and redirect to dashboard
             $_SESSION['first_name'] = $first_name;
             $_SESSION['email'] = $email;
-            header("Location: dashboard.html");
+            header("Location: dashboard.php");
             exit();
         } else {
             echo "Error: " . $stmt->error;
