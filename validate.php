@@ -39,11 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Password is incorrect
-            echo "<script>alert('Invalid email or password.'); window.location.href = 'login.html';</script>";
+            echo "<script> window.location.href = 'login.php?alert=1'; </script>";
         }
     } else {
         // Email not found
-        echo "<script>alert('Invalid email or password.'); window.location.href = 'login.html';</script>";
+        echo "<script> window.location.href = 'login.php?alert=1'; </script>";
     }
 
     $stmt->close();
