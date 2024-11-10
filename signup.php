@@ -22,7 +22,7 @@
         <div class="logo"><a href="index.html"><img src="icons/logo.png"></a></div>
         <ul class="menu">
         <li><a class="menu-btn">Already have an account? </a></li>
-        <li><a class="menu-btn-box" href="login.html">Login</a></li>
+        <li><a class="menu-btn-box" href="login.php">Login</a></li>
         </ul>
         </div>
         </nav>
