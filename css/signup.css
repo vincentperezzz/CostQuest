@@ -372,4 +372,9 @@ footer h4 {
   right: 0;
   padding: 0.75rem 1.25rem;
   color: inherit;
+  cursor: pointer;
+}
+
+.question-mark {
+  cursor: pointer;
 }

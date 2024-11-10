@@ -110,3 +110,9 @@ function createAlert(title, summary, details, severity, dismissible, autoDismiss
     }, 5000);
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('.question-mark').addEventListener('click', function() {
+    createAlert('Information', '', "Enter the budget amount you can allocate <b> per person </b>. <br><br> This amount will represent each individual's budget and <br> will be used to calculate the total based on the number <br> of people traveling.", 'info', true, false, 'pageMessages');
+  });
+});

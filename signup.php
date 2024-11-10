@@ -72,7 +72,11 @@
                 </div>
         
                 <div class="form-group">
-                  <label for="budget" class="form-label">Budget Amount:</label>
+                <label for="budget" class="form-label">
+                Budget Amount:   
+                <img src="icons/help.svg" class="question-mark" alt="question-mark" title="Click for info">
+                </label>
+
                   <div class="textbox">
                       <input type="number" id="budget" name="budget" required>
                   </div>
