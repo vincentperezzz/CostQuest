@@ -17,12 +17,12 @@ if ($conn->connect_error) {
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $num_people = $_POST['num_people'];
-    $budget = $_POST['budget'];
+    $first_name = isset($_POST['first_name']) ? $_POST['first_name'] : '';
+    $last_name = isset($_POST['last_name']) ? $_POST['last_name'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $password = isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : '';
+    $num_people = isset($_POST['num_people']) ? $_POST['num_people'] : 0;
+    $budget = isset($_POST['budget']) ? $_POST['budget'] : 0.00;
 
     // Check if email already exists
     $stmt = $conn->prepare("SELECT email FROM users WHERE email = ?");
@@ -38,14 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, num_people, budget) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssii", $first_name, $last_name, $email, $password, $num_people, $budget);
 
-        if ($stmt->execute() === TRUE) {
-            // Store user details in session and redirect to dashboard
-            $_SESSION['first_name'] = $first_name;
-            $_SESSION['email'] = $email;
-            header("Location: dashboard.php");
-            exit();
+        if ($stmt->execute()) {
+            echo "<script> window.location.href = 'dashboard.php';</script>";
         } else {
-            echo "Error: " . $stmt->error;
+            echo "<script>alert('Error: " . $stmt->error . "'); window.location.href = 'signup.php';</script>";
         }
     }
 
