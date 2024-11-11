@@ -27,7 +27,7 @@ xampp/htdocs/costquest
 
 ## Database Setup
 
-- Open phpMyAdmin by navigating to ```http://localhost/phpmyadmin/.spots```
+- Open phpMyAdmin by navigating to ```http://localhost/phpmyadmin/```
 - Create a new database named costquest_db.
 - Import the database structure and data by running the SQL commands provided in the costquest_db.sql file included in the project folder.
 
