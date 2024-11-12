@@ -21,7 +21,7 @@
                     <li><a href="search.php" class="menu-btn"><b>Search</b></a></li>
                 </ul>
 
-                <div class="logo"><a href="#home"><img src="icons/logo.png"></a>
+                <div class="logo"><a href="dashboard.php"><img src="icons/logo.png"></a>
                 </div>
 
             
