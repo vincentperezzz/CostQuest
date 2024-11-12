@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
     <script src="javascript/index.js"> </script>
     </head>
-<body>  
+    <body>
         <nav class="navbar">
             <div class="max-width">
                 <ul class="menu">
@@ -33,16 +33,18 @@
 
         </nav>
 <!------------Home------------->
-<?php
-    session_start();
-    if (isset($_SESSION['first_name']) && isset($_SESSION['email'])) {
-        $first_name = $_SESSION['first_name'];
-        $email = $_SESSION['email'];
-        echo "<br> <br> <br> <br> <br> <br> <p>Welcome, $first_name ($email)</p>";
-    } else {
-        echo "<p>Welcome, Guest</p>";
-    }
-    ?>
+<div class="dashboard-img">
+        <img src="icons/search-1st-img.png"></div>
+
+    <div class="search-container">
+            <div class="textbox">
+                <input type="text" name="search" placeholder="Search..." required/>
+            </div>
+            
+            <button type="submit" name="submit-search" class="search-btn">Search</button></form>
+    </div>
+
+    
 </body>
 </html>
     
