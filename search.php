@@ -38,12 +38,21 @@
 
     <div class="search-container">
             <div class="textbox">
-                <input type="text" name="search" placeholder="Search..." required/>
+                <input type="text" name="search" placeholder="" required/>
             </div>
             
-            <button type="submit" name="submit-search" class="search-btn">Search</button></form>
+            <button type="submit" name="submit-search" class="search-btn">
+                <img src="icons/search-ico.svg">Search</button>
+
+            <button type="submit" name="submit-filter" class="filter-btn">
+                <img src="icons/filter-ico.svg">Filter</button>
+            </div>
     </div>
 
+<!------------Footer------------->
+<footer class="footer-search">
+  <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
+</footer>
     
 </body>
 </html>
