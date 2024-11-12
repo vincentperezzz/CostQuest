@@ -129,3 +129,16 @@ nav ul li a{
   position: relative;
 }
 
+
+.dashboard-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.dashboard-form h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333333;
+}

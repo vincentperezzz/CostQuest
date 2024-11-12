@@ -33,16 +33,11 @@
 
         </nav>
 <!------------Home------------->
-<?php
-    session_start();
-    if (isset($_SESSION['first_name']) && isset($_SESSION['email'])) {
-        $first_name = $_SESSION['first_name'];
-        $email = $_SESSION['email'];
-        echo "<br> <br> <br> <br> <br> <br> <p>Welcome, $first_name ($email)</p>";
-    } else {
-        echo "<p>Welcome, Guest</p>";
-    }
-    ?>
+<div class="dashboard-img">
+        <img src="icons/dashboard-1st-img.png"></div>
+
+
+
 </body>
 </html>
     
