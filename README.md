@@ -28,7 +28,8 @@ xampp/htdocs/costquest
 ## Database Setup
 
 - Open Xampp Control Panel, Start Apache and MySql
-- Open MariaDB by navigating to Shell and type: ```mysql - hlocalhost -u root -p``` and press Enter.
+- Open MariaDB by navigating to Shell and type: ```bash
+mysql - h localhost -u root -p``` and press Enter.
 - Create a new database named costquest the commands are on the database.sql file.
 
 ## Run the Application
