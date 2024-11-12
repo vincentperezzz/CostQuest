@@ -77,11 +77,18 @@
 <div class="tour-package-container">
     <div class="tour-package-card">
         <img src="icons/tour-package-card-1.png">
+        <img src="icons/costquest-logo.svg" class="costquest-logo-card">
+        <div class="text-overlay">Traveler’s Favorites<br>Tour Package</div>
+        <div class="tour-package-btn">Choose Package</div>
     </div>
 
     <div class="tour-package-card">
         <img src="icons/tour-package-card-2.png">
+        <img src="icons/costquest-logo.svg" class="costquest-logo-card">
+        <div class="text-overlay">Historic Landmarks<br>Tour Package</div>
+        <div class="tour-package-btn">Choose Package</div>:
     </div>
+</div>
 
 </div>
 
