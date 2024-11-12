@@ -37,6 +37,59 @@
         <img src="icons/dashboard-1st-img.png"></div>
 
 
+        <div class="popular-container">
+      <h1 class="popular-title">Popular Destinations</h1>
+      <h4 class="subtitle-container">From historical cities to natural spectaculars, <br> come see the best of the world!</h4>
+    
+      <div class="popular-card-container">
+        <div class="popular-card-r1-container">
+          <div class="popular-card-r1">
+            <img src="icons/homepage-sanjuan-card.png">
+          </div>
+          <div class="popular-card-r1">
+            <img src="icons/homepage-nasugbu-card.png">
+          </div>
+          <div class="popular-card-r1">
+            <img src="icons/homepage-taal-card.png">
+          </div>
+        </div>
+    
+        <div class="popular-card-r2-container">
+          <div class="popular-card-r2">
+            <img src="icons/homepage-calatagan-card.png">
+          </div>
+          <div class="popular-card-r2">
+            <img src="icons/homepage-lipacity-card.png">
+          </div>
+          <div class="popular-card-r2">
+            <img src="icons/homepage-bauan-card.png">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<div class="popular-container">
+  <h1 class="popular-title">How about starting with our Tour Packages?</h1>
+  <h4 class="subtitle-container">These packages are customized to match users'<br> unique preferences and curated tour lists.</h4>
+</div>
+
+<div class="tour-package-container">
+    <div class="tour-package-card">
+        <img src="icons/tour-package-card-1.png">
+    </div>
+
+    <div class="tour-package-card">
+        <img src="icons/tour-package-card-2.png">
+    </div>
+
+</div>
+
+
+  <!------------Footer------------->
+  <footer>
+    <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
+  </footer>
 
 </body>
 </html>
