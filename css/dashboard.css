@@ -293,6 +293,49 @@ nav ul li a{
   background-color: rgb(87, 87, 87);
 }
 
+.settings-box {
+  background: #ffffff;
+  padding: 60px;
+  width: 700px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.settings-form h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333333;
+}
+
+.budget-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.hello-card {
+  margin-bottom: 20px;
+  width: 1200px;
+  text-align: left;
+  font-size: 23px;
+}
+
+.budget-box {
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+  text-align: center;
+  background-color: #52A3EE;
+  width: 1200px;
+  height: 383px;
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+
 footer {
   text-align: center;
   background: url('../icons/Footer.png') no-repeat center center;

@@ -33,16 +33,58 @@
 
         </nav>
 <!------------Home------------->
-<?php
+<div class="dashboard-img">
+        <img src="icons/settings-1st-img.png"></div>
+
+<div class="budget-container">
+  <div class="hello-card"> 
+  <?php
+    session_start();
+    if (isset($_SESSION['first_name'])){
+      $first_name = $_SESSION['first_name'];
+      echo "<h1>Hello, $first_name!</h1>";
+    }
+  ?>  
+  </div>
+
+  <div class="budget-box"> test</div>
+  <button class="btn" onclick="window.location.href='index.html'">Logout</button>
+  
+</div>
+
+    <div class="settings-box">
+      <div class="settings-form">
+        <h1>Settings</h1>
+        <form action="validate.php" method="post">
+          <div class="textbox">
+            <input type="email" placeholder="Email" name="email" required>
+          </div>
+          <div class="textbox">
+            <input type="password" placeholder="Password" name="password" required>
+          </div>
+          <input type="submit" class="btn" value="logout">
+        </form>
+      </div>
+    
+    </div>   
+
+
+    
+<!-- <?php
     session_start();
     if (isset($_SESSION['first_name']) && isset($_SESSION['email'])) {
         $first_name = $_SESSION['first_name'];
         $email = $_SESSION['email'];
-        echo "<br> <br> <br> <br> <br> <br> <p>Welcome, $first_name ($email)</p>";
+        echo "<h1> Welcome, $first_name ($email)</h1>";
     } else {
         echo "<p>Welcome, Guest</p>";
     }
-    ?>
+    ?> -->
+
+  <!------------Footer------------->
+  <footer class="footer-search">
+  <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
+</footer>
 </body>
 </html>
     
