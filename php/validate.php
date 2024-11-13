@@ -35,15 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Password is correct, store user details in session and redirect to dashboard
             $_SESSION['first_name'] = $first_name;
             $_SESSION['email'] = $email;
-            header("Location: dashboard.php");
+            header("Location: ../dashboard.php");
             exit();
         } else {
             // Password is incorrect
-            echo "<script> window.location.href = 'login.php?alert=1'; </script>";
+            echo "<script> window.location.href = '../login.php?alert=1'; </script>";
         }
     } else {
         // Email not found
-        echo "<script> window.location.href = 'login.php?alert=1'; </script>";
+        echo "<script> window.location.href = '../login.php?alert=1'; </script>";
     }
 
     $stmt->close();

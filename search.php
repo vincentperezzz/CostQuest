@@ -38,8 +38,7 @@
 
     <!-- Search Form -->
     <form method="POST" action="search.php">
-        <div class="search-container">
-            <div class="textbox">
+            <div class="search-textbox">
                 <input type="text" name="search" placeholder="Enter town name" required>
             </div>
             <button type="submit" name="submit-search" class="search-btn">

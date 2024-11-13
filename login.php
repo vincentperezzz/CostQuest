@@ -37,7 +37,7 @@
     <div class="login-box">
       <div class="login-form">
         <h1>Login</h1>
-        <form action="validate.php" method="post">
+        <form action="php/validate.php" method="post">
           <div class="textbox">
             <input type="email" placeholder="Email" name="email" required>
           </div>
