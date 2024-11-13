@@ -36,23 +36,39 @@
 <div class="dashboard-img">
         <img src="icons/search-1st-img.png"></div>
 
-    <div class="search-container">
+    <!-- Search Form -->
+    <form method="POST" action="search.php">
+        <div class="search-container">
             <div class="textbox">
-                <input type="text" name="search" placeholder="" required/>
+                <input type="text" name="search" placeholder="Enter town name" required>
             </div>
-            
             <button type="submit" name="submit-search" class="search-btn">
-                <img src="icons/search-ico.svg">Search</button>
-
-            <button type="submit" name="submit-filter" class="filter-btn">
-                <img src="icons/filter-ico.svg">Filter</button>
-            </div>
-    </div>
+                <img src="icons/search-ico.svg">Search
+            </button>
+            <button type="button" name="submit-filter" class="filter-btn">
+                <img src="icons/filter-ico.svg">Filter
+            </button>
+        </div>
+    </form>
 
 <!------------Footer------------->
 <footer class="footer-search">
   <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
 </footer>
+
+<?php
+// PHP handling for search input
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit-search'])) {
+    $searchInput = strtolower(trim($_POST['search']));
+        
+    if ($searchInput === "san juan") {
+        header("Location: sanjuan.php");
+        exit();
+    } else {
+        echo "<p style='text-align:center;color:red;'>No results found for: " . htmlspecialchars($searchInput) . "</p>";
+    }
+}
+?>
     
 </body>
 </html>
