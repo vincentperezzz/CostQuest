@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=egde:">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Settings </title>
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="icons/webicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
