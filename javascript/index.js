@@ -116,3 +116,25 @@ document.addEventListener('DOMContentLoaded', function() {
     createAlert('Information', '', "Enter the budget amount you can allocate <b> per person </b>. <br><br> This amount will represent each individual's budget and <br> will be used to calculate the total based on the number <br> of people traveling.", 'info', true, false, 'pageMessages');
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('editButton').addEventListener('click', editBudget);
+
+  function editBudget() {
+    const button = document.getElementById('editButton');
+    const budgetLimit = document.getElementById('budget-limit');
+    const budgetLimitTextbox = document.getElementById('budget-limit-textbox');
+
+    if (button.textContent === 'Edit Budget') {
+      budgetLimit.style.display = 'none';
+      budgetLimitTextbox.style.display = 'block';
+      button.textContent = 'Done';
+      button.style.backgroundColor = 'green';
+    } else {
+      budgetLimit.style.display = 'block';
+      budgetLimitTextbox.style.display = 'none';
+      button.textContent = 'Edit Budget';
+      button.style.backgroundColor = '';
+    }
+  }
+});

@@ -50,7 +50,7 @@
   <div class="budget-box">
     <div class="budget-summary-rows" style="margin: 15px 30px;">
       <div class="budget-title">Budget</div>
-      <button class="edit-budget-btn" onclick="alert('Button is working!')">Edit Budget</button>
+      <button class="edit-budget-btn" id="editButton" onclick="editBudget()">Edit Budget</button>
     </div>
     <div class="budget-summary-rows">
       <div class="budget-price">₱ 0.00</div>
@@ -61,7 +61,8 @@
       <div class="progress-bar-status"></div></div>
     </div>
     <div class="budget-limit-box">
-      <div class="budget-limit">₱ 20000.00</div>
+      <div class="budget-limit" id="budget-limit" >₱ 20000.00</div>
+        <input type="text" placeholder="₱ 0.00" name="budget-limit-textbox" class="budget-limit-textbox" id="budget-limit-textbox">
     </div>
   </div>
 </div>
