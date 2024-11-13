@@ -266,7 +266,7 @@ nav ul li a{
   padding: 0 20px;
 }
 
-form {
+.search-container form {
   display: flex;
   justify-content: center;
   align-items: center;
