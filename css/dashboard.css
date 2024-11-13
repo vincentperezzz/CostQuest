@@ -253,10 +253,10 @@ nav ul li a{
 
 .search-container {
   position: absolute;
-  top: 410px; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  width: 45%;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
   height: 70px;
   border-radius: 20px;
   background-color: white;
@@ -264,10 +264,21 @@ nav ul li a{
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 20px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-textbox {
+  margin-right: 10px;
 }
 
 .search-textbox input {
-  width: 550px;
+  width: 400px;
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -281,7 +292,7 @@ nav ul li a{
   width: 130px;
   height: 40px;
   text-align: center;
-  line-height: 40px; 
+  line-height: 40px;
   color: #ffffff;
   font-size: 15px;
   font-weight: 500;
@@ -295,6 +306,12 @@ nav ul li a{
 
 .search-btn:hover, .filter-btn:hover {
   background-color: rgb(87, 87, 87);
+}
+
+.search-btn img, .filter-btn img {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
 }
 
 .settings-box {
