@@ -451,12 +451,13 @@ nav ul li a{
   padding-top: 20px;
   color: #00000056;
   font-size: 15px;
-  text-decoration: underline;
+
   transition: background 0.3s ease;
 }
 
 .del-btn:hover {
   color: #000000;
+  text-decoration: underline;
 }
 
 .login-img {
@@ -599,8 +600,11 @@ nav ul li a{
   cursor: pointer;
   color: #2600ff;
   font-size: 15px;
-  text-decoration: underline;
   transition: background 0.3s ease;
+}
+
+.edit-btn:hover {
+  text-decoration: underline;
 }
 
 .btn-row {
