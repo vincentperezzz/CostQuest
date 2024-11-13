@@ -121,20 +121,47 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('editButton').addEventListener('click', editBudget);
 
   function editBudget() {
-    const button = document.getElementById('editButton');
-    const budgetLimit = document.getElementById('budget-limit');
-    const budgetLimitTextbox = document.getElementById('budget-limit-textbox');
-
-    if (button.textContent === 'Edit Budget') {
-      budgetLimit.style.display = 'none';
-      budgetLimitTextbox.style.display = 'block';
-      button.textContent = 'Done';
-      button.style.backgroundColor = 'green';
-    } else {
-      budgetLimit.style.display = 'block';
-      budgetLimitTextbox.style.display = 'none';
-      button.textContent = 'Edit Budget';
-      button.style.backgroundColor = '';
-    }
+      const button = document.getElementById('editButton');
+      const budgetLimit = document.getElementById('budget-limit');
+      const budgetLimitTextbox = document.getElementById('budget-limit-textbox');
+  
+      if (button.textContent === 'Edit Budget') {
+          budgetLimit.style.display = 'none';
+          budgetLimitTextbox.style.display = 'block';
+          button.textContent = 'Done';
+          button.style.backgroundColor = 'green';
+      } else {
+          const newBudget = budgetLimitTextbox.value.trim();
+          if (newBudget === '') {
+              resetBudgetEdit();
+          } else {
+              fetch('php/update_budget.php', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: `budget=${encodeURIComponent(newBudget)}`,
+              })
+              .then(response => response.text())
+              .then(data => {
+                  if (data === 'success') {
+                      location.reload();
+                  } else {
+                      resetBudgetEdit();
+                  }
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  resetBudgetEdit();
+              });
+          }
+      }
+  
+      function resetBudgetEdit() {
+          budgetLimit.style.display = 'block';
+          budgetLimitTextbox.style.display = 'none';
+          button.textContent = 'Edit Budget';
+          button.style.backgroundColor = '';
+      }
   }
 });
