@@ -47,10 +47,27 @@
   ?>  
   </div>
 
-  <div class="budget-box"> test</div>
-  <button class="btn" onclick="window.location.href='index.html'">Logout</button>
-  
+  <div class="budget-box">
+    <div class="budget-summary-rows" style="margin: 15px 30px;">
+      <div class="budget-title">Budget</div>
+      <button class="edit-budget-btn" onclick="alert('Button is working!')">Edit Budget</button>
+    </div>
+    <div class="budget-summary-rows">
+      <div class="budget-price">₱ 0.00</div>
+      <div class="budget-percentage"> 0%</div>
+    </div>
+    <div class="budget-summary-rows">
+      <div class="progress-bar-grey">
+      <div class="progress-bar-status"></div></div>
+    </div>
+    <div class="budget-limit-box">
+      <div class="budget-limit">₱ 20000.00</div>
+    </div>
+  </div>
 </div>
+
+
+
 
     <div class="settings-box">
       <div class="settings-form">
