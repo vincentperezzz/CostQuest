@@ -36,19 +36,20 @@
 <div class="dashboard-img">
         <img src="icons/search-1st-img.png"></div>
 
-    <!-- Search Form -->
+<!-- Search Form -->
+<div class="search-container">
     <form method="POST" action="search.php">
-            <div class="search-textbox">
-                <input type="text" name="search" placeholder="Enter town name" required>
-            </div>
-            <button type="submit" name="submit-search" class="search-btn">
-                <img src="icons/search-ico.svg">Search
-            </button>
-            <button type="button" name="submit-filter" class="filter-btn">
-                <img src="icons/filter-ico.svg">Filter
-            </button>
+        <div class="search-textbox">
+            <input type="text" name="search" placeholder="Enter town name" required>
         </div>
+        <button type="submit" name="submit-search" class="search-btn">
+            <img src="icons/search-ico.svg" alt="Search Icon" style="width: 16px; height: 16px; margin-right: 5px;">Search
+        </button>
+        <button type="button" name="submit-filter" class="filter-btn">
+            <img src="icons/filter-ico.svg" alt="Filter Icon" style="width: 16px; height: 16px; margin-right: 5px;">Filter
+        </button>
     </form>
+</div>
 
 <!------------Footer------------->
 <footer class="footer-search">

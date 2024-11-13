@@ -253,21 +253,32 @@ nav ul li a{
 
 .search-container {
   position: absolute;
-  top: 410px; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  width: 45%;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto; /* Auto width based on content */
   height: 70px;
   border-radius: 20px;
   background-color: white;
   box-shadow: 0 20px 30px #1d1c1c50;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Centers the form contents horizontally */
+  align-items: center; /* Centers the form contents vertically */
+  padding: 0 20px; /* Padding for spacing */
+}
+
+form {
+  display: flex;
+  justify-content: center; /* Ensures the input and buttons are centered horizontally */
+  align-items: center; /* Ensures input and buttons are aligned vertically */
+}
+
+.search-textbox {
+  margin-right: 10px; /* Adds space between input and buttons */
 }
 
 .search-textbox input {
-  width: 550px;
+  width: 400px; /* Fixed width for the input field */
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -281,7 +292,7 @@ nav ul li a{
   width: 130px;
   height: 40px;
   text-align: center;
-  line-height: 40px; 
+  line-height: 40px;
   color: #ffffff;
   font-size: 15px;
   font-weight: 500;
@@ -295,6 +306,12 @@ nav ul li a{
 
 .search-btn:hover, .filter-btn:hover {
   background-color: rgb(87, 87, 87);
+}
+
+.search-btn img, .filter-btn img {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
 }
 
 .settings-box {
