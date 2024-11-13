@@ -86,6 +86,7 @@ body {
   color: #ffffff;
   font-size: 18px;
   font-weight: 500;
+  transition: background 0.3s ease;
 }
 
 .itinerary-btn-box:hover {
@@ -108,6 +109,7 @@ body {
     font-weight: 500;
     text-decoration: none;
     padding-right: 10px;
+    transition: background 0.3s ease;
 }
 
 nav{
@@ -242,6 +244,7 @@ nav ul li a{
   color: #000000;
   font-size: 18px;
   font-weight: 500;
+  transition: background 0.3s ease;
 }
 
 .tour-package-btn:hover {
@@ -287,6 +290,7 @@ nav ul li a{
   align-items: center;
   margin-left: 10px;
   border: none;
+  transition: background 0.3s ease;
 }
 
 .search-btn:hover, .filter-btn:hover {
@@ -351,6 +355,7 @@ nav ul li a{
   height: 40px;
   color: #ffffff;
   border: none;
+  transition: background 0.3s ease;
 }
 
 .edit-budget-btn:hover {
@@ -418,6 +423,129 @@ nav ul li a{
   justify-content: center;
   align-items: center;
   padding-top: 35px;
+}
+
+.login-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 60px;
+  width: 700px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.login-box h1 {
+  margin-bottom: 20px;
+}
+
+.name-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-row .textbox {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.name-row .textbox:last-child {
+  margin-right: 0;
+}
+
+.textbox {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.textbox input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.label {
+  flex: 1;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.styled-dropdown {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s ease;
+  text-align: center;
+  text-align-last: center;
+  
+}
+
+.styled-dropdown:focus {
+  border-color: #555;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-group .textbox {
+  width: 100%;
+  max-width: 296px; 
+}
+
+.form-label {
+  margin-right: 10px;
+}
+
+.spacing {
+  margin-bottom: 160px;
+}
+
+.btn {
+  width: 100%;
+  background: #000000;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #555555;
+}
+
+.logout-btn{
+  width: 100%;
+  border: none;
+  background-color: #D33C3D;
+  padding: 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #962D2E;
 }
 
 /* Footer */

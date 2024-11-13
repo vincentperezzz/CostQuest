@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <?php include 'php/data_database.php'; ?>
     <script src="javascript/index.js"> </script>
     </head>
 <body>  
@@ -38,49 +39,7 @@
 
 <div class="budget-container">
   <div class="hello-card"> 
-  <?php
-  session_start();
-  if (isset($_SESSION['first_name']) && isset($_SESSION['email'])) {
-      $first_name = $_SESSION['first_name'];
-      $email = $_SESSION['email'];
-      echo "<h1>Hello, $first_name!</h1>";
-  }
-
-  // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "costquest";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Assuming you have the email stored in a session or a variable
-$email = $_SESSION['email'];
-
-// Fetch budget from the database
-$sql = "SELECT budget FROM users WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$stmt->bind_result($budget);
-
-
-$budget_price = 5; // This is just a placeholder value
-if ($budget > 0) {
-  $budget_percentage = ($budget_price / $budget) * 100;
-
-}
-
-$stmt->fetch();
-$stmt->close();
-$conn->close();
-  ?>  
+  <h1>Hello, <?php echo $user_first_name; ?>!</h1>
   </div>
 
   <div class="budget-box">
@@ -98,7 +57,7 @@ $conn->close();
           </div>
       </div>
       <div class="budget-limit-box">
-          <div class="budget-limit" id="budget-limit">₱ <?php echo number_format($budget, 2); ?></div>
+          <div class="budget-limit" id="budget-limit">₱ <?php echo number_format($user_budget, 2); ?></div>
           <input type="text" placeholder="₱ 0.00" name="budget-limit-textbox" class="budget-limit-textbox" id="budget-limit-textbox">
       </div>
   </div>
@@ -107,25 +66,52 @@ $conn->close();
 
 
 
-    <div class="settings-box">
-      <div class="settings-form">
-        <h1>Settings</h1>
-        <form action="validate.php" method="post">
-          <div class="textbox">
-            <input type="email" placeholder="Email" name="email" required>
-          </div>
-          <div class="textbox">
-            <input type="password" placeholder="Password" name="password" required>
-          </div>
-          <input type="submit" class="btn" value="logout">
-        </form>
-      </div>
+<div class="login-box">
+            <h1>Edit account details here!</h1>
+            <form action="settings.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">
+                <div class="name-row">
+                    <div class="textbox">
+                        <input type="text" placeholder="<?php echo $first_name ?>" name="fname">
+                    </div>
+                    <div class="textbox">
+                        <input type="text" placeholder="<?php echo $last_name ?>" name="lname">
+                    </div>
+                </div>
+        
+                <div class="textbox">
+                    <input type="email" placeholder="<?php echo $email ?>" name="email">
+                </div>
+        
+                <div class="textbox">
+                    <input type="password" placeholder="Modify Password" name="password" required>
+                </div>
+        
+                <div class="textbox">
+                    <input type="password" placeholder="Confirm Password" name="confirm-password" required>
+                </div>
+
+                <div class="name-row">
+                    <div class="textbox">
+                        <label for="num-people" class="label">Number of People Traveling:</label>
+                        <select id="num-people" name="num-people" class="styled-dropdown">
+                            <?php for ($i = 1; $i <= 100; $i++): ?>
+                            <option value="<?php echo $i; ?>" <?php echo $i == $user_number_of_people ? 'selected' : ''; ?>><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                </div>
+        
+                <button type="submit" class="btn">Continue</button>
+                <button type="submit" class="logout-btn" onclick="window.location.href='index.html'">Logout</button>
+            </form>
+            
+  </div>
     
-    </div>   
+ 
 
 
   <!------------Footer------------->
-  <footer class="footer-search">
+  <footer class="footer">
   <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
 </footer>
 </body>
