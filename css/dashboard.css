@@ -266,7 +266,7 @@ nav ul li a{
   align-items: center;
 }
 
-.textbox input {
+.search-textbox input {
   width: 550px;
   padding: 6px;
   border: 1px solid #ccc;

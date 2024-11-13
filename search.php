@@ -37,7 +37,7 @@
         <img src="icons/search-1st-img.png"></div>
 
     <div class="search-container">
-            <div class="textbox">
+            <div class="search-textbox">
                 <input type="text" name="search" placeholder="" required/>
             </div>
             
