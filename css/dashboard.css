@@ -256,29 +256,29 @@ nav ul li a{
   top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: auto; /* Auto width based on content */
+  width: auto;
   height: 70px;
   border-radius: 20px;
   background-color: white;
   box-shadow: 0 20px 30px #1d1c1c50;
   display: flex;
-  justify-content: center; /* Centers the form contents horizontally */
-  align-items: center; /* Centers the form contents vertically */
-  padding: 0 20px; /* Padding for spacing */
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
 }
 
 form {
   display: flex;
-  justify-content: center; /* Ensures the input and buttons are centered horizontally */
-  align-items: center; /* Ensures input and buttons are aligned vertically */
+  justify-content: center;
+  align-items: center;
 }
 
 .search-textbox {
-  margin-right: 10px; /* Adds space between input and buttons */
+  margin-right: 10px;
 }
 
 .search-textbox input {
-  width: 400px; /* Fixed width for the input field */
+  width: 400px;
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 10px;
