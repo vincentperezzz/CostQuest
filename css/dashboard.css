@@ -253,7 +253,6 @@ nav ul li a{
 
 .search-container {
   position: absolute;
-  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: auto;
@@ -278,7 +277,7 @@ form {
 }
 
 .search-textbox input {
-  width: 400px;
+  width: 500px;
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 10px;
