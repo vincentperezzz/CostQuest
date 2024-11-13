@@ -38,7 +38,7 @@
             
         <div class="login-box">
             <h1>Create an account here!</h1>
-            <form action="register.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">
+            <form action="php/register.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">
                 <div class="name-row">
                     <div class="textbox">
                         <input type="text" placeholder="First Name" name="fname" required>

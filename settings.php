@@ -39,11 +39,39 @@
 <div class="budget-container">
   <div class="hello-card"> 
   <?php
-    session_start();
-    if (isset($_SESSION['first_name'])){
+  session_start();
+  if (isset($_SESSION['first_name']) && isset($_SESSION['email'])) {
       $first_name = $_SESSION['first_name'];
+      $email = $_SESSION['email'];
       echo "<h1>Hello, $first_name!</h1>";
-    }
+  }
+
+  // Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "costquest";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Assuming you have the email stored in a session or a variable
+$email = $_SESSION['email'];
+
+// Fetch budget from the database
+$sql = "SELECT budget FROM users WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->bind_result($budget);
+$stmt->fetch();
+$stmt->close();
+$conn->close();
   ?>  
   </div>
 
@@ -61,7 +89,7 @@
       <div class="progress-bar-status"></div></div>
     </div>
     <div class="budget-limit-box">
-      <div class="budget-limit" id="budget-limit" >₱ 20000.00</div>
+      <div class="budget-limit" id="budget-limit" >₱ <?php echo number_format($budget, 2); ?></div>
         <input type="text" placeholder="₱ 0.00" name="budget-limit-textbox" class="budget-limit-textbox" id="budget-limit-textbox">
     </div>
   </div>
@@ -86,18 +114,6 @@
     
     </div>   
 
-
-    
-<!-- <?php
-    session_start();
-    if (isset($_SESSION['first_name']) && isset($_SESSION['email'])) {
-        $first_name = $_SESSION['first_name'];
-        $email = $_SESSION['email'];
-        echo "<h1> Welcome, $first_name ($email)</h1>";
-    } else {
-        echo "<p>Welcome, Guest</p>";
-    }
-    ?> -->
 
   <!------------Footer------------->
   <footer class="footer-search">

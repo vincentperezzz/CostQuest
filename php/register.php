@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->num_rows > 0) {
         // Email already exists
-        echo "<script> window.location.href = 'signup.php?alert=1'; </script>";
+        echo "<script> window.location.href = '../signup.php?alert=1'; </script>";
     } else {
         // Insert new user
         $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, num_people, budget) VALUES (?, ?, ?, ?, ?, ?)");
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Store user details in session and redirect to dashboard
             $_SESSION['first_name'] = $first_name;
             $_SESSION['email'] = $email;
-            header("Location: dashboard.php");
+            header("Location: ../dashboard.php");
             exit();
         } else {
             echo "Error: " . $stmt->error;
