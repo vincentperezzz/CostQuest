@@ -69,6 +69,14 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $stmt->bind_result($budget);
+
+
+$budget_price = 5; // This is just a placeholder value
+if ($budget > 0) {
+  $budget_percentage = ($budget_price / $budget) * 100;
+
+}
+
 $stmt->fetch();
 $stmt->close();
 $conn->close();
@@ -76,25 +84,26 @@ $conn->close();
   </div>
 
   <div class="budget-box">
-    <div class="budget-summary-rows" style="margin: 15px 30px;">
-      <div class="budget-title">Budget</div>
-      <button class="edit-budget-btn" id="editButton" onclick="editBudget()">Edit Budget</button>
-    </div>
-    <div class="budget-summary-rows">
-      <div class="budget-price">₱ 0.00</div>
-      <div class="budget-percentage"> 0%</div>
-    </div>
-    <div class="budget-summary-rows">
-      <div class="progress-bar-grey">
-      <div class="progress-bar-status"></div></div>
-    </div>
-    <div class="budget-limit-box">
-      <div class="budget-limit" id="budget-limit" >₱ <?php echo number_format($budget, 2); ?></div>
-        <input type="text" placeholder="₱ 0.00" name="budget-limit-textbox" class="budget-limit-textbox" id="budget-limit-textbox">
-    </div>
+      <div class="budget-summary-rows" style="margin: 15px 30px;">
+          <div class="budget-title">Budget</div>
+          <button class="edit-budget-btn" id="editButton" onclick="editBudget()">Edit Budget</button>
+      </div>
+      <div class="budget-summary-rows">
+          <div class="budget-price" id="budget-price">₱ <?php echo number_format($budget_price, 2); ?></div>
+          <div class="budget-percentage" id="budget-percentage"> <?php echo number_format($budget_percentage, 2); ?>%</div>
+      </div>
+      <div class="budget-summary-rows">
+          <div class="progress-bar-grey">
+              <div class="progress-bar-status" id="progress-bar-status" style="width: <?php echo $budget_percentage; ?>%;"></div>
+          </div>
+      </div>
+      <div class="budget-limit-box">
+          <div class="budget-limit" id="budget-limit">₱ <?php echo number_format($budget, 2); ?></div>
+          <input type="text" placeholder="₱ 0.00" name="budget-limit-textbox" class="budget-limit-textbox" id="budget-limit-textbox">
+      </div>
   </div>
 </div>
-
+<script> updateBudgetPercentage(); </script>
 
 
 

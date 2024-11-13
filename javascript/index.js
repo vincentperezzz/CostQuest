@@ -165,3 +165,35 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   }
 });
+
+
+
+function updateBudgetPercentage() {
+    var budgetPriceElement = document.querySelector('.budget-price');
+    var budgetLimitElement = document.getElementById('budget-limit');
+    var budgetPercentageElement = document.getElementById('budget-percentage');
+    var progressBarStatusElement = document.getElementById('progress-bar-status');
+
+    if (budgetPriceElement && budgetLimitElement && budgetPercentageElement && progressBarStatusElement) {
+        var budgetPrice = parseFloat(budgetPriceElement.innerText.replace('₱', '').replace(',', ''));
+        var budgetLimit = parseFloat(budgetLimitElement.innerText.replace('₱', '').replace(',', ''));
+        var budgetPercentage = (budgetPrice / budgetLimit) * 100;
+
+        if (budgetPercentage > 100) {
+            budgetPercentage = 100;
+        } else if (budgetPercentage < 0) {
+            budgetPercentage = 0;
+        }
+
+        budgetPercentageElement.innerText = budgetPercentage.toFixed(2) + '%';
+        progressBarStatusElement.style.width = budgetPercentage + '%';
+
+        if (budgetPercentage === 0) {
+            progressBarStatusElement.style.display = 'none';
+        } else {
+            progressBarStatusElement.style.display = 'block';
+        }
+    } else {
+        console.error('One or more elements not found in the DOM');
+    }
+}
