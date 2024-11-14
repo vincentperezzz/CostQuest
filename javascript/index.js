@@ -234,15 +234,30 @@ function cancelEdit() {
 }
 
 // FUNCTION: Update the number of people in database from settings
-document.getElementById('num-people').addEventListener('change', function() {
-  var numPeople = this.value;
+
+document.addEventListener('DOMContentLoaded', function() {
+  const numPeopleElement = document.getElementById('num-people');
+  if (numPeopleElement) {
+    numPeopleElement.addEventListener('change', updateNumberOfPeople);
+  } else {
+    console.error('Element with ID "num-people" not found.');
+  }
+});
+
+function updateNumberOfPeople(event) {
+  var numPeople = event.target.value;
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'update_num_people.php', true);
+  xhr.open('POST', 'php/update_num_people.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-          console.log('Number of people updated successfully');
+    if (xhr.readyState === 4) {
+      console.log('Response:', xhr.responseText);
+      if (xhr.status === 200) {
+        console.log('Number of people updated successfully');
+      } else {
+        console.log('Error updating number of people');
       }
+    }
   };
   xhr.send('num_people=' + numPeople);
-});
+}

@@ -193,6 +193,7 @@
   <footer class="footer">
   <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
 </footer>
+<script src="javascript/index.js"> </script>
 </body>
 </html>
     
