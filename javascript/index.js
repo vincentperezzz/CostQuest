@@ -249,15 +249,37 @@ function updateNumberOfPeople(event) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'php/update_num_people.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      console.log('Response:', xhr.responseText);
-      if (xhr.status === 200) {
-        console.log('Number of people updated successfully');
-      } else {
-        console.log('Error updating number of people');
-      }
-    }
-  };
   xhr.send('num_people=' + numPeople);
+}
+
+// FUNCTION: Update the Email in the database from settings
+function updateEmail() {
+    var oldEmail = document.querySelector('input[name="old-email"]').value;
+    var newEmail = document.querySelector('input[name="new-email"]').value;
+    var password = document.querySelector('input[name="password"]').value;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/update_email.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.send(`old_email=${encodeURIComponent(oldEmail)}&new_email=${encodeURIComponent(newEmail)}&password=${encodeURIComponent(password)}`);
+}
+
+// FUNCTION: Update the Password in the database from settings
+function updatePassword() {
+    var email = document.querySelector('input[name="email"]').value;
+    var oldPassword = document.querySelector('input[name="old-password"]').value;
+    var newPassword = document.querySelector('input[name="new-password"]').value;
+    var confirmPassword = document.querySelector('input[name="confirm-password"]').value;
+
+    if (newPassword !== confirmPassword) {
+        createAlert('Opps!','','Passwords do not match.','danger',true,true,'pageMessages');
+        return;
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/update_password.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.send(`email=${encodeURIComponent(email)}&old_password=${encodeURIComponent(oldPassword)}&new_password=${encodeURIComponent(newPassword)}`);
 }
