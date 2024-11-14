@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <?php include 'php/data_database.php'; ?>
     <script src="javascript/index.js"> </script>
     </head>
@@ -36,6 +40,7 @@
 <!------------Home------------->
 <div class="dashboard-img">
         <img src="icons/settings-1st-img.png"></div>
+<div id="pageMessages"> </div>
 
 <div class="budget-container">
   <div class="hello-card"> 
@@ -110,7 +115,6 @@
             <h6>Account Details > Change Email</h6>
                 <h1>Change Email</h1>
 
-            <form action="settings.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">
                 <div class="textbox">
                     <input type="email" placeholder="Old Email" name="old-email" required>
                 </div>      
@@ -128,10 +132,9 @@
                         <button type="submit" class="cancel-btn" onclick="cancelEdit()">Cancel</button>
                     </div>
                     <div>
-                        <button type="submit" class="confirm-btn">Confirm</button>
+                        <button type="submit" class="confirm-btn" onclick="updateEmail()">Confirm</button>
                     </div>
                 </div>            
-            </form>
  </div>
 
  <div class="password-box" id="password-box">
@@ -186,8 +189,20 @@
                 </div>            
             </form>
  </div>
-    
-
+  <?php
+if (isset($_GET['alert']) && $_GET['alert'] == 1) {
+    echo "<script> createAlert(' Success!','','Email updated successfully.','success',true,true,'pageMessages'); </script>";
+}
+if (isset($_GET["alert"]) && $_GET["alert" ] == 2) {
+    echo "<script> createAlert(' Opps!','','Invalid email or password.','danger',true,true,'pageMessages'); </script>";
+}
+if (isset($_GET['alert']) && $_GET['alert'] == 3) {
+    echo "<script> createAlert(' Success!','','Password updated successfully.','success',true,true,'pageMessages'); </script>";
+}
+if (isset($_GET["alert"]) && $_GET["alert" ] == 4) {
+    echo "<script> createAlert(' Opps!','','Invalid email or password.','danger',true,true,'pageMessages'); </script>";
+}
+?>
 
   <!------------Footer------------->
   <footer class="footer">
