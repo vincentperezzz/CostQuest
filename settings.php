@@ -141,7 +141,6 @@
             <h6>Account Details > Change Password</h6>
                 <h1>Change Password</h1>
 
-            <form action="settings.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">
                 <div class="textbox">
                     <input type="password" placeholder="Old password" name="old-password" required>
                 </div>      
@@ -159,24 +158,21 @@
                         <button type="submit" class="cancel-btn" onclick="cancelEdit()">Cancel</button>
                     </div>
                     <div>
-                        <button type="submit" class="confirm-btn">Confirm</button>
+                        <button type="submit" class="confirm-btn" onclick="updatePassword()">Confirm</button>
                     </div>
                 </div>            
-            </form>
  </div>
 
  <div class="delete-box" id="delete-box">
             <h6>Account Details > Account Deletion</h6>
                 <h1>Are you sure you want to <br> delete your account?</h1>
 
-            <form action="settings.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">    
-
                 <div class="textbox">
-                    <input type="password" placeholder="Password" name="new-password" required>
+                    <input type="password" placeholder="Password" name="del_password" required>
                 </div> 
                 
                 <div class="textbox">
-                    <input type="password" placeholder="Confirm Password" name="confirm-new-password" required>
+                    <input type="password" placeholder="Confirm Password" name="del_confirm-password" required>
                 </div> 
 
                 <div class="btn-row">
@@ -184,25 +180,10 @@
                         <button type="submit" class="cancel-btn" onclick="cancelEdit()">Cancel</button>
                     </div>
                     <div>
-                        <button type="submit" class="confirm-btn">Confirm</button>
+                        <button type="submit" class="confirm-btn" onclick="deleteAccount()">Confirm</button>
                     </div>
                 </div>            
-            </form>
  </div>
-  <?php
-if (isset($_GET['alert']) && $_GET['alert'] == 1) {
-    echo "<script> createAlert(' Success!','','Email updated successfully.','success',true,true,'pageMessages'); </script>";
-}
-if (isset($_GET["alert"]) && $_GET["alert" ] == 2) {
-    echo "<script> createAlert(' Opps!','','Invalid email or password.','danger',true,true,'pageMessages'); </script>";
-}
-if (isset($_GET['alert']) && $_GET['alert'] == 3) {
-    echo "<script> createAlert(' Success!','','Password updated successfully.','success',true,true,'pageMessages'); </script>";
-}
-if (isset($_GET["alert"]) && $_GET["alert" ] == 4) {
-    echo "<script> createAlert(' Opps!','','Invalid email or password.','danger',true,true,'pageMessages'); </script>";
-}
-?>
 
   <!------------Footer------------->
   <footer class="footer">

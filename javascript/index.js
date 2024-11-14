@@ -262,18 +262,30 @@ function updateEmail() {
     xhr.open('POST', 'php/update_email.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+          if (xhr.responseText === 'success') {
+            cancelEdit()
+            createAlert(' Success!','','Email updated successfully.','success',true,true,'pageMessages'); 
+          } else {
+            createAlert(' Opps!','','Invalid email or password.','danger',true,true,'pageMessages');
+          }
+      } else {
+          createAlert(' Opps!','','An error occurred while updating the password.','danger',true,true,'pageMessages');
+      }
+  };
+
     xhr.send(`old_email=${encodeURIComponent(oldEmail)}&new_email=${encodeURIComponent(newEmail)}&password=${encodeURIComponent(password)}`);
 }
 
 // FUNCTION: Update the Password in the database from settings
 function updatePassword() {
-    var email = document.querySelector('input[name="email"]').value;
     var oldPassword = document.querySelector('input[name="old-password"]').value;
     var newPassword = document.querySelector('input[name="new-password"]').value;
-    var confirmPassword = document.querySelector('input[name="confirm-password"]').value;
+    var confirmPassword = document.querySelector('input[name="confirm-new-password"]').value;
 
     if (newPassword !== confirmPassword) {
-        createAlert('Opps!','','Passwords do not match.','danger',true,true,'pageMessages');
+        createAlert(' Opps!','','Passwords do not match.','danger',true,true,'pageMessages');
         return;
     }
 
@@ -281,5 +293,47 @@ function updatePassword() {
     xhr.open('POST', 'php/update_password.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-    xhr.send(`email=${encodeURIComponent(email)}&old_password=${encodeURIComponent(oldPassword)}&new_password=${encodeURIComponent(newPassword)}`);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            if (xhr.responseText === 'success') {
+                cancelEdit()
+                createAlert(' Success!','','Password updated successfully.','success',true,true,'pageMessages');
+            } else {
+                createAlert(' Opps!','',xhr.responseText,'danger',true,true,'pageMessages');
+            }
+        } else {
+            createAlert(' Opps!','','An error occurred while updating the password.','danger',true,true,'pageMessages');
+        }
+    };
+
+    xhr.send(`old_password=${encodeURIComponent(oldPassword)}&new_password=${encodeURIComponent(newPassword)}`);
+}
+
+// FUNCTION: Delete the account from settings
+function deleteAccount() {
+    var password = document.querySelector('input[name="del_password"]').value;
+    var confirmPassword = document.querySelector('input[name="del_confirm-password"]').value;
+
+    if (password !== confirmPassword) {
+        createAlert(' Opps!','','Passwords do not match.','danger',true,true,'pageMessages');
+        return;
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/delete_account.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            if (xhr.responseText === 'success') {
+                window.location.href = 'index.html';
+            } else {
+                createAlert(' Opps!','','Invalid password.','danger',true,true,'pageMessages');
+            }
+        } else {
+            createAlert(' Opps!','','An error occurred while deleting the account.','danger',true,true,'pageMessages');
+        }
+    };
+
+    xhr.send(`password=${encodeURIComponent(password)}`);
 }

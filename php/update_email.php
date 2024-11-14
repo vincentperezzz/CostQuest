@@ -39,15 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Update the session email
                 $_SESSION['email'] = $new_email;
                 $_SESSION['first_name'] = $first_name;
-                echo "<script> window.location.href = 'settings.php?alert=1'; </script>";
+                echo "success";
+            } else {
+                echo "Error: " . $stmt->error;
             }
         } else {
             // Password is incorrect
-            echo "<script> window.location.href = 'settings.php?alert=2'; </script>";
+            echo "Invalid email or password";
         }
     } else {
         // Email not found
-        echo "<script> window.location.href = 'settings.php?alert=2'; </script>";
+        echo "Invalid email or password";
     }
 
     $stmt->close();
