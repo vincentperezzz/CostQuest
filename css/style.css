@@ -631,6 +631,7 @@ nav ul li a{
   border: none;
   border-radius: 5px; 
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 .cancel-btn:hover {
     background-color: #722121; /* Adjust the hover background color as needed */
@@ -645,6 +646,7 @@ nav ul li a{
   border: none;
   border-radius: 5px; 
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 .confirm-btn:hover {
     background-color: #00700a; /* Adjust the hover background color as needed */
