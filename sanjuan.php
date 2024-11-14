@@ -302,11 +302,11 @@ $result = $conn->query($sql);
 </div>
 
 <script>
-// Function to generate options for dropdowns with 1 to 50 options
+// Function to generate options for dropdowns with 1 to 100 options
 function generateOptionsForAll() {
     // Select all dropdowns with class 'people' and 'days'
     document.querySelectorAll('.people, .days').forEach((select) => {
-        for (let i = 1; i <= 50; i++) {
+        for (let i = 1; i <= 100; i++) {
             const option = document.createElement('option');
             option.value = i;
             option.textContent = i;
