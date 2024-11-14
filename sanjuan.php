@@ -66,6 +66,9 @@ $result = $conn->query($sql);
     <div class="destination-container">
         <div class="destination-img">
             <img src="icons/sanjuan-d1.png">
+            <div class="price-overlay">
+                <p class="from-color">from</p> <h2>₱ 2500</h2>
+            </div>
         </div>
 
         <div class="details">

@@ -154,12 +154,38 @@ nav ul li a{
     box-sizing: border-box;
     margin-top: 25px;
     margin-bottom: 25px;
+    position: relative;
 }
 
 .destination-img {
     width: auto;
     height: auto;
     margin-right: 20px;
+}
+
+.price-overlay{
+  position: absolute;
+  top: 419px;
+  left: 25px;
+  width: 170px;
+  height: 40px;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.price-overlay h2{
+  color: #000000;
+  font-size: 23px;
+  padding: 5px 5px;
+}
+
+.from-color{
+  color: rgb(87, 87, 87);
+  font-size: 23px;
+  font-weight: 600;
+  padding:  5px 5px;
 }
 
 .details {
