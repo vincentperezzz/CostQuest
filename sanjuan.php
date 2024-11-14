@@ -16,26 +16,25 @@ if ($conn->connect_error) {
 }
 
 // Fetch destinations for San Juan
-$sql = "SELECT * FROM destinations WHERE town_name = 'San Juan'";
+$sql = "SELECT * FROM destinations WHERE town = 'San Juan'";
 $result = $conn->query($sql);
 
 ?>
 
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=egde:">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Dashboard </title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="css/destination.css">
     <link rel="icon" href="icons/webicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
-    <script src="javascript/index.js"> </script>
-    </head>
-
+    <script src="javascript/index.js"></script>
+</head>
 <body>  
     <nav class="navbar">
         <div class="max-width">
@@ -45,269 +44,89 @@ $result = $conn->query($sql);
                 <li><a href="search.php" class="menu-btn">Search</a></li>
             </ul>
 
-            <div class="logo"><a href="dashboard.php"><img src="icons/logo.png"></a>
-            </div>
+            <div class="logo"><a href="dashboard.php"><img src="icons/logo.png"></a></div>
 
             <div class="itinerary">
-            <div class="itinerary-btn">Itinerary</div>
-            <div class="itinerary-btn-box"><a href="#itineraries"><img class="loc-ico" src="icons/itineraries-location-icon.png">0</a></div>
+                <div class="itinerary-btn">Itinerary</div>
+                <div class="itinerary-btn-box"><a href="#itineraries"><img class="loc-ico" src="icons/itineraries-location-icon.png">0</a></div>
             </div>
         </div>
     </nav>
 
-<!-- San Juan Destinations -->
-<div class="sanjuan-img">
-    <img src="icons/search-sanjuan.png">
-</div>
-
-<!-- Wrapper for all destination containers -->
-<div class="destination-wrapper">
-    <!-- Destination 1 -->
-    <div class="destination-container">
-        <div class="destination-img">
-            <img src="icons/sanjuan-d1.png">
-            <div class="price-overlay">
-                <p class="from-color">from</p> <h2>₱ 2500</h2>
-            </div>
-        </div>
-
-        <div class="details">
-            <h2 class="name">
-                <a href="https://camplaiyabeach.com" target="_blank">Camp Laiya Beach Farm Resort</a>
-            </h2>
-            <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint
-                (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
-            
-            <ul class="pricelist">
-                <li>Daytour Price: ₱1000 per head</li>
-                <li>Overnight Price: ₱1250 per head</li>
-                <li>Environmental Fee: ₱20</li>
-                <li>Other Fees: ₱150</li>
-            </ul>
-
-            <div class="dropdown-container">
-                <!-- Dropdown for number of people -->
-                <select class="people" name="people">
-                    <option value="" disabled selected>Number of People</option>
-                </select>
-                <!-- Dropdown for days to stay with onchange event -->
-                <select class="days" name="days" onchange="updateDaytourText()">
-                    <option value="" disabled selected>Days to Stay</option>
-                </select>
-                <!-- Label for daytour -->
-                <div>
-                    <input type="text" class="daytour" name="daytour" placeholder="Daytour" disabled>
-                </div>
-            </div>
-            
-            <button class="add-itinerary-btn">Add to Itinerary</button>
-
-        </div>
+    <!-- San Juan Destinations -->
+    <div class="sanjuan-img">
+        <img src="icons/search-sanjuan.png">
     </div>
 
-    <!-- Destination 2 -->
-    <div class="destination-container">
-        <div class="destination-img">
-            <img src="icons/sanjuan-d2.png">
-        </div>
-
-        <div class="details">
-            <h2 class="name">
-                <a href="https://www.facebook.com/@sigayanbay" target="_blank">Sigayan Bay Beach Resort</a>
-            </h2>
-            <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint
-                (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
-            
-            <ul class="pricelist">
-                <li>Daytour Price: ₱1000 per head</li>
-                <li>Overnight Price: ₱2000 per head</li>
-                <li>Environmental Fee: ₱150</li>
-                <li>Other Fees: ₱200</li>
-            </ul>
-
-            <div class="dropdown-container">
-                <!-- Dropdown for number of people -->
-                <select class="people" name="people">
-                    <option value="" disabled selected>Number of People</option>
-                </select>
-                <!-- Dropdown for days to stay with onchange event -->
-                <select class="days" name="days" onchange="updateDaytourText()">
-                    <option value="" disabled selected>Days to Stay</option>
-                </select>
-                <!-- Label for daytour -->
-                <div>
-                    <input type="text" class="daytour" name="daytour" placeholder="Daytour" disabled>
+    <!-- Wrapper for all destination containers -->
+    <div class="destination-wrapper">
+        <?php
+        // Check if there are destinations
+        if ($result->num_rows > 0) {
+            // Loop through each destination
+            while ($row = $result->fetch_assoc()) {
+                $id = $row['id'];
+                $name = $row['name'];
+                $daytour_price = $row['daytour_price'];
+                $overnight_price = $row['overnight_price'];
+                $environmental_fee = $row['environmental_fee'];
+                $other_fees = $row['other_fees'];
+                $total_estimated_cost = $row['total_estimated_cost'];
+                $image = "icons/sanjuan-d" . $id . ".png";
+        ?>
+        
+        <div class="destination-container">
+            <div class="destination-img">
+                <img src="<?php echo $image; ?>" alt="<?php echo $name; ?>">
+                <div class="price-overlay">
+                    <p class="from-color">from</p>
+                    <h2>₱ <?php echo $total_estimated_cost; ?></h2>
                 </div>
             </div>
-            
-            <button class="add-itinerary-btn">Add to Itinerary</button>
 
-        </div>
-    </div>
+            <div class="details">
+                <h2 class="name">
+                    <a href="https://camplaiyabeach.com" target="_blank"><?php echo $name; ?></a>
+                </h2>
+                <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
+                
+                <ul class="pricelist">
+                    <li>Daytour Price: ₱ <?php echo number_format($daytour_price, 2); ?> per two pax</li>
+                    <li>Overnight Price: ₱ <?php echo number_format($overnight_price, 2); ?> per two pax</li>
+                    <li>Environmental Fee: ₱ <?php echo number_format($environmental_fee, 2); ?></li>
+                    <li>Other Fees: ₱ <?php echo number_format($other_fees, 2); ?></li>
+                </ul>
 
-    <!-- Destination 3 -->
-    <div class="destination-container">
-        <div class="destination-img">
-            <img src="icons/sanjuan-d3.png">
-        </div>
-
-        <div class="details">
-            <h2 class="name">
-                <a href="https://acuaverderesort.com.ph" target="_blank">Acuaverde Beach Resort and Hotel</a>
-            </h2>
-            <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint
-                (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
-            
-            <ul class="pricelist">
-                <li>Daytour Price: ₱1850 per head</li>
-                <li>Overnight Price: ₱3000 per head</li>
-                <li>Environmental Fee: N/A</li>
-                <li>Other Fees: N/A</li>
-            </ul>
-
-            <div class="dropdown-container">
-                <!-- Dropdown for number of people -->
-                <select class="people" name="people">
-                    <option value="" disabled selected>Number of People</option>
-                </select>
-                <!-- Dropdown for days to stay with onchange event -->
-                <select class="days" name="days" onchange="updateDaytourText()">
-                    <option value="" disabled selected>Days to Stay</option>
-                </select>
-                <!-- Label for daytour -->
-                <div>
-                    <input type="text" class="daytour" name="daytour" placeholder="Daytour" disabled>
+                <div class="dropdown-container">
+                    <!-- Dropdown for number of people -->
+                    <select class="people" name="people">
+                        <option value="" disabled selected>Number of People</option>
+                    </select>
+                    <!-- Dropdown for days to stay with onchange event -->
+                    <select class="days" name="days" onchange="updateDaytourText()">
+                        <option value="" disabled selected>Days to Stay</option>
+                    </select>
+                    <!-- Label for daytour -->
+                    <div>
+                        <input type="text" class="daytour" name="daytour" placeholder="Daytour" disabled>
+                    </div>
                 </div>
+                
+                <button class="add-itinerary-btn">Add to Itinerary</button>
             </div>
-            
-            <button class="add-itinerary-btn">Add to Itinerary</button>
-
         </div>
+        
+        <?php
+            }
+        } else {
+            echo "<p>No destinations found.</p>";
+        }
+        ?>
     </div>
-
-    <!-- Destination 4 -->
-    <div class="destination-container">
-        <div class="destination-img">
-            <img src="icons/sanjuan-d4.png">
-        </div>
-
-        <div class="details">
-            <h2 class="name">
-                <a href="https://acuaticoresort.com.ph" target="_blank">Acuatico Beach Resort and Hotel</a>
-            </h2>
-            <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint
-                (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
-            
-            <ul class="pricelist">
-                <li>Daytour Price: ₱1500 per head</li>
-                <li>Overnight Price: ₱3850 per head</li>
-                <li>Environmental Fee: N/A</li>
-                <li>Other Fees: N/A</li>
-            </ul>
-
-            <div class="dropdown-container">
-                <!-- Dropdown for number of people -->
-                <select class="people" name="people">
-                    <option value="" disabled selected>Number of People</option>
-                </select>
-                <!-- Dropdown for days to stay with onchange event -->
-                <select class="days" name="days" onchange="updateDaytourText()">
-                    <option value="" disabled selected>Days to Stay</option>
-                </select>
-                <!-- Label for daytour -->
-                <div>
-                    <input type="text" class="daytour" name="daytour" placeholder="Daytour" disabled>
-                </div>
-            </div>
-            
-            <button class="add-itinerary-btn">Add to Itinerary</button>
-
-        </div>
-    </div>
-
-    <!-- Destination 5 -->
-    <div class="destination-container">
-        <div class="destination-img">
-            <img src="icons/sanjuan-d5.png">
-        </div>
-
-        <div class="details">
-            <h2 class="name">
-                <a href="https://www.facebook.com/LaiyaAdventurePark" target="_blank">Laiya Adventure Park<a>
-            </h2>
-            <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint
-                (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
-            
-            <ul class="pricelist">
-                <li>Daytour Price: ₱50 per head</li>
-                <li>Overnight Price: N/A</li>
-                <li>Environmental Fee: ₱50</li>
-                <li>Other Fees: ₱50</li>
-            </ul>
-
-            <div class="dropdown-container">
-                <!-- Dropdown for number of people -->
-                <select class="people" name="people">
-                    <option value="" disabled selected>Number of People</option>
-                </select>
-                <!-- Dropdown for days to stay with onchange event -->
-                <select class="days" name="days" onchange="updateDaytourText()">
-                    <option value="" disabled selected>Days to Stay</option>
-                </select>
-                <!-- Label for daytour -->
-                <div>
-                    <input type="text" class="daytour" name="daytour" placeholder="Daytour" disabled>
-                </div>
-            </div>
-            
-            <button class="add-itinerary-btn">Add to Itinerary</button>
-
-        </div>
-    </div>
-
-    <!-- Destination 6 -->
-    <div class="destination-container">
-        <div class="destination-img">
-            <img src="icons/sanjuan-d6.png">
-        </div>
-
-        <div class="details">
-            <h2 class="name">San Juan Nepomuceno Parish Church</h2>
-            <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint
-                (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
-            
-            <ul class="pricelist">
-                <li>Daytour Price: Free</li>
-                <li>Overnight Price: N/A</li>
-                <li>Environmental Fee: N/A</li>
-                <li>Other Fees: N/A</li>
-            </ul>
-
-            <div class="dropdown-container">
-                <!-- Dropdown for number of people -->
-                <select class="people" name="people">
-                    <option value="" disabled selected>Number of People</option>
-                </select>
-                <!-- Dropdown for days to stay with onchange event -->
-                <select class="days" name="days" onchange="updateDaytourText()">
-                    <option value="" disabled selected>Days to Stay</option>
-                </select>
-                <!-- Label for daytour -->
-                <div>
-                    <input type="text" class="daytour" name="daytour" placeholder="Daytour" disabled>
-                </div>
-            </div>
-            
-            <button class="add-itinerary-btn">Add to Itinerary</button>
-
-        </div>
-    </div>
-</div>
 
 <script>
 // Function to generate options for dropdowns with 1 to 100 options
 function generateOptionsForAll() {
-    // Select all dropdowns with class 'people' and 'days'
     document.querySelectorAll('.people, .days').forEach((select) => {
         for (let i = 1; i <= 100; i++) {
             const option = document.createElement('option');
@@ -318,13 +137,11 @@ function generateOptionsForAll() {
     });
 }
 
-// Call the function to populate options for all dropdowns
 generateOptionsForAll();
 
-// Update daytour text based on selected days for each destination
+// Update daytour or overnight text based on selected days for each destination
 document.querySelectorAll('.days').forEach((daysSelect, index) => {
     daysSelect.addEventListener('change', function () {
-        // Get the corresponding daytour input for the same destination container
         const daytourInput = document.querySelectorAll('.daytour')[index];
         const daysSelected = parseInt(daysSelect.value, 10);
 
