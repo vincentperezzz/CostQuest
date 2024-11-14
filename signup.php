@@ -74,7 +74,7 @@
                 <div class="form-group">
                 <label for="budget" class="form-label">
                 Budget Amount:   
-                <img src="icons/help.svg" class="question-mark" alt="question-mark" title="Click for info">
+                <img src="icons/help.svg" class="question-mark" alt="question-mark" title="Click for info" onclick="showInformation()">
                 </label>
 
                   <div class="textbox">
