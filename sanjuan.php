@@ -42,7 +42,7 @@ $result = $conn->query($sql);
             <ul class="menu">
                 <li><a href="dashboard.php" class="menu-btn">Home</a></li>
                 <li><a href="settings.php" class="menu-btn">Settings</a></li>
-                <li><a href="search.php" class="menu-btn"><b>Search</b></a></li>
+                <li><a href="search.php" class="menu-btn">Search</a></li>
             </ul>
 
             <div class="logo"><a href="dashboard.php"><img src="icons/logo.png"></a>
