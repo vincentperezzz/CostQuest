@@ -112,12 +112,10 @@ function createAlert(title, summary, details, severity, dismissible, autoDismiss
   }
 }
 
-// FUNCTION: Toggle the Alerts when Password do not match on the database
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('.question-mark').addEventListener('click', function() {
+// FUNCTION: Toggle the Alerts when Info button is clicked on Sign Up Page
+function showInformation() {
     createAlert('Information', '', "Enter the budget amount you can allocate <b> per person </b>. <br><br> This amount will represent each individual's budget and <br> will be used to calculate the total based on the number <br> of people traveling.", 'info', true, false, 'pageMessages');
-  });
-});
+}
 
 // FUNCTION: Edit Button on the Budget on the Settings to make the Budget editable
 document.addEventListener('DOMContentLoaded', function() {
@@ -234,3 +232,17 @@ function cancelEdit() {
   passwordBox.style.display = 'none';
   deleteBox.style.display = 'none';
 }
+
+// FUNCTION: Update the number of people in database from settings
+document.getElementById('num-people').addEventListener('change', function() {
+  var numPeople = this.value;
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'update_num_people.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log('Number of people updated successfully');
+      }
+  };
+  xhr.send('num_people=' + numPeople);
+});
