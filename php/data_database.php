@@ -37,7 +37,7 @@
   $user_budget = $budget_amount;
   
   // Placeholder value for budget price
-  $budget_price = 5;
+  $budget_price = 2500;
   if ($user_budget > 0) {
       $budget_percentage = ($budget_price / $user_budget) * 100;
   } else {
