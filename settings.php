@@ -66,14 +66,13 @@
 
 
 
-<div class="login-box">
+<div class="login-box" id="login-box">
             <h6>Account Details ></h6>
             <div class="title-row">
                 <h1>Account Details</h1>
-                <div class="del-btn"> Delete Account </div>
+                <div class="del-btn" id="editDelete" onclick="editDelete()"> Delete Account </div>
             </div>
 
-            <form action="settings.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">
                 <div class="name-row">
                     <div class="non-textbox" style="margin-right: 10px;">
                         <?php echo $first_name ?>
@@ -105,10 +104,9 @@
                     </div>
                 </div>
                 <button type="submit" class="logout-btn" onclick="window.location.href='index.html'">Logout</button>               
-            </form>
  </div>
 
- <div class="email-box">
+ <div class="email-box" id="email-box">
             <h6>Account Details > Change Email</h6>
                 <h1>Change Email</h1>
 
@@ -127,7 +125,7 @@
 
                 <div class="btn-row">
                     <div>
-                        <button type="submit" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="cancel-btn" onclick="cancelEdit()">Cancel</button>
                     </div>
                     <div>
                         <button type="submit" class="confirm-btn">Confirm</button>
@@ -136,7 +134,7 @@
             </form>
  </div>
 
- <div class="password-box">
+ <div class="password-box" id="password-box">
             <h6>Account Details > Change Password</h6>
                 <h1>Change Password</h1>
 
@@ -155,7 +153,32 @@
 
                 <div class="btn-row">
                     <div>
-                        <button type="submit" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="cancel-btn" onclick="cancelEdit()">Cancel</button>
+                    </div>
+                    <div>
+                        <button type="submit" class="confirm-btn">Confirm</button>
+                    </div>
+                </div>            
+            </form>
+ </div>
+
+ <div class="delete-box" id="delete-box">
+            <h6>Account Details > Account Deletion</h6>
+                <h1>Are you sure you want to <br> delete your account?</h1>
+
+            <form action="settings.php" method="post" onsubmit="toggle_Continue_SigningUp(event)">    
+
+                <div class="textbox">
+                    <input type="password" placeholder="Password" name="new-password" required>
+                </div> 
+                
+                <div class="textbox">
+                    <input type="password" placeholder="Confirm Password" name="confirm-new-password" required>
+                </div> 
+
+                <div class="btn-row">
+                    <div>
+                        <button type="submit" class="cancel-btn" onclick="cancelEdit()">Cancel</button>
                     </div>
                     <div>
                         <button type="submit" class="confirm-btn">Confirm</button>
@@ -164,7 +187,6 @@
             </form>
  </div>
     
- 
 
 
   <!------------Footer------------->

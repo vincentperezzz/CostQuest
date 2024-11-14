@@ -1,3 +1,5 @@
+// FUNCTION: Make the navigation bar have shadow when scrolling
+
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 0) {
@@ -7,10 +9,8 @@ window.addEventListener('scroll', function() {
     }
   });
 
+// FUNCTION: Toggle the Alerts when Password do not match on the database
 function toggle_Continue_SigningUp(event) {
-  //console log that the button is working
-  console.log('Button clicked');
-
 
   var lname = document.querySelector('input[name="lname"]').value;
   var email = document.querySelector('input[name="email"]').value;
@@ -32,6 +32,7 @@ function toggle_Continue_SigningUp(event) {
   return true;
 }
 
+// FUNCTION: Toggle the Alerts functions and animations
 function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
   var iconMap = {
     info: "fa fa-info-circle",
@@ -111,12 +112,14 @@ function createAlert(title, summary, details, severity, dismissible, autoDismiss
   }
 }
 
+// FUNCTION: Toggle the Alerts when Password do not match on the database
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('.question-mark').addEventListener('click', function() {
     createAlert('Information', '', "Enter the budget amount you can allocate <b> per person </b>. <br><br> This amount will represent each individual's budget and <br> will be used to calculate the total based on the number <br> of people traveling.", 'info', true, false, 'pageMessages');
   });
 });
 
+// FUNCTION: Edit Button on the Budget on the Settings to make the Budget editable
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('editButton').addEventListener('click', editBudget);
 
@@ -167,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
+// FUNCTION: Update the Budget Percentage on the Settings
 function updateBudgetPercentage() {
     var budgetPriceElement = document.querySelector('.budget-price');
     var budgetLimitElement = document.getElementById('budget-limit');
@@ -196,4 +199,38 @@ function updateBudgetPercentage() {
     } else {
         console.error('One or more elements not found in the DOM');
     }
+}
+
+// FUNCTION: Edit Button on the Account Settings to make the Email and Password editable
+
+function editEmail() {
+  const loginBox = document.getElementById('login-box');
+  const emailBox = document.getElementById('email-box');
+  loginBox.style.display = 'none';
+  emailBox.style.display = 'block';
+}
+
+function editPassword() {
+  const loginBox = document.getElementById('login-box');
+  const passwordBox = document.getElementById('password-box');
+  loginBox.style.display = 'none';
+  passwordBox.style.display = 'block';
+}
+
+function editDelete() {
+  const loginBox = document.getElementById('login-box');
+  const deleteBox = document.getElementById('delete-box');
+  loginBox.style.display = 'none';
+  deleteBox.style.display = 'block';
+}
+
+function cancelEdit() {
+  const loginBox = document.getElementById('login-box');
+  const emailBox = document.getElementById('email-box');
+  const passwordBox = document.getElementById('password-box');
+  const deleteBox = document.getElementById('delete-box');
+  loginBox.style.display = 'block';
+  emailBox.style.display = 'none';
+  passwordBox.style.display = 'none';
+  deleteBox.style.display = 'none';
 }
