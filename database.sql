@@ -12,20 +12,22 @@ CREATE TABLE users (
 );
 
 CREATE TABLE destinations (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    town_name VARCHAR(50) NOT NULL,
-    destination_name VARCHAR(100) NOT NULL,
-    daytour_price DECIMAL(10, 2) NULL,
-    overnight_price DECIMAL(10, 2) NULL,
-    environmental_fee DECIMAL(10, 2) NULL,
-    other_fees DECIMAL(10, 2) DEFAULT 0.00
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    town VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    daytour_price DECIMAL(8, 2),
+    overnight_price DECIMAL(8, 2),
+    environmental_fee DECIMAL(8, 2) DEFAULT 20.00,
+    other_fees DECIMAL(8, 2),
+    total_estimated_cost DECIMAL(8, 2),
+    image_filename VARCHAR(255)
 );
 
-INSERT INTO destinations (town_name, destination_name, daytour_price, overnight_price, environmental_fee, other_fees)
-VALUES 
-    ('San Juan', 'Camp Laiya Beach Farm Resort', 1000.00, 1250.00, 20.00, 150.00),
-    ('San Juan', 'Sigayan Bay Beach Resort', 1000.00, 2000.00, 150.00, 200.00),
-    ('San Juan', 'Acuaverde Beach Resort and Hotel', 1850.00, 3000.00, NULL, NULL),
-    ('San Juan', 'Acuatico Beach Resort and Hotel', 1500.00, 3850.00, NULL, NULL),
-    ('San Juan', 'Laiya Adventure Park', 50.00, NULL, 50.00, 50.00),
-    ('San Juan', 'San Juan Nepomuceno Parish Church', 0.00, NULL, 0.00, 0.00);
+INSERT INTO destinations (town, name, daytour_price, overnight_price, environmental_fee, other_fees, total_estimated_cost, image_filename)
+VALUES
+    ('San Juan', 'Camp Laiya Beach Farm Resort', 2300.00, 2800.00, 20.00, NULL, 2320.00, 'sanjuan-d1.png'),
+    ('San Juan', 'Sigayan Bay Beach Resort', 100.00, 4000.00, 20.00, NULL, 120.00, 'sanjuan-d2.png'),
+    ('San Juan', 'Acuaverde Beach Resort and Hotel', 3000.00, 7800.00, 20.00, 1600.00, 4620.00, 'sanjuan-d3.png'),
+    ('San Juan', 'Acuatico Beach Resort and Hotel', 3800.00, 7900.00, 20.00, 2000.00, 5820.00, 'sanjuan-d4.png'),
+    ('San Juan', 'Laiya Adventure Park', 720.00, NULL, 20.00, NULL, 740.00, 'sanjuan-d5.png'),
+    ('San Juan', 'San Juan Nepomuceno Parish Church', NULL, NULL, 20.00, NULL, 20.00, 'sanjuan-d6.png');
