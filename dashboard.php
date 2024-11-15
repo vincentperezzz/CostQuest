@@ -36,6 +36,35 @@
 <div class="dashboard-img">
         <img src="icons/dashboard-1st-img.png"></div>
 
+        <div class="best-choice-container">
+          <div class="best-choice-card">
+            <img src="icons/best-choice-img-1.png">
+            <div class="best-choice-title">Camp Laiya Beach Farm Resort</div>
+            <div class="best-choice-subtitle">San Juan, Batangas</div>
+            <div class="best-choice-time">
+              <img src="icons/clock-icon.svg">
+              <p>Daytour and Overnight</p>
+            </div>
+            <div class="best-choice-price">
+              <div class="best-choice-subtitle">From <h4> ₱ 8,789</h4> 
+              <div class="best-choice-title">₱ 2,300</div></div>     
+            </div>
+          </div>
+
+          <div class="best-choice-card">
+            <img src="icons/best-choice-img-2.png">
+            <div class="best-choice-title">Taal Volcano</div>
+            <div class="best-choice-subtitle">Taal, Batangas</div>
+            <div class="best-choice-time">
+              <img src="icons/activity-icon.svg">
+              <p>Hike and Explore</p>
+            </div>
+            <div class="best-choice-price">
+              <div class="best-choice-subtitle">From
+              <div class="best-choice-title">₱ 2,050</div></div>     
+            </div>
+          </div>
+        </div>
 
         <div class="popular-container">
       <h1 class="popular-title">Popular Destinations</h1>
@@ -69,7 +98,7 @@
     </div>
 
 
-<div class="popular-container">
+<div class="tour-package-title">
   <h1 class="popular-title">How about starting with our Tour Packages?</h1>
   <h4 class="subtitle-container">These packages are customized to match users'<br> unique preferences and curated tour lists.</h4>
 </div>

@@ -71,7 +71,7 @@
 <!-- CARD -->
 <div class="itineraries-card">
     <div class="itineraries-card-img">
-        <img src="icons/itinerary-card-sanjaun-d1.png">
+        <img src="icons/sanjuan-d1.png">
     </div>
 
     <div class="itineraries-card-text">
