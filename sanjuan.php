@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 // Fetch destinations for San Juan
 $sql = "SELECT * FROM destinations WHERE town = 'San Juan'";
 $result = $conn->query($sql);
+$user_number_of_people = isset($user_number_of_people) ? $user_number_of_people : 1;
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,6 @@ $result = $conn->query($sql);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
-    <?php include 'php/data_database.php'; ?>
     <script src="javascript/index.js"></script>
 </head>
 <body>  
@@ -64,17 +64,20 @@ $result = $conn->query($sql);
             // Loop through each destination
             while ($row = $result->fetch_assoc()) {
                 $id = $row['id'];
-                $name = $row['name'];
-                $daytour_price = $row['daytour_price'];
-                $overnight_price = $row['overnight_price'];
-                $environmental_fee = $row['environmental_fee'];
-                $other_fees = $row['other_fees'];
-                $total_estimated_cost = $row['total_estimated_cost'];
+                $name = isset($row['name']) ? $row['name'] : 'Unknown Destination'; // Ensure name is defined
+                $daytour_price = isset($row['daytour_price']) ? $row['daytour_price'] : 0;
+                $overnight_price = isset($row['overnight_price']) ? $row['overnight_price'] : 0;
+                $environmental_fee = isset($row['environmental_fee']) ? $row['environmental_fee'] : 0;
+                $other_fees = isset($row['other_fees']) ? $row['other_fees'] : 0;
+                $total_estimated_cost = isset($row['total_estimated_cost']) ? $row['total_estimated_cost'] : 0;
                 $image = "icons/sanjuan-d" . $id . ".png";
-                $url = $row['url'];  // Fetch the URL for each destination
+                $url = isset($row['url']) ? $row['url'] : 'N/A'; // Ensure URL is defined
+
+                // Fetch location type
+                $location_type = isset($row['location_type']) ? $row['location_type'] : 'default';
         ?>
         
-        <div class="destination-container" id="destination-<?php echo $id; ?>" data-daytour-price="<?php echo $daytour_price; ?>" data-overnight-price="<?php echo $overnight_price; ?>" data-environmental-fee="<?php echo $environmental_fee; ?>" data-other-fees="<?php echo $other_fees; ?>" data-total-estimated-cost="<?php echo $total_estimated_cost; ?>">
+        <div class="destination-container" id="destination-<?php echo $id; ?>" data-daytour-price="<?php echo $daytour_price; ?>" data-overnight-price="<?php echo $overnight_price; ?>" data-environmental-fee="<?php echo $environmental_fee; ?>" data-other-fees="<?php echo $other_fees; ?>" data-total-estimated-cost="<?php echo $total_estimated_cost; ?>" data-location-type="<?php echo $location_type; ?>">
             <div class="destination-img">
                 <img src="<?php echo $image; ?>" alt="<?php echo $name; ?>">
                 <div class="price-overlay">
@@ -102,23 +105,30 @@ $result = $conn->query($sql);
 
                 <div class="styled-dropdown">
                     <!-- Dropdown for number of people -->
-                    <select id="num-people-<?php echo $id; ?>" name="num-people">
-                        <option value="" disabled selected>Number of People</option>
+                    <select id="num-people-<?php echo $id; ?>" name="num-people" onchange="calculateCost(<?php echo $id; ?>)">
+                        <option value="" disabled <?php echo empty($user_number_of_people) ? 'selected' : ''; ?>>Number of People</option>
                         <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?php echo $i; ?>" <?php echo isset($user_number_of_people) && $i == $user_number_of_people ? 'selected' : ''; ?>>
+                            <option value="<?php echo $i; ?>" <?php echo ($i == $user_number_of_people) ? 'selected' : ''; ?>>
                                 <?php echo $i; ?>
                             </option>
                         <?php endfor; ?>
                     </select>
 
                     <!-- Dropdown for days to stay with onchange event -->
-                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="updateTotalCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
+                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
                         <option value="" disabled selected>Days to Stay</option>
-                        <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?php echo $i; ?>" <?php echo isset($user_number_of_days) && $i == $user_number_of_days ? 'selected' : ''; ?>>
-                                <?php echo $i; ?>
-                            </option>
-                        <?php endfor; ?>
+                        <?php 
+                        // Limit days for certain location types
+                        if ($location_type == 'adventure' || $location_type == 'spot') {
+                            // For adventure or church, disable day selection and set to 1 day
+                            echo '<option value="1" selected>1 day</option>';
+                        } else {
+                            // For other locations, allow up to 100 days
+                            for ($i = 1; $i <= 100; $i++) {
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                            }
+                        }
+                        ?>
                     </select>
 
                     <!-- Label for daytour -->
@@ -141,14 +151,71 @@ $result = $conn->query($sql);
     </div>
 
 <script>
-    updateDaytourText();
-    updateTotalCost();
+// FUNCTION: Update daytour or overnight text based on selected days for each destination
+function updateDaytourText(id) {
+  const numDays = document.getElementById(`num-days-${id}`).value;
+  const daytourText = document.getElementById(`daytour-text-${id}`);
+
+  if (numDays == 1) {
+      daytourText.value = "Daytour";
+  } else if (numDays > 1) {
+      daytourText.value = "Overnight";
+  } else {
+      daytourText.value = "";
+  }
+}
+// FUNCTION: Calculate cost for each destination
+function calculateCost(id) {
+    // Get values dynamically from the data attributes of the destination container
+    const numPeople = document.getElementById('num-people-' + id).value;
+    const numDays = document.getElementById('num-days-' + id).value;
+
+    const daytourPrice = parseFloat(document.getElementById('destination-' + id).dataset.daytourPrice);
+    const overnightPrice = parseFloat(document.getElementById('destination-' + id).dataset.overnightPrice);
+    const environmentalFee = parseFloat(document.getElementById('destination-' + id).dataset.environmentalFee);
+    const otherFees = parseFloat(document.getElementById('destination-' + id).dataset.otherFees);
+
+    // Make sure values are valid numbers
+    if (isNaN(daytourPrice) || isNaN(overnightPrice) || isNaN(environmentalFee) || isNaN(otherFees) || numPeople <= 0 || numDays <= 0) {
+        console.error("Invalid inputs for calculation.");
+        return;
+    }
+
+    let totalCost = 0;
+
+    // Daytour Calculation
+    if (numDays == 1) {
+        let baseCost = daytourPrice;
+        if (numPeople > 2) {
+            const extraPeople = numPeople - 2;
+            baseCost += extraPeople * (daytourPrice / 2); // Adding extra cost for each person beyond 2
+        }
+        totalCost = baseCost + environmentalFee + otherFees;
+    } 
+    // Overnight Calculation
+    else {
+        let baseCost = overnightPrice * (numDays - 1); // Subtract one day for overnight calculation
+        if (numPeople > 2) {
+            const extraPeople = numPeople - 2;
+            baseCost += extraPeople * (overnightPrice / 2) * (numDays - 1); // Extra cost for overnight stays
+        }
+        totalCost = baseCost + environmentalFee + otherFees;
+    }
+
+    // Update the displayed total cost
+    document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
+}
 </script>
 
 <!-- Footer -->
 <footer class="footer">
     <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
 </footer>
-    
+
 </body>
 </html>
+
+<?php
+// Close connection
+$conn->close();
+?>
