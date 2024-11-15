@@ -753,10 +753,25 @@ cursor: pointer;
 
 .itineraries-budget-box {
   text-align: center;
-  background-color: #52A3EE;
+  background-color: #58EA68;
   width: 1200px;
   height: 383px;
   border-radius: 20px;
+}
+
+.budget-limit-text{
+  font-size: 30px;
+  font-weight: 700;
+  padding-top: 15px;
+  color: #000000;
+  display: flex;
+}
+
+.text-gray{
+  font-size: 30px;
+  font-weight: 600;
+  padding-right: 10px;
+  color: #00000093;
 }
 
 .itineraries-budget-summary-rows{
@@ -814,25 +829,16 @@ cursor: pointer;
   display: inline;
 }
 
-.itineraries-budget-limit-textbox{
-  font-size: 30px;
-  font-weight: 700;
-  border-radius: 20px;
-  height: 100px;
-  width: 200px;
-  background-color: #000000;
-  color: #ffffff;
-  text-align: center;
-  line-height: 100px;
-  border: none;
-  display: none;
-}
-
 .itineraries-budget-limit-box{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 35px;
+  padding-top: 15px;
+}
+
+.itineraries-budget-limit-box img{
+  width: 400px;
+  height: auto;
 }
 
 
