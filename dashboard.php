@@ -34,68 +34,84 @@
         </nav>
 <!------------Home------------->
 <div class="dashboard-img">
-        <img src="icons/dashboard-1st-img.png"></div>
+      <img src="icons/dashboard-1st-img.png"></div>
 
-        <div class="best-choice-container">
-          <div class="best-choice-card">
-            <img src="icons/best-choice-img-1.png">
-            <div class="best-choice-title">Camp Laiya Beach Farm Resort</div>
-            <div class="best-choice-subtitle">San Juan, Batangas</div>
-            <div class="best-choice-time">
-              <img src="icons/clock-icon.svg">
-              <p>Daytour and Overnight</p>
+      <div class="best-choice-container">
+        <a href="sanjuan.php" class="best-choice-link">
+            <div class="best-choice-card">
+                <img src="icons/best-choice-img-1.png">
+                <div class="best-choice-title">Camp Laiya Beach Farm Resort</div>
+                <div class="best-choice-subtitle">San Juan, Batangas</div>
+                <div class="best-choice-time">
+                    <img src="icons/clock-icon.svg">
+                    <p>Daytour and Overnight</p>
+                </div>
+                <div class="best-choice-price">
+                    <div class="best-choice-subtitle">From <h4> ₱ 8,789</h4> 
+                    <div class="best-choice-title">₱ 2,300</div></div>     
+                </div>
             </div>
-            <div class="best-choice-price">
-              <div class="best-choice-subtitle">From <h4> ₱ 8,789</h4> 
-              <div class="best-choice-title">₱ 2,300</div></div>     
-            </div>
-          </div>
-
-          <div class="best-choice-card">
-            <img src="icons/best-choice-img-2.png">
-            <div class="best-choice-title">Taal Volcano</div>
-            <div class="best-choice-subtitle">Taal, Batangas</div>
-            <div class="best-choice-time">
-              <img src="icons/activity-icon.svg">
-              <p>Hike and Explore</p>
-            </div>
-            <div class="best-choice-price">
-              <div class="best-choice-subtitle">From
-              <div class="best-choice-title">₱ 2,050</div></div>     
-            </div>
-          </div>
-        </div>
-
-        <div class="popular-container">
-      <h1 class="popular-title">Popular Destinations</h1>
-      <h4 class="subtitle-container">From historical cities to natural spectaculars, <br> come see the best of the world!</h4>
+        </a>
     
-      <div class="popular-card-container">
-        <div class="popular-card-r1-container">
-          <div class="popular-card-r1">
-            <img src="icons/homepage-sanjuan-card.png">
-          </div>
-          <div class="popular-card-r1">
-            <img src="icons/homepage-nasugbu-card.png">
-          </div>
-          <div class="popular-card-r1">
-            <img src="icons/homepage-taal-card.png">
-          </div>
-        </div>
-    
-        <div class="popular-card-r2-container">
-          <div class="popular-card-r2">
-            <img src="icons/homepage-calatagan-card.png">
-          </div>
-          <div class="popular-card-r2">
-            <img src="icons/homepage-lipacity-card.png">
-          </div>
-          <div class="popular-card-r2">
-            <img src="icons/homepage-bauan-card.png">
-          </div>
-        </div>
+        <a href="sanjuan.php" class="best-choice-link">
+            <div class="best-choice-card">
+                <img src="icons/best-choice-img-2.png">
+                <div class="best-choice-title">Taal Volcano</div>
+                <div class="best-choice-subtitle">Taal, Batangas</div>
+                <div class="best-choice-time">
+                    <img src="icons/activity-icon.svg">
+                    <p>Hike and Explore</p>
+                </div>
+                <div class="best-choice-price">
+                    <div class="best-choice-subtitle">From
+                    <div class="best-choice-title">₱ 2,050</div></div>     
+                </div>
+            </div>
+        </a>
       </div>
-    </div>
+
+      <div class="popular-container">
+        <h1 class="popular-title">Popular Destinations</h1>
+        <h4 class="subtitle-container">From historical cities to natural spectaculars, <br> come see the best of the world!</h4>
+
+
+    <div class="popular-card-container">
+      <div class="popular-card-r1-container">
+          <a href="sanjuan.php" class="popular-card-link">
+              <div class="popular-card-r1">
+                  <img src="icons/homepage-sanjuan-card.png">
+              </div>
+          </a>
+          <a href="nasugbu.php" class="popular-card-link">
+              <div class="popular-card-r1">
+                  <img src="icons/homepage-nasugbu-card.png">
+              </div>
+          </a>
+          <a href="taal.php" class="popular-card-link">
+              <div class="popular-card-r1">
+                  <img src="icons/homepage-taal-card.png">
+              </div>
+          </a>
+      </div>
+  
+      <div class="popular-card-r2-container">
+          <a href="calatagan.php" class="popular-card-link">
+              <div class="popular-card-r2">
+                  <img src="icons/homepage-calatagan-card.png">
+              </div>
+          </a>
+          <a href="lipacity.php" class="popular-card-link">
+              <div class="popular-card-r2">
+                  <img src="icons/homepage-lipacity-card.png">
+              </div>
+          </a>
+          <a href="bauan.php" class="popular-card-link">
+              <div class="popular-card-r2">
+                  <img src="icons/homepage-bauan-card.png">
+              </div>
+          </a>
+      </div>
+  </div>
 
 
 <div class="tour-package-title">

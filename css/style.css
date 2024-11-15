@@ -212,6 +212,12 @@ nav ul li a{
   color: #00000070;
 }
 
+.best-choice-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .popular-container {
   display: flex;
   flex-direction: column;
@@ -258,6 +264,12 @@ nav ul li a{
 .popular-card-r2 {
   flex: 1;
   margin: 10px;
+}
+
+.popular-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .tour-package-title{
