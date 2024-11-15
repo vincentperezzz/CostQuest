@@ -236,10 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const numPeopleElement = document.getElementById('num-people');
   if (numPeopleElement) {
     numPeopleElement.addEventListener('change', updateNumberOfPeople);
-  } else {
-    console.error('Element with ID "num-people" not found.');
-  }
-});
+}});
 
 function updateNumberOfPeople(event) {
   var numPeople = event.target.value;
