@@ -66,6 +66,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
             while ($row = $result->fetch_assoc()) {
                 $id = $row['id'];
                 $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
+                $address = isset($row['address']) ? $row['address'] : 'Unknown Address';
                 $daytour_price = isset($row['daytour_price']) ? $row['daytour_price'] : 0;
                 $overnight_price = isset($row['overnight_price']) ? $row['overnight_price'] : 0;
                 $environmental_fee = isset($row['environmental_fee']) ? $row['environmental_fee'] : 0;
@@ -95,7 +96,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                         <span><?php echo $name; ?></span> <!-- If URL is 'N/A', display name without hyperlink -->
                     <?php endif; ?>
                 </h2>
-                <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
+                <p class="direction"><?php echo $address; ?></p>
                 
                 <ul class="pricelist">
                     <li>Daytour Price: ₱ <?php echo number_format($daytour_price, 2); ?> per two pax</li>

@@ -193,13 +193,9 @@ nav ul li a{
     padding-left: 20px;
 }
 
-.name {
-    margin-bottom: 25px;
-}
-
 .direction {
     color: rgba(0, 0, 0, 0.7);
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 
 .pricelist {
