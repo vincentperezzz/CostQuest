@@ -334,3 +334,45 @@ function deleteAccount() {
 
     xhr.send(`password=${encodeURIComponent(password)}`);
 }
+
+// FUNCTION: Calculate total cost based on selected number of people and days for each destination
+function updateTotalCost(id) {
+  // Get the values from the selected options for the number of people and days
+  const numPeople = parseInt(document.getElementById('num-people-' + id).value) || 1; // Default to 1 if no value
+  const numDays = parseInt(document.getElementById('num-days-' + id).value) || 1; // Default to 1 if no value
+
+  // Get prices and fees from destinatios data
+  const destinationContainer = document.getElementById('destination-' + id);
+  const daytourPrice = parseFloat(destinationContainer.getAttribute('data-daytour-price')) || 0; // Default to 0 if not set
+  const overnightPrice = parseFloat(destinationContainer.getAttribute('data-overnight-price')) || 0; // Default to 0 if not set
+  const environmentalFee = parseFloat(destinationContainer.getAttribute('data-environmental-fee')) || 0; // Default to 0 if not set
+  const otherFees = parseFloat(destinationContainer.getAttribute('data-other-fees')) || 0; // Default to 0 if not set
+
+  // Calculate total cost
+  let totalCost = 0;
+  if (numDays === 1) {
+      // For daytour (1 day), calculate based on number of people
+      totalCost = (daytourPrice * numPeople) + environmentalFee + otherFees;
+  } else {
+      // For overnight (multiple days), calculate based on number of people
+      const numOvernights = numDays - 1; // Subtract 1 day for overnight calculation
+      totalCost = (overnightPrice * numOvernights * numPeople) + environmentalFee + (otherFees * numPeople); // Corrected: Calculate overnights based on days
+  }
+
+  // Update the displayed total cost in the price overlay
+  document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
+}
+
+// FUNCTION: Update daytour or overnight text based on selected days for each destination
+function updateDaytourText(id) {
+  const numDays = document.getElementById(`num-days-${id}`).value;
+  const daytourText = document.getElementById(`daytour-text-${id}`);
+
+  if (numDays == 1) {
+      daytourText.value = "Daytour";
+  } else if (numDays > 1) {
+      daytourText.value = "Overnight";
+  } else {
+      daytourText.value = "";
+  }
+}
