@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=egde:">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Settings </title>
+    <title>Itineraries</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="icons/webicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +32,7 @@
             
                 <div class="itinerary">
                 <div class="itinerary-btn">Itinerary</div>
-                <div class="itinerary-btn-box"><a href="itineraries.php"><img class="loc-ico" src="icons/itineraries-location-icon.png">0</a></div>
+                <div class="itinerary-btn-box"><a href="#itineraries"><img class="loc-ico" src="icons/itineraries-location-icon.png">0</a></div>
                 </div>
             </div>
 
