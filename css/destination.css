@@ -214,14 +214,14 @@ nav ul li a{
 }
 
 /* dropdowns styling */
-.dropdown-container {
+.styled-dropdown {
     display: flex;
     justify-content: left;
     gap: 15px;
     width: 100%;
 }
 
-.dropdown-container select {
+.styled-dropdown select {
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -231,7 +231,7 @@ nav ul li a{
     background-color: #f9f9f9;
 }
 
-.dropdown-container select option {
+.styled-dropdown select option {
     color: black;
 }
 
