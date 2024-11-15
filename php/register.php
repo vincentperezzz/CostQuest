@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last_name = $_POST['lname'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $num_people = $_POST['num-people'];
+    $num_people = $_POST['signup-num-people'];
     $budget = $_POST['budget'];
 
     // Check if email already exists
