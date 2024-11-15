@@ -47,7 +47,7 @@
   <div class="itineraries-budget-box">
       <div class="budget-summary-rows" style="margin: 15px 30px;">
           <div class="itineraries-budget-title">Budget</div>
-          <button class="edit-budget-btn" id="editButton" onclick="editBudget()">Edit Budget</button>
+          <div class="budget-limit-text" id="budget-limit-text"><div class="text-gray"> out of </div>₱ <?php echo number_format($user_budget, 2); ?></div>
       </div>
       <div class="itineraries-budget-summary-rows">
           <div class="itineraries-budget-price" id="budget-price">₱ <?php echo number_format($budget_price, 2); ?></div>
@@ -59,8 +59,7 @@
           </div>
       </div>
       <div class="itineraries-budget-limit-box">
-          <div class="itineraries-budget-limit" id="budget-limit">₱ <?php echo number_format($user_budget, 2); ?></div>
-          <input type="text" placeholder="₱ 0.00" name="budget-limit-textbox" class="budget-limit-textbox" id="budget-limit-textbox">
+          <img src="icons/within-budget.png"></div>
       </div>
   </div>
 </div>

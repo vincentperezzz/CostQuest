@@ -63,7 +63,7 @@
                 <div class="name-row">
                     <div class="textbox">
                         <label for="num-people" class="label">Number of People Traveling:</label>
-                        <select id="num-people" name="num-people" class="styled-dropdown">
+                        <select id="signup-num-people" name="signup-num-people" class="styled-dropdown">
                             <?php for ($i = 1; $i <= 100; $i++): ?>
                             <option value="<?php echo $i; ?>" <?php echo $i == 1 ? 'selected' : ''; ?>><?php echo $i; ?></option>
                             <?php endfor; ?>
