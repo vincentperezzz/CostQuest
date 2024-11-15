@@ -247,6 +247,8 @@ function updateNumberOfPeople(event) {
   xhr.open('POST', 'php/update_num_people.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.send('num_people=' + numPeople);
+  //reload the page
+  location.reload();
 }
 
 // FUNCTION: Update the Email in the database from settings
