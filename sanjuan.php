@@ -5,8 +5,6 @@ $username = "root";
 $password = "";
 $dbname = "costquest";
 
-session_start(); // Start the session
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -18,7 +16,6 @@ if ($conn->connect_error) {
 // Fetch destinations for San Juan
 $sql = "SELECT * FROM destinations WHERE town = 'San Juan'";
 $result = $conn->query($sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +30,7 @@ $result = $conn->query($sql);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <?php include 'php/data_database.php'; ?>
     <script src="javascript/index.js"></script>
 </head>
 <body>  
@@ -73,20 +71,25 @@ $result = $conn->query($sql);
                 $other_fees = $row['other_fees'];
                 $total_estimated_cost = $row['total_estimated_cost'];
                 $image = "icons/sanjuan-d" . $id . ".png";
+                $url = $row['url'];  // Fetch the URL for each destination
         ?>
         
-        <div class="destination-container">
+        <div class="destination-container" id="destination-<?php echo $id; ?>" data-daytour-price="<?php echo $daytour_price; ?>" data-overnight-price="<?php echo $overnight_price; ?>" data-environmental-fee="<?php echo $environmental_fee; ?>" data-other-fees="<?php echo $other_fees; ?>" data-total-estimated-cost="<?php echo $total_estimated_cost; ?>">
             <div class="destination-img">
                 <img src="<?php echo $image; ?>" alt="<?php echo $name; ?>">
                 <div class="price-overlay">
                     <p class="from-color">from</p>
-                    <h2>₱ <?php echo $total_estimated_cost; ?></h2>
+                    <h2 id="total-cost-<?php echo $id; ?>">₱ <?php echo number_format($total_estimated_cost, 2); ?></h2>
                 </div>
             </div>
 
             <div class="details">
                 <h2 class="name">
-                    <a href="https://camplaiyabeach.com" target="_blank"><?php echo $name; ?></a>
+                    <?php if ($url != 'N/A'): ?>
+                        <a href="<?php echo $url; ?>" target="_blank"><?php echo $name; ?></a>
+                    <?php else: ?>
+                        <span><?php echo $name; ?></span> <!-- If URL is 'N/A', display name without hyperlink -->
+                    <?php endif; ?>
                 </h2>
                 <p class="direction">Drop by the Municipal Tourism Reception/Checkpoint (drive-in toll -- along San Juan-Laiya Rd.) Brgy. Buhaynasapa, San Juan, Batangas</p>
                 
@@ -97,22 +100,35 @@ $result = $conn->query($sql);
                     <li>Other Fees: ₱ <?php echo number_format($other_fees, 2); ?></li>
                 </ul>
 
-                <div class="dropdown-container">
+                <div class="styled-dropdown">
                     <!-- Dropdown for number of people -->
-                    <select class="people" name="people">
+                    <select id="num-people-<?php echo $id; ?>" name="num-people">
                         <option value="" disabled selected>Number of People</option>
+                        <?php for ($i = 1; $i <= 100; $i++): ?>
+                            <option value="<?php echo $i; ?>" <?php echo isset($user_number_of_people) && $i == $user_number_of_people ? 'selected' : ''; ?>>
+                                <?php echo $i; ?>
+                            </option>
+                        <?php endfor; ?>
                     </select>
+
                     <!-- Dropdown for days to stay with onchange event -->
-                    <select class="days" name="days" onchange="updateDaytourText()">
+                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="updateTotalCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
                         <option value="" disabled selected>Days to Stay</option>
+                        <?php for ($i = 1; $i <= 100; $i++): ?>
+                            <option value="<?php echo $i; ?>" <?php echo isset($user_number_of_days) && $i == $user_number_of_days ? 'selected' : ''; ?>>
+                                <?php echo $i; ?>
+                            </option>
+                        <?php endfor; ?>
                     </select>
+
                     <!-- Label for daytour -->
                     <div>
-                        <input type="text" class="daytour" name="daytour" placeholder="Daytour" disabled>
+                        <input type="text" class="daytour" id="daytour-text-<?php echo $id; ?>" placeholder="Daytour" disabled>
                     </div>
                 </div>
                 
                 <button class="add-itinerary-btn">Add to Itinerary</button>
+
             </div>
         </div>
         
@@ -125,36 +141,8 @@ $result = $conn->query($sql);
     </div>
 
 <script>
-// Function to generate options for dropdowns with 1 to 100 options
-function generateOptionsForAll() {
-    document.querySelectorAll('.people, .days').forEach((select) => {
-        for (let i = 1; i <= 100; i++) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.textContent = i;
-            select.appendChild(option);
-        }
-    });
-}
-
-generateOptionsForAll();
-
-// Update daytour or overnight text based on selected days for each destination
-document.querySelectorAll('.days').forEach((daysSelect, index) => {
-    daysSelect.addEventListener('change', function () {
-        const daytourInput = document.querySelectorAll('.daytour')[index];
-        const daysSelected = parseInt(daysSelect.value, 10);
-
-        if (daysSelected === 1) {
-            daytourInput.value = "Daytour";
-        } else if (daysSelected > 1) {
-            daytourInput.value = "Overnight";
-        } else {
-            daytourInput.value = "";
-        }
-        daytourInput.disabled = true;
-    });
-});
+    updateDaytourText();
+    updateTotalCost();
 </script>
 
 <!-- Footer -->
