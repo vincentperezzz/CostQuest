@@ -333,3 +333,120 @@ function deleteAccount() {
 
     xhr.send(`password=${encodeURIComponent(password)}`);
 }
+
+// FUNCTION: Calculate total cost based on selected number of people and days for each destination
+function updateTotalCost(id) {
+  // Get the values from the selected options for the number of people and days
+  const numPeople = parseInt(document.getElementById('num-people-' + id).value) || 1; // Default to 1 if no value
+  const numDays = parseInt(document.getElementById('num-days-' + id).value) || 1; // Default to 1 if no value
+
+  // Get prices and fees from destinations data
+  const destinationContainer = document.getElementById('destination-' + id);
+  const daytourPrice = parseFloat(destinationContainer.getAttribute('data-daytour-price')) || 0; // Default to 0 if not set
+  const overnightPrice = parseFloat(destinationContainer.getAttribute('data-overnight-price')) || 0; // Default to 0 if not set
+  const environmentalFee = parseFloat(destinationContainer.getAttribute('data-environmental-fee')) || 0; // Default to 0 if not set
+  const otherFees = parseFloat(destinationContainer.getAttribute('data-other-fees')) || 0; // Default to 0 if not set
+
+  // Calculate total cost
+  let totalCost = 0;
+
+  // Calculate cost for daytour (1 day)
+  if (numDays === 1) {
+      // Calculate base cost for two people, then add extra for additional people
+      let baseCost = daytourPrice;
+      if (numPeople > 2) {
+          const extraPeople = numPeople - 2; // Number of people beyond the first 2
+          baseCost += (daytourPrice / 2) * Math.ceil(extraPeople / 2); // Add extra cost for each additional person
+      }
+      totalCost = baseCost * Math.ceil(numPeople / 2) + environmentalFee + otherFees;
+  } else {
+      // For overnight (multiple days), calculate cost per two pax (same logic for extra people)
+      const numOvernights = numDays - 1; // Subtract 1 day for overnight calculation
+      let baseCost = overnightPrice;
+      if (numPeople > 2) {
+          const extraPeople = numPeople - 2; // Number of people beyond the first 2
+          baseCost += (overnightPrice / 2) * Math.ceil(extraPeople / 2); // Add extra cost for each additional person
+      }
+      totalCost = baseCost * numOvernights + environmentalFee + otherFees * numPeople;
+  }
+
+  // Update the displayed total cost in the price overlay
+  document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
+}
+
+// FUNCTION: Update daytour or overnight text based on selected days for each destination
+function updateDaytourText(id) {
+  const numDays = document.getElementById(`num-days-${id}`).value;
+  const daytourText = document.getElementById(`daytour-text-${id}`);
+  const locationType = document.getElementById(`destination-${id}`).dataset.locationType;
+
+  if (locationType === 'adventure') {
+      daytourText.value = "Daytour";  // Keep "Daytour" for adventure type
+  } else {
+      // For other location types, update the label based on days selected
+      if (numDays == 1) {
+          daytourText.value = "Daytour";
+      } else if (numDays > 1) {
+          daytourText.value = "Overnight";
+      } else {
+          daytourText.value = "";
+      }
+  }
+}
+
+// FUNCTION: Calculate cost based on selected options for each destination 
+function calculateCost(id) {
+    // Get values dynamically from the destination data
+    const numPeople = document.getElementById('num-people-' + id).value;
+    const numDays = document.getElementById('num-days-' + id).value;
+    const locationType = document.getElementById('destination-' + id).dataset.locationType;
+    const daytourPrice = parseFloat(document.getElementById('destination-' + id).dataset.daytourPrice);
+    const overnightPrice = parseFloat(document.getElementById('destination-' + id).dataset.overnightPrice);
+    const environmentalFee = parseFloat(document.getElementById('destination-' + id).dataset.environmentalFee);
+    const otherFees = parseFloat(document.getElementById('destination-' + id).dataset.otherFees);
+
+    let totalCost = 0;
+
+    // Check if the location type is 'adventure'
+    if (locationType === 'adventure') {
+        // For adventure, multiply the daytour price by the number of people and days
+        totalCost = daytourPrice * numPeople * numDays + environmentalFee + otherFees;
+    } 
+    // Check if the location type is 'spot'
+    else if (locationType === 'spot') {
+        // For spot, only allow a daytour calculation (1 day)
+        totalCost = daytourPrice * numPeople + environmentalFee + otherFees;
+    }
+    // For other locations, use the standard daytour/overnight calculation
+    else {
+        // Daytour Calculation
+        if (numDays == 1) {
+            let baseCost = daytourPrice;
+            if (numPeople > 2) {
+                const extraPeople = numPeople - 2;
+                baseCost += extraPeople * (daytourPrice / 2); // Adding extra cost for each person beyond 2
+            }
+            totalCost = baseCost + environmentalFee + otherFees;
+        } 
+        // Overnight Calculation
+        else {
+            let baseCost = overnightPrice * (numDays - 1); // Subtract one day for overnight calculation
+            if (numPeople > 2) {
+                const extraPeople = numPeople - 2;
+                baseCost += extraPeople * (overnightPrice / 2) * (numDays - 1); // Extra cost for overnight stays
+            }
+            totalCost = baseCost + environmentalFee + otherFees;
+        }
+    }
+
+    // Update the displayed total cost
+    document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
+}
+
+// FUNCTION: Change button when clicked
+function addToItinerary(button) {
+    button.style.backgroundColor = '#45a049';
+    button.textContent = 'Added to Itinerary';
+    button.classList.add('added');
+    button.disabled = true; // Optionally disable the button to prevent further clicks
+}
