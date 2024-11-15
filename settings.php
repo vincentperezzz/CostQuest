@@ -31,7 +31,7 @@
 
             
                 <div class="itinerary">
-                <div class="itinerary-btn">Itinerary</div>
+                <div class="itinerary-btn">Itinerary Cart</div>
                 <div class="itinerary-btn-box"><a href="itineraries.php"><img class="loc-ico" src="icons/itineraries-location-icon.png">0</a></div>
                 </div>
             </div>
