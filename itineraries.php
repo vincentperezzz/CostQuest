@@ -1,3 +1,20 @@
+<?php
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "costquest";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+// Fetch destinations
+$sql = "SELECT * FROM destinations";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,7 +57,7 @@
 <!------------Home------------->
 <div class="dashboard-img">
         <img src="icons/itineraries-1st-img.png"></div>
-<div id="pageMessages"> </div>
+        <div id="pageMessages"> </div>
 
 <div class="itineraries-budget-container">
 
@@ -68,166 +85,80 @@
 <div class="itineraries-container">
 <div class="budget-title">Itinerary List</div>
 
-<!-- CARD -->
-<div class="itineraries-card">
-    <div class="itineraries-card-img">
-        <img src="icons/sanjuan-d1.png">
-    </div>
-
-    <div class="itineraries-card-text">
-        <div>
-            <div class="itineraries-card-title">Camp Laiya Beach Farm Resort</div>
-            <div class="itineraries-card-subtitle">San Juan, Batangas</div>
-        </div>
-
-        <div class="itineraries-card-price">
-            <div class="itineraries-card-price-text">
-                <div class="text-gray">from </div>
-                <div class="price-text">₱ 1,000.00</div>
-            </div>
-
-            <div class="itineraries-card-dropdown">
-                    <!-- Dropdown for number of people -->
-                    <select id="num-people-<?php echo $id; ?>" name="num-people" class="styled-dropdown">
-                        <option value="" disabled selected>Number of People</option>
-                        <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php endfor; ?>
-                    </select>
-                    <!-- Dropdown for days to stay with onchange event -->
-                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" class="styled-dropdown" onchange="updateTotalCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
-                        <option value="" disabled selected>Days to Stay</option>
-                        <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php endfor; ?>
-                    </select>
-                    <!-- Label for daytour -->
-                    <div>
-                        <input type="text" class="daytour" id="daytour-text-<?php echo $id; ?>" placeholder="Daytour" disabled>
-                    </div>
-            </div>
-        </div>
-    </div>
-    <div class="itineraries-btn-row">
-        <div>
-            <button type="submit" class="view-itinerary-btn" onclick="">View Details</button>
-        </div>
-        <div>
-            <button type="submit" class="remove-itinerary-btn" onclick=")">Remove</button>
-        </div>
-    </div>         
-</div>
-
+<?php
+if ($result->num_rows > 0) {
+// Loop through each destination
+while ($row = $result->fetch_assoc()) {
+    $id = $row['id'];
+    $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
+    $address = isset($row['address']) ? $row['address'] : 'Unknown Address';
+    $daytour_price = isset($row['daytour_price']) ? $row['daytour_price'] : 0;
+    $overnight_price = isset($row['overnight_price']) ? $row['overnight_price'] : 0;
+    $environmental_fee = isset($row['environmental_fee']) ? $row['environmental_fee'] : 0;
+    $other_fees = isset($row['other_fees']) ? $row['other_fees'] : 0;
+    $total_estimated_cost = isset($row['total_estimated_cost']) ? $row['total_estimated_cost'] : 0;
+    $image = "icons/sanjuan-d" . $id . ".png";
+?>
 
 <!-- CARD -->
-<div class="itineraries-card">
-    <div class="itineraries-card-img">
-        <img src="icons/itinerary-card-sanjaun-d1.png">
-    </div>
-
-    <div class="itineraries-card-text">
-        <div>
-            <div class="itineraries-card-title">Camp Laiya Beach Farm Resort</div>
-            <div class="itineraries-card-subtitle">San Juan, Batangas</div>
-        </div>
-
-        <div class="itineraries-card-price">
-            <div class="itineraries-card-price-text">
-                <div class="text-gray">from </div>
-                <div class="price-text">₱ 1,000.00</div>
+ <div class="itineraries-card">
+            <div class="itineraries-card-img">
+                <img src="<?php echo $image; ?>">
             </div>
 
-            <div class="itineraries-card-dropdown">
-                    <!-- Dropdown for number of people -->
-                    <select id="num-people-<?php echo $id; ?>" name="num-people" class="styled-dropdown">
-                        <option value="" disabled selected>Number of People</option>
-                        <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php endfor; ?>
-                    </select>
-                    <!-- Dropdown for days to stay with onchange event -->
-                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" class="styled-dropdown" onchange="updateTotalCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
-                        <option value="" disabled selected>Days to Stay</option>
-                        <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php endfor; ?>
-                    </select>
-                    <!-- Label for daytour -->
-                    <div>
-                        <input type="text" class="daytour" id="daytour-text-<?php echo $id; ?>" placeholder="Daytour" disabled>
+            <div class="itineraries-card-text">
+                <div>
+                    <div class="itineraries-card-title"><?php echo $name; ?></div>
+                    <div class="itineraries-card-subtitle"><?php echo $address; ?></div>
+                </div>
+
+                <div class="itineraries-card-price">
+                    <div class="itineraries-card-price-text">
+                        <div class="text-gray">from </div>
+                        <div class="price-text">₱ <?php echo number_format($total_estimated_cost, 2); ?></div>
                     </div>
-            </div>
-        </div>
-    </div>
-    <div class="itineraries-btn-row">
-        <div>
-            <button type="submit" class="view-itinerary-btn" onclick="">View Details</button>
-        </div>
-        <div>
-            <button type="submit" class="remove-itinerary-btn" onclick=")">Remove</button>
-        </div>
-    </div>         
-</div>
 
-<!-- CARD -->
-<div class="itineraries-card">
-    <div class="itineraries-card-img">
-        <img src="icons/itinerary-card-sanjaun-d1.png">
-    </div>
-
-    <div class="itineraries-card-text">
-        <div>
-            <div class="itineraries-card-title">Camp Laiya Beach Farm Resort</div>
-            <div class="itineraries-card-subtitle">San Juan, Batangas</div>
-        </div>
-
-        <div class="itineraries-card-price">
-            <div class="itineraries-card-price-text">
-                <div class="text-gray">from </div>
-                <div class="price-text">₱ 1,000.00</div>
-            </div>
-
-            <div class="itineraries-card-dropdown">
-                    <!-- Dropdown for number of people -->
-                    <select id="num-people-<?php echo $id; ?>" name="num-people" class="styled-dropdown">
-                        <option value="" disabled selected>Number of People</option>
-                        <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php endfor; ?>
-                    </select>
-                    <!-- Dropdown for days to stay with onchange event -->
-                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" class="styled-dropdown" onchange="updateTotalCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
-                        <option value="" disabled selected>Days to Stay</option>
-                        <?php for ($i = 1; $i <= 100; $i++): ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php endfor; ?>
-                    </select>
-                    <!-- Label for daytour -->
-                    <div>
-                        <input type="text" class="daytour" id="daytour-text-<?php echo $id; ?>" placeholder="Daytour" disabled>
+                    <div class="itineraries-card-dropdown">
+                        <!-- Dropdown for number of people -->
+                        <select id="num-people-<?php echo $id; ?>" name="num-people" class="styled-dropdown">
+                            <option value="" disabled selected>Number of People</option>
+                            <?php for ($i = 1; $i <= 100; $i++): ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                        <!-- Dropdown for days to stay with onchange event -->
+                        <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" class="styled-dropdown" onchange="updateTotalCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
+                            <option value="" disabled selected>Days to Stay</option>
+                            <?php for ($i = 1; $i <= 100; $i++): ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                        <!-- Label for daytour -->
+                        <div>
+                            <input type="text" class="daytour" id="daytour-text-<?php echo $id; ?>" placeholder="Daytour" disabled>
+                        </div>
                     </div>
+                </div>
             </div>
+            <div class="itineraries-btn-row">
+                <div>
+                    <button type="submit" class="view-itinerary-btn" onclick="">View Details</button>
+                </div>
+                <div>
+                    <button type="submit" class="remove-itinerary-btn" onclick=")">Remove</button>
+                </div>
+            </div>         
         </div>
-    </div>
-    <div class="itineraries-btn-row">
-        <div>
-            <button type="submit" class="view-itinerary-btn" onclick="">View Details</button>
-        </div>
-        <div>
-            <button type="submit" class="remove-itinerary-btn" onclick=")">Remove</button>
-        </div>
-    </div>         
-</div>
-
-
-
-
-</div>
-  <!------------Footer------------->
-  <footer class="footer">
-  <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
-</footer>
-<script src="javascript/index.js"> </script>
+        <?php
+            }
+        } else {
+            echo "<p>No destinations found.</p>";
+        }
+        ?>
+    </div>    <!-- Footer -->
+    <footer class="footer">
+        <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
+    </footer>
+    <script src="javascript/index.js"></script>
 </body>
 </html>
-    

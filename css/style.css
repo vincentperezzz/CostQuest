@@ -623,7 +623,7 @@ nav ul li a{
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  width: 150px;
+  width: 120px;
   color: black;
   background-color: #f9f9f9;
   text-align: center;
@@ -962,7 +962,7 @@ cursor: pointer;
 .itineraries-card-text{
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 10px 20px 20px;
 }
 
 .itineraries-card-title{
@@ -998,7 +998,8 @@ cursor: pointer;
 .price-text{
   font-size: 20px;
   font-weight: 700;
-  padding-right: 10px;
+  padding-right: 5px;
+  width: 150px;
 }
 
 .itineraries-card-dropdown{
