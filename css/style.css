@@ -942,7 +942,7 @@ cursor: pointer;
 }
 
 .itineraries-card{
-  width: 100%;
+  width: 1203px;
   height: 150px;
   border-radius: 20px;
   background-color: white;
@@ -950,7 +950,6 @@ cursor: pointer;
   margin-top: 30px;
   display: flex;
   flex-direction: row;
-  align-items: left;
 }
 
 .itineraries-card-img img{
