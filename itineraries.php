@@ -123,14 +123,14 @@ while ($row = $result->fetch_assoc()) {
                         <select id="num-people-<?php echo $id; ?>" name="num-people" class="styled-dropdown">
                             <option value="" disabled selected>Number of People</option>
                             <?php for ($i = 1; $i <= 100; $i++): ?>
-                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'person' : 'people'; ?></option>
                             <?php endfor; ?>
                         </select>
                         <!-- Dropdown for days to stay with onchange event -->
                         <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" class="styled-dropdown" onchange="updateTotalCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
                             <option value="" disabled selected>Days to Stay</option>
                             <?php for ($i = 1; $i <= 100; $i++): ?>
-                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'day' : 'days'; ?></option>
                             <?php endfor; ?>
                         </select>
                         <!-- Label for daytour -->
