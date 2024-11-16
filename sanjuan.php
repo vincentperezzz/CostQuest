@@ -144,7 +144,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                     </div>
                 </div>
                 
-                <button class="add-itinerary-btn" onclick="checkNumDays(<?php echo $id; ?>, this)">Add to Itinerary</button>
+                <button class="add-itinerary-btn" id="add-itinerary-btn-<?php echo $id; ?>"  data-id="<?php echo $id; ?>" onclick="checkNumDays(<?php echo $id; ?>, this)">Add to Itinerary</button>
             </div>
         </div>
         
@@ -156,11 +156,6 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
         ?>
     </div>
 
-<script>
-    updateDaytourText();
-    calculateCost();
-    addToItinerary();
-</script>
 
 <!-- Footer -->
 <footer class="footer">

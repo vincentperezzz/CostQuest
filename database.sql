@@ -34,3 +34,14 @@ VALUES
     ('San Juan', 'Acuatico Beach Resort and Hotel', 'Laiya, San Juan, Batangas', 3800.00, 7900.00, 20.00, 2000.00, 5820.00, 'sanjuan-d4.png', 'https://acuaticoresort.com.ph/', 'hotel'),
     ('San Juan', 'Laiya Adventure Park', 'Brgy. Laiya Aplaya, San Juan, Batangas', 720.00, NULL, 20.00, NULL, 740.00, 'sanjuan-d5.png', 'https://www.facebook.com/LaiyaAdventurePark/', 'adventure'),
     ('San Juan', 'San Juan Nepomuceno Parish Church', 'P. Burgos St. Brgy. Poblacion, San Juan, Batangas', NULL, NULL, 20.00, NULL, 20.00, 'sanjuan-d6.png', 'N/A', 'spot');
+
+CREATE TABLE bookings (
+    email_of_the_user VARCHAR(255),
+    id INT,
+    num_of_people INT,
+    days_to_stay INT,
+    total_amount DECIMAL(10, 2),
+    FOREIGN KEY (email_of_the_user) REFERENCES users(email),
+    FOREIGN KEY (id) REFERENCES destinations(id),
+    PRIMARY KEY (email_of_the_user, id)
+);

@@ -18,13 +18,13 @@ function toggle_Continue_SigningUp(event) {
   var confirmPassword = document.querySelector('input[name="confirm-password"]').value;
 
   if (!lname || !email || !password || !confirmPassword) {
-    createAlert('Warning','','All fields are required.','warning',true,true,'pageMessages');
+    createAlert(' Warning','','All fields are required.','warning',true,true,'pageMessages');
     event.preventDefault();
     return false;
   }
 
   if (password !== confirmPassword) {
-    createAlert('Opps!','','Passwords do not match.','danger',true,true,'pageMessages');
+    createAlert(' Opps!','','Passwords do not match.','danger',true,true,'pageMessages');
     event.preventDefault();
     return false;
   }
@@ -443,21 +443,49 @@ function calculateCost(id) {
     document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
 }
 
+function checkNumDays(id, button) {
+    const numDaysElement = document.getElementById('num-days-' + id);
+    if (!numDaysElement.value) {
+        numDaysElement.setAttribute('required', 'required');
+        createAlert('Warning', '', 'Please select the number of <b>days to stay.</b>', 'warning', true, true, 'pageMessages');
+    } else {
+        addToItinerary(id, button);
+    }
+}
 
-// FUNCTION: Change button when clicked
-function addToItinerary(button) {
+function addToItinerary(id, button) {
     button.textContent = 'Added';
     button.classList.add('added');
     button.disabled = true;
-}
 
+    const numPeople = document.querySelector(`#num-people-${id}`).value;
+    const daysToStay = document.querySelector(`#num-days-${id}`).value;
+    const totalAmountText = document.querySelector(`#total-cost-${id}`).textContent;
+    const totalAmount = parseFloat(totalAmountText.replace(/[^\d.-]/g, ''));
 
-function checkNumDays(id, button) {
-  const numDaysElement = document.getElementById('num-days-' + id);
-  if (!numDaysElement.value) {
-      numDaysElement.setAttribute('required', 'required');
-      createAlert(' Warning','','Please select the number of <b>days to stay.</b>','warning',true,true,'pageMessages')
-  } else {
-      addToItinerary(button);
-  }
+    const data = {
+        id: id,
+        num_people: numPeople,
+        days_to_stay: daysToStay,
+        total_amount: totalAmount
+    };
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/add_to_itinerary.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText); // Log the raw response
+            if (xhr.responseText === 'success') {
+                createAlert(' Success!', '', 'New itinerary added successfully', 'success', true, true, 'pageMessages');
+            } else {
+                createAlert(' Oops!', '', 'Error adding itinerary.', 'danger', true, true, 'pageMessages');
+            }
+        } else {
+            createAlert(' Oops!', '', 'Error adding itinerary.', 'danger', true, true, 'pageMessages');
+        }
+    };
+
+    xhr.send(JSON.stringify(data));
 }
