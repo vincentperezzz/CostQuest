@@ -31,6 +31,10 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <?php include 'php/data_database.php'; ?>
     <script src="javascript/index.js"></script>
 </head>
@@ -56,6 +60,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
     <div class="sanjuan-img">
         <img src="icons/search-sanjuan.png">
     </div>
+    <div id="pageMessages"> </div>
 
     <!-- Wrapper for all destination containers -->
     <div class="destination-wrapper">
@@ -97,17 +102,17 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                     <?php endif; ?>
                 </h2>
                 <p class="direction"><?php echo $address; ?></p>
-                
+                                
                 <ul class="pricelist">
                     <li>Daytour Price: ₱ <?php echo number_format($daytour_price, 2); ?> per two pax</li>
                     <li>Overnight Price: ₱ <?php echo number_format($overnight_price, 2); ?> per two pax</li>
                     <li>Environmental Fee: ₱ <?php echo number_format($environmental_fee, 2); ?></li>
                     <li>Other Fees: ₱ <?php echo number_format($other_fees, 2); ?></li>
                 </ul>
-
+                
                 <div class="styled-dropdown">
                     <!-- Dropdown for number of people -->
-                    <select id="num-people-<?php echo $id; ?>" name="num-people" onchange="calculateCost(<?php echo $id; ?>)">
+                    <select id="num-people-<?php echo $id; ?>" name="num-people" onchange="calculateCost(<?php echo $id; ?>)" required>
                         <option value="" disabled <?php echo empty($user_number_of_people) ? 'selected' : ''; ?>>Number of People</option>
                         <?php for ($i = 1; $i <= 100; $i++): ?>
                             <option value="<?php echo $i; ?>" <?php echo ($i == $user_number_of_people) ? 'selected' : ''; ?>>
@@ -115,9 +120,9 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                             </option>
                         <?php endfor; ?>
                     </select>
-
+                
                     <!-- Dropdown for days to stay with onchange event -->
-                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
+                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)" required>
                         <option value="" disabled selected>Days to Stay</option>
                         <?php 
                         // Limit days based on location type
@@ -132,15 +137,14 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                         }
                         ?>
                     </select>
-
+                
                     <!-- Label for daytour -->
                     <div>
                         <input type="text" class="daytour" id="daytour-text-<?php echo $id; ?>" placeholder="Daytour" disabled>
                     </div>
                 </div>
                 
-                <button class="add-itinerary-btn" onclick="addToItinerary(this)">Add to Itinerary</button>
-
+                <button class="add-itinerary-btn" onclick="checkNumDays(<?php echo $id; ?>, this)">Add to Itinerary</button>
             </div>
         </div>
         

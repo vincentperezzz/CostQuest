@@ -443,10 +443,21 @@ function calculateCost(id) {
     document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
 }
 
+
 // FUNCTION: Change button when clicked
 function addToItinerary(button) {
-    button.style.backgroundColor = '#45a049';
-    button.textContent = 'Added to Itinerary';
+    button.textContent = 'Added';
     button.classList.add('added');
-    button.disabled = true; // Optionally disable the button to prevent further clicks
+    button.disabled = true;
+}
+
+
+function checkNumDays(id, button) {
+  const numDaysElement = document.getElementById('num-days-' + id);
+  if (!numDaysElement.value) {
+      numDaysElement.setAttribute('required', 'required');
+      createAlert(' Warning','','Please select the number of <b>days to stay.</b>','warning',true,true,'pageMessages')
+  } else {
+      addToItinerary(button);
+  }
 }

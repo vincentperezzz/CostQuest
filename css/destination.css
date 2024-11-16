@@ -248,6 +248,7 @@ nav ul li a{
 
 .add-itinerary-btn {
   background-color: black;
+  width: 183px;
   color: white;
   padding: 20px 40px;
   border: none;
@@ -258,18 +259,18 @@ nav ul li a{
 }
 
 .add-itinerary-btn:hover {
-  background-color: #45a049;
+  background-color: #0000009a;
 }
 
 .add-itinerary-btn.added {
-  background-color: #45a049;
-  color: white;
+    background-color: #A0A0A0;
+    color: white;
 }
 
-.add-itinerary-btn.added:hover {
-  background-color: #45a049;
+.add-itinerary-btn.remove-hover {
+    background-color: #EF4242;
+    color: white;
 }
-
 .details .name a {
   color: inherit;
   text-decoration: none;
@@ -277,6 +278,79 @@ nav ul li a{
 
 .details .name a:hover {
   color: #555555;
+}
+
+/* Bootstrap */
+
+/* Styles for the pageMessages container */
+#pageMessages {
+  position: fixed;
+  bottom: 15px;
+  right: 1px;
+  width: 29%;
+  z-index: 9999;
+}
+
+.btn-danger {
+color: #fff;
+background-color: #dc3545;
+border-color: #dc3545;
+}
+.btn-success {
+color: #fff;
+background-color: #28a745;
+border-color: #28a745;
+}
+.btn-info {
+color: #fff;
+background-color: #17a2b8;
+border-color: #17a2b8;
+}
+.btn-warning {
+color: #212529;
+background-color: #ffc107;
+border-color: #ffc107;
+}
+
+/* Bootstrap Alert Styles */
+.alert {
+position: relative;
+padding: 0.75rem 1.25rem;
+margin-bottom: 1rem;
+border: 1px solid transparent;
+border-radius: 0.25rem;
+}
+.alert-danger {
+color: #721c24;
+background-color: #f8d7da;
+border-color: #f5c6cb;
+width: 525px;
+}
+.alert-success {
+color: #155724;
+background-color: #d4edda;
+border-color: #c3e6cb;
+width: 525px;
+}
+.alert-info {
+color: #0c5460;
+background-color: #d1ecf1;
+border-color: #bee5eb;
+width: 525px;
+}
+.alert-warning {
+color: #856404;
+background-color: #fff3cd;
+border-color: #ffeeba;
+width: 525px;
+}
+.alert-dismissible .close {
+position: absolute;
+top: 0;
+right: 0;
+padding: 0.75rem 1.25rem;
+color: inherit;
+cursor: pointer;
 }
 
 
