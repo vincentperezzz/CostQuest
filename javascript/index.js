@@ -489,3 +489,52 @@ function addToItinerary(id, button) {
 
     xhr.send(JSON.stringify(data));
 }
+
+// FUNCTION: Makes the button added and disabled if the itinerary item is already added
+function updateItineraryButtons() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'php/already_in_itinerary.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+
+            data.forEach(item => {
+                const button = document.getElementById(`add-itinerary-btn-${item.id}`);
+                if (button) {
+                    button.textContent = 'Added';
+                    button.classList.add('added');
+                    button.disabled = true;
+                }
+
+                // Update num_of_people, days_to_stay, and total_amount
+                const numOfPeopleElement = document.getElementById(`num-people-${item.id}`);
+                const daysToStayElement = document.getElementById(`num-days-${item.id}`);
+                const totalAmountElement = document.getElementById(`total-cost-${item.id}`);
+
+                if (numOfPeopleElement) {
+                    numOfPeopleElement.value = item.num_of_people;
+                }
+                if (daysToStayElement) {
+                    daysToStayElement.value = item.days_to_stay;
+                }
+                if (totalAmountElement) {
+                    totalAmountElement.value = item.total_amount;
+                }
+            });
+        } else {
+            console.error('Error fetching itinerary data:', xhr.statusText);
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error('Request error');
+    };
+
+    xhr.send();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateItineraryButtons();
+});
