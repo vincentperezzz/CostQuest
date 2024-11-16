@@ -35,7 +35,7 @@ VALUES
     ('San Juan', 'Laiya Adventure Park', 'Brgy. Laiya Aplaya, San Juan, Batangas', 720.00, NULL, 20.00, NULL, 740.00, 'sanjuan-d5.png', 'https://www.facebook.com/LaiyaAdventurePark/', 'adventure'),
     ('San Juan', 'San Juan Nepomuceno Parish Church', 'P. Burgos St. Brgy. Poblacion, San Juan, Batangas', NULL, NULL, 20.00, NULL, 20.00, 'sanjuan-d6.png', 'N/A', 'spot');
 
-CREATE TABLE bookings (
+CREATE TABLE itinerary_cart (
     email_of_the_user VARCHAR(255),
     id INT,
     num_of_people INT,

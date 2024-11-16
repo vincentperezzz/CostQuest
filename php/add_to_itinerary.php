@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total_amount = $data['total_amount'];
 
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO bookings (email_of_the_user, id, num_of_people, days_to_stay, total_amount) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO itinerary_cart (email_of_the_user, id, num_of_people, days_to_stay, total_amount) VALUES (?, ?, ?, ?, ?)");
 
     $stmt->bind_param("siiid", $email, $id, $num_people, $days_to_stay, $total_amount);
 
