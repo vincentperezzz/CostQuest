@@ -566,6 +566,32 @@ function removeFromItinerary(id, button) {
     xhr.send(JSON.stringify(data));
 }
 
+// FUNCTION: Remove the selected destination from the itinerary and database
+function removeFromItineraryPHP(id, button) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/remove_from_itinerary.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText); // Log the raw response
+            if (xhr.responseText === 'success') {
+                createAlert(' Success!', '', 'Itinerary removed successfully', 'success', true, true, 'pageMessages');
+                setTimeout(function() {
+                    location.reload();
+                }, 2000); 
+            } else {
+                createAlert(' Oops!', '', 'Error removing itinerary.', 'danger', true, true, 'pageMessages');
+            }
+        } else {
+            createAlert(' Oops!', '', 'Error removing itinerary.', 'danger', true, true, 'pageMessages');
+        }
+    };
+
+    const data = { id: id };
+    xhr.send(JSON.stringify(data));
+}
+
 // FUNCTION: Update the number of people and days to stay in the itinerary cart page
 document.addEventListener('DOMContentLoaded', function() {
     fetch('php/already_in_itinerary.php')

@@ -938,7 +938,7 @@ cursor: pointer;
 .itineraries-container{
   display: flex;
   flex-direction: column;
-  padding: 50px 350px;
+  align-items: center;
 }
 
 .itineraries-card{
