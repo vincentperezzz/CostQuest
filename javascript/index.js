@@ -636,7 +636,7 @@ function saveItineraryCardChanges(id, button) {
         if (xhr.status === 200) {
             console.log(xhr.responseText); // Log the raw response
             if (xhr.responseText === 'success') {
-                createAlert(' Success!', '', 'New itinerary added successfully', 'success', true, true, 'pageMessages');
+                location.reload();
             } else {
                 createAlert(' Oops!', '', 'Error adding itinerary.', 'danger', true, true, 'pageMessages');
             }
