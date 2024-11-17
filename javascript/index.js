@@ -554,6 +554,7 @@ function removeFromItinerary(id, button) {
             console.log(xhr.responseText); // Log the raw response
             if (xhr.responseText === 'success') {
                 createAlert(' Success!', '', 'Itinerary removed successfully', 'success', true, true, 'pageMessages');
+                location.reload();
             } else {
                 createAlert(' Oops!', '', 'Error removing itinerary.', 'danger', true, true, 'pageMessages');
             }
@@ -609,15 +610,21 @@ window.onload = function() {
 // FUNCTION: Save or Cancel changes to the itinerary card
 
 function editItineraryCard(id) {
-    const viewButton = document.getElementById(`view-itinerary-btn-${id}`);
-    const removeButton = document.getElementById(`remove-itinerary-btn-${id}`);
-    const saveButton = document.getElementById(`save-itinerary-btn-${id}`);
-    const cancelButton = document.getElementById(`cancel-itinerary-btn-${id}`);
-
-    if (viewButton) viewButton.style.display = 'none';
-    if (removeButton) removeButton.style.display = 'none';
-    if (saveButton) saveButton.style.display = 'inline-block';
-    if (cancelButton) cancelButton.style.display = 'inline-block';
+    const addButton = document.getElementById(`add-itinerary-btn-${id}`);
+    
+    if (addButton && addButton.style.display === 'none') {
+        const viewButton = document.getElementById(`view-itinerary-btn-${id}`);
+        const removeButton = document.getElementById(`remove-itinerary-btn-${id}`);
+        const saveButton = document.getElementById(`save-itinerary-btn-${id}`);
+        const cancelButton = document.getElementById(`cancel-itinerary-btn-${id}`);
+    
+        if (viewButton) viewButton.style.display = 'none';
+        if (removeButton) removeButton.style.display = 'none';
+        if (saveButton) saveButton.style.display = 'inline-block';
+        if (cancelButton) cancelButton.style.display = 'inline-block';
+    } else {
+        // Do not execute the following code
+    }
 }
 
 function saveItineraryCardChanges(id, button) {
