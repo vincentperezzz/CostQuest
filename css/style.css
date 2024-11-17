@@ -147,7 +147,7 @@ nav ul li a{
 
 .best-choice-container{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 40px 350px;
 }
 
