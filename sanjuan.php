@@ -106,8 +106,10 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                 <p class="direction"><?php echo $address; ?></p>
                                 
                 <ul class="pricelist">
-                    <li>Daytour Price: ₱ <?php echo number_format($daytour_price, 2); ?> per two pax</li>
-                    <li>Overnight Price: ₱ <?php echo number_format($overnight_price, 2); ?> per two pax</li>
+                    <li>Daytour Price: ₱ <?php echo number_format($daytour_price, 2); ?> 
+                    <?php if ($location_type == 'hotel' || $location_type == 'resort') echo 'per two pax'; ?></li>
+                    <li>Overnight Price: ₱ <?php echo number_format($overnight_price, 2); ?> 
+                    <?php if ($location_type == 'hotel' || $location_type == 'resort') echo 'per two pax'; ?></li>
                     <li>Environmental Fee: ₱ <?php echo number_format($environmental_fee, 2); ?></li>
                     <li>Other Fees: ₱ <?php echo number_format($other_fees, 2); ?></li>
                 </ul>
