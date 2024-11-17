@@ -43,7 +43,6 @@
         <div id="pageMessages"> </div>
 
 <div class="itineraries-budget-container">
-
     <div class="itineraries-budget-box" id="itineraries-budget-box">
       <div class="budget-summary-rows" style="margin: 15px 30px;">
           <div class="itineraries-budget-title">Budget</div>
@@ -93,7 +92,7 @@ while ($row = $result->fetch_assoc()) {
     <div class="itineraries-card-text">
         <div>
             <div class="itineraries-card-title"><?php echo $name; ?></div>
-            <div class="itineraries-card-subtitle"><?php echo $address; ?></div>
+            <div class="itineraries-card-subtitle"><?php echo trim($address);?></div>
         </div>
 
         <div class="itineraries-card-price">

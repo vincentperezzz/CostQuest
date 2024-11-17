@@ -442,6 +442,7 @@ nav ul li a{
 .budget-title {
   font-size: 50px;
   font-weight: 700;
+  margin-top: 30px;
 }
 
 .edit-budget-btn {
@@ -851,7 +852,6 @@ cursor: pointer;
   width: 1200px;
   height: 383px;
   border-radius: 20px;
-  transition: background-color 0.3s ease; 
 }
 
 .budget-limit-text{
@@ -963,6 +963,7 @@ cursor: pointer;
   display: flex;
   flex-direction: column;
   padding: 20px 10px 20px 20px;
+  align-items: flex-start;
 }
 
 .itineraries-card-title{
