@@ -36,7 +36,14 @@ $user_number_of_people = $number_of_people;
 $user_budget = $budget_amount;
 
 // Placeholder value for budget price
-$budget_price = 2500;
+$sql = "SELECT SUM(total_amount) as total_amount FROM itinerary_cart WHERE email_of_the_user = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->bind_result($budget_price);
+$stmt->fetch();
+$stmt->close();
+
 if ($user_budget > 0) {
     $budget_percentage = ($budget_price / $user_budget) * 100;
 } else {

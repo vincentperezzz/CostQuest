@@ -163,8 +163,6 @@ function editBudget() {
     }
 }
 
-
-
 // FUNCTION: Update the Budget Percentage on the Settings
 function updateBudgetPercentage() {
     const budgetPriceElement = document.getElementById('budget-price');
@@ -177,14 +175,8 @@ function updateBudgetPercentage() {
         var budgetLimit = parseFloat(budgetLimitElement.innerText.replace('₱', '').replace(',', ''));
         var budgetPercentage = (budgetPrice / budgetLimit) * 100;
 
-        if (budgetPercentage > 100) {
-            budgetPercentage = 100;
-        } else if (budgetPercentage < 0) {
-            budgetPercentage = 0;
-        }
-
         budgetPercentageElement.innerText = budgetPercentage.toFixed(2) + '%';
-        progressBarStatusElement.style.width = budgetPercentage + '%';
+        progressBarStatusElement.style.width = Math.min(budgetPercentage, 100) + '%';
 
         if (budgetPercentage === 0) {
             progressBarStatusElement.style.display = 'none';
@@ -195,8 +187,8 @@ function updateBudgetPercentage() {
         console.error('One or more elements not found in the DOM');
     }
 }
-// FUNCTION: Edit Button on the Account Settings to make the Email and Password editable
 
+// FUNCTION: Edit Button on the Account Settings to make the Email and Password editable
 function editEmail() {
   const loginBox = document.getElementById('login-box');
   const emailBox = document.getElementById('email-box');
