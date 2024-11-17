@@ -355,7 +355,6 @@ function updateDaytourText(id) {
 
 // FUNCTION: Calculate cost based on selected options for each destination 
 function calculateCost(id) {
-    editItineraryCard(id);
     // Get values dynamically from the destination data
     const numPeople = document.getElementById('num-people-' + id).value;
     const numDays = document.getElementById('num-days-' + id).value;
@@ -365,6 +364,16 @@ function calculateCost(id) {
     const environmentalFee = parseFloat(document.getElementById('destination-' + id).dataset.environmentalFee);
     const otherFees = parseFloat(document.getElementById('destination-' + id).dataset.otherFees);
 
+    console.log('id:', id);
+    console.log('numPeople:', numPeople);
+    console.log('numDays:', numDays);
+    console.log('locationType:', locationType);
+    console.log('daytourPrice:', daytourPrice);
+    console.log('overnightPrice:', overnightPrice);
+    console.log('environmentalFee:', environmentalFee);
+    console.log('otherFees:', otherFees);
+    console.log('----------------------');
+    
     let totalCost = 0;
 
     // Check if the location type is 'adventure'
@@ -397,6 +406,9 @@ function calculateCost(id) {
             }
             totalCost = baseCost + environmentalFee + otherFees;
         }
+    }
+    if (totalCost < 0) {
+        totalCost = daytourPrice * 1 + environmentalFee + otherFees;
     }
     // Update the displayed total cost
     document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
@@ -480,6 +492,7 @@ function updateItineraryButtons() {
                 if (totalAmountElement) {
                     totalAmountElement.value = item.total_amount;
                 }
+                calculateCost(item.id);
             });
         } else {
             console.error('Error fetching itinerary data:', xhr.statusText);
@@ -592,19 +605,15 @@ window.onload = function() {
 function editItineraryCard(id) {
     const addButton = document.getElementById(`add-itinerary-btn-${id}`);
     
-    if (addButton && addButton.style.display === 'none') {
-        const viewButton = document.getElementById(`view-itinerary-btn-${id}`);
-        const removeButton = document.getElementById(`remove-itinerary-btn-${id}`);
-        const saveButton = document.getElementById(`save-itinerary-btn-${id}`);
-        const cancelButton = document.getElementById(`cancel-itinerary-btn-${id}`);
-    
-        if (viewButton) viewButton.style.display = 'none';
-        if (removeButton) removeButton.style.display = 'none';
-        if (saveButton) saveButton.style.display = 'inline-block';
-        if (cancelButton) cancelButton.style.display = 'inline-block';
-    } else {
-        // Do not execute the following code
-    }
+    const viewButton = document.getElementById(`view-itinerary-btn-${id}`);
+    const removeButton = document.getElementById(`remove-itinerary-btn-${id}`);
+    const saveButton = document.getElementById(`save-itinerary-btn-${id}`);
+    const cancelButton = document.getElementById(`cancel-itinerary-btn-${id}`);
+
+    viewButton.style.display = 'none';
+    removeButton.style.display = 'none';
+    saveButton.style.display = 'inline-block';
+    cancelButton.style.display = 'inline-block';
 }
 
 function saveItineraryCardChanges(id, button) {

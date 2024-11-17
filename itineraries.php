@@ -104,14 +104,14 @@ while ($row = $result->fetch_assoc()) {
 
             <div class="itineraries-card-dropdown">
                 <!-- Dropdown for number of people -->
-                    <select id="num-people-<?php echo $id; ?>" name="num-people" onchange="calculateCost(<?php echo $id; ?>)" class="styled-dropdown" required>
+                    <select id="num-people-<?php echo $id; ?>" name="num-people" onchange="calculateCost(<?php echo $id; ?>); editItineraryCard(<?php echo $id; ?>);" class="styled-dropdown" required>
                     <option value="" disabled selected>Number of People</option>
                     <?php for ($i = 1; $i <= 100; $i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'person' : 'people'; ?></option>
                     <?php endfor; ?>
                 </select>
                 <!-- Dropdown for days to stay with onchange event -->
-                <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)" class="styled-dropdown" required>
+                <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>); editItineraryCard(<?php echo $id; ?>);" class="styled-dropdown" required>
                 <option value="" disabled selected>Days to Stay</option>
                     <?php for ($i = 1; $i <= 100; $i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'day' : 'days'; ?></option>
@@ -145,8 +145,7 @@ while ($row = $result->fetch_assoc()) {
     </div> 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    calculateCost();
-    updateTotalCost() 
+    calculateCost(<?php echo $id; ?>);
 });
 </script>   
 

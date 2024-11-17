@@ -65,11 +65,13 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
     <!-- Wrapper for all destination containers -->
     <div class="destination-wrapper">
         <?php
+        $ids = [];
         // Check if there are destinations
         if ($sanjuanResult->num_rows > 0) {
             // Loop through each destination
             while ($row = $sanjuanResult->fetch_assoc()) {
                 $id = $row['id'];
+                $ids[] = $id; 
                 $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
                 $address = isset($row['address']) ? $row['address'] : 'Unknown Address';
                 $daytour_price = isset($row['daytour_price']) ? $row['daytour_price'] : 0;
@@ -122,7 +124,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                     </select>
                 
                     <!-- Dropdown for days to stay with onchange event -->
-                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)" required>
+                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>); " required>
                         <option value="" disabled selected>Days to Stay</option>
                         <?php 
                         // Limit days based on location type
@@ -159,12 +161,19 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
         }
         ?>
     </div>
+<!-- Ensure the script is placed at the end of the body -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    calculateCost();
-    updateTotalCost() 
+    var ids = <?php echo json_encode($ids); ?>;
+    console.log('IDs:', ids); // Debugging: Check if IDs are correctly passed
+
+    ids.forEach(function(id) {
+        calculateCost(id);
+    });
+    return true;
 });
-</script> 
+
+</script>
 
 <!-- Footer -->
 <footer class="footer">
