@@ -143,7 +143,12 @@ while ($row = $result->fetch_assoc()) {
 }
 ?>
     </div> 
-    
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    calculateCost();
+    updateTotalCost() 
+});
+</script>   
 
     <!-- Footer -->
     <footer class="footer">

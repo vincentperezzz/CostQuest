@@ -159,7 +159,12 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
         }
         ?>
     </div>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    calculateCost();
+    updateTotalCost() 
+});
+</script> 
 
 <!-- Footer -->
 <footer class="footer">

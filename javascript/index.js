@@ -576,10 +576,7 @@ function removeFromItineraryPHP(id, button) {
         if (xhr.status === 200) {
             console.log(xhr.responseText); // Log the raw response
             if (xhr.responseText === 'success') {
-                createAlert(' Success!', '', 'Itinerary removed successfully', 'success', true, true, 'pageMessages');
-                setTimeout(function() {
-                    location.reload();
-                }, 2000); 
+                location.reload();
             } else {
                 createAlert(' Oops!', '', 'Error removing itinerary.', 'danger', true, true, 'pageMessages');
             }
