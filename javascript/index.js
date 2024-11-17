@@ -363,16 +363,6 @@ function calculateCost(id) {
     const overnightPrice = parseFloat(document.getElementById('destination-' + id).dataset.overnightPrice);
     const environmentalFee = parseFloat(document.getElementById('destination-' + id).dataset.environmentalFee);
     const otherFees = parseFloat(document.getElementById('destination-' + id).dataset.otherFees);
-
-    console.log('id:', id);
-    console.log('numPeople:', numPeople);
-    console.log('numDays:', numDays);
-    console.log('locationType:', locationType);
-    console.log('daytourPrice:', daytourPrice);
-    console.log('overnightPrice:', overnightPrice);
-    console.log('environmentalFee:', environmentalFee);
-    console.log('otherFees:', otherFees);
-    console.log('----------------------');
     
     let totalCost = 0;
 
