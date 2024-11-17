@@ -1046,6 +1046,43 @@ cursor: pointer;
     background-color: #722121; 
 }
 
+.save-itinerary-btn{
+  width: 130px; 
+  padding: 10px;
+  height: 45px;
+  background-color: #009213; 
+  color: white; 
+  border: none;
+  border-radius: 10px; 
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 50px;
+  display: none;
+
+}
+
+.save-itinerary-btn:hover {
+    background-color: #000000bb; 
+}
+
+.cancel-itinerary-btn{
+  width: 100px; 
+  height: 45px;
+  padding: 10px;
+  background-color: #D33C3D; 
+  color: white; 
+  border: none;
+  border-radius: 10px; 
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 50px;
+  display: none;
+}
+
+.cancel-itinerary-btn:hover {
+    background-color: #722121; 
+}
+
 
 
 

@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total_amount = $data['total_amount'];
 
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO itinerary_cart (email_of_the_user, id, num_of_people, days_to_stay, total_amount) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO itinerary_cart (email_of_the_user, id, num_of_people, days_to_stay, total_amount) VALUES (?, ?, ?, ?, ?)
+                            ON DUPLICATE KEY UPDATE num_of_people = VALUES(num_of_people), days_to_stay = VALUES(days_to_stay), total_amount = VALUES(total_amount)");
 
     $stmt->bind_param("siiid", $email, $id, $num_people, $days_to_stay, $total_amount);
 

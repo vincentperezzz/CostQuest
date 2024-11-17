@@ -398,6 +398,7 @@ function updateDaytourText(id) {
 
 // FUNCTION: Calculate cost based on selected options for each destination 
 function calculateCost(id) {
+    editItineraryCard(id);
     // Get values dynamically from the destination data
     const numPeople = document.getElementById('num-people-' + id).value;
     const numDays = document.getElementById('num-days-' + id).value;
@@ -589,6 +590,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching itinerary data:', error));
 });
 
+// FUNCTION: Scrolling effect on View Details from Itinerary Cart Page
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const scrollToId = urlParams.get('scrollTo');
@@ -600,6 +602,75 @@ window.onload = function() {
                 const y = element.getBoundingClientRect().top + window.scrollY + offset;
                 window.scrollTo({ top: y, behavior: 'smooth' });
             }
-        }, 100); // Adjust the delay as needed
+        }, 100); 
     }
 };
+
+// FUNCTION: Save or Cancel changes to the itinerary card
+
+function editItineraryCard(id) {
+    const viewButton = document.getElementById(`view-itinerary-btn-${id}`);
+    const removeButton = document.getElementById(`remove-itinerary-btn-${id}`);
+    const saveButton = document.getElementById(`save-itinerary-btn-${id}`);
+    const cancelButton = document.getElementById(`cancel-itinerary-btn-${id}`);
+
+    if (viewButton) viewButton.style.display = 'none';
+    if (removeButton) removeButton.style.display = 'none';
+    if (saveButton) saveButton.style.display = 'inline-block';
+    if (cancelButton) cancelButton.style.display = 'inline-block';
+}
+
+function saveItineraryCardChanges(id, button) {
+    const viewButton = document.getElementById(`view-itinerary-btn-${id}`);
+    const removeButton = document.getElementById(`remove-itinerary-btn-${id}`);
+    const saveButton = document.getElementById(`save-itinerary-btn-${id}`);
+    const cancelButton = document.getElementById(`cancel-itinerary-btn-${id}`);
+
+    if (viewButton) viewButton.style.display = 'inline-block';
+    if (removeButton) removeButton.style.display = 'inline-block';
+    if (saveButton) saveButton.style.display = 'none';
+    if (cancelButton) cancelButton.style.display = 'none';
+
+    const numPeople = document.querySelector(`#num-people-${id}`).value;
+    const daysToStay = document.querySelector(`#num-days-${id}`).value;
+    const totalAmountText = document.querySelector(`#total-cost-${id}`).textContent;
+    const totalAmount = parseFloat(totalAmountText.replace(/[^\d.-]/g, ''));
+
+    const data = {
+        id: id,
+        num_people: numPeople,
+        days_to_stay: daysToStay,
+        total_amount: totalAmount
+    };
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/add_to_itinerary.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText); // Log the raw response
+            if (xhr.responseText === 'success') {
+                createAlert(' Success!', '', 'New itinerary added successfully', 'success', true, true, 'pageMessages');
+            } else {
+                createAlert(' Oops!', '', 'Error adding itinerary.', 'danger', true, true, 'pageMessages');
+            }
+        } else {
+            createAlert(' Oops!', '', 'Error adding itinerary.', 'danger', true, true, 'pageMessages');
+        }
+    };
+
+    xhr.send(JSON.stringify(data));
+}
+
+function cancelItineraryCardChanges(id) {
+    const viewButton = document.getElementById(`view-itinerary-btn-${id}`);
+    const removeButton = document.getElementById(`remove-itinerary-btn-${id}`);
+    const saveButton = document.getElementById(`save-itinerary-btn-${id}`);
+    const cancelButton = document.getElementById(`cancel-itinerary-btn-${id}`);
+
+    if (viewButton) viewButton.style.display = 'inline-block';
+    if (removeButton) removeButton.style.display = 'inline-block';
+    if (saveButton) saveButton.style.display = 'none';
+    if (cancelButton) cancelButton.style.display = 'none';
+}

@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 // Fetch destinations for San Juan
 $sql = "SELECT * FROM destinations WHERE town = 'San Juan'";
-$result = $conn->query($sql);
+$sanjuanResult = $conn->query($sql);
 $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people : 1;
 ?>
 
@@ -66,9 +66,9 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
     <div class="destination-wrapper">
         <?php
         // Check if there are destinations
-        if ($result->num_rows > 0) {
+        if ($sanjuanResult->num_rows > 0) {
             // Loop through each destination
-            while ($row = $result->fetch_assoc()) {
+            while ($row = $sanjuanResult->fetch_assoc()) {
                 $id = $row['id'];
                 $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
                 $address = isset($row['address']) ? $row['address'] : 'Unknown Address';
