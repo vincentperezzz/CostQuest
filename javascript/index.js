@@ -453,10 +453,10 @@ function checkNumDays(id, button) {
     }
 }
 
+// FUNCTION: Add the selected destination to the itinerary and database
 function addToItinerary(id, button) {
-    button.textContent = 'Added';
-    button.classList.add('added');
-    button.disabled = true;
+    document.getElementById('add-itinerary-btn-' + id).style.display = 'none';
+    document.getElementById('remove-itinerary-btn-' + id).style.display = 'inline-block';
 
     const numPeople = document.querySelector(`#num-people-${id}`).value;
     const daysToStay = document.querySelector(`#num-days-${id}`).value;
@@ -503,9 +503,8 @@ function updateItineraryButtons() {
             data.forEach(item => {
                 const button = document.getElementById(`add-itinerary-btn-${item.id}`);
                 if (button) {
-                    button.textContent = 'Added';
-                    button.classList.add('added');
-                    button.disabled = true;
+                    document.getElementById('add-itinerary-btn-' + item.id).style.display = 'none';
+                    document.getElementById('remove-itinerary-btn-' + item.id).style.display = 'inline-block';
                 }
 
                 // Update num_of_people, days_to_stay, and total_amount
@@ -538,3 +537,29 @@ function updateItineraryButtons() {
 document.addEventListener('DOMContentLoaded', function() {
     updateItineraryButtons();
 });
+
+// FUNCTION: Remove the selected destination from the itinerary and database
+function removeFromItinerary(id, button) {
+    document.getElementById('remove-itinerary-btn-' + id).style.display = 'none';
+    document.getElementById('add-itinerary-btn-' + id).style.display = 'inline-block';
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/remove_from_itinerary.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText); // Log the raw response
+            if (xhr.responseText === 'success') {
+                createAlert(' Success!', '', 'Itinerary removed successfully', 'success', true, true, 'pageMessages');
+            } else {
+                createAlert(' Oops!', '', 'Error removing itinerary.', 'danger', true, true, 'pageMessages');
+            }
+        } else {
+            createAlert(' Oops!', '', 'Error removing itinerary.', 'danger', true, true, 'pageMessages');
+        }
+    };
+
+    const data = { id: id };
+    xhr.send(JSON.stringify(data));
+}

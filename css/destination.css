@@ -256,21 +256,51 @@ nav ul li a{
   cursor: pointer;
   margin-top: 20px;
   transition: background-color 0.3s;
+  display: inline-block;
 }
 
 .add-itinerary-btn:hover {
   background-color: #0000009a;
 }
 
-.add-itinerary-btn.added {
-    background-color: #A0A0A0;
-    color: white;
+.remove-itinerary-btn {
+  background-color: #A0A0A0;
+  width: 183px;
+  color: white;
+  padding: 20px 40px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+  display: none;
 }
 
-.add-itinerary-btn.remove-hover {
-    background-color: #EF4242;
-    color: white;
+.remove-itinerary-btn::after {
+  content: "Remove";
+  background-color: #A0A0A0; /* Same as the button's initial background */
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 163px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
 }
+
+.remove-itinerary-btn:hover::after {
+  background-color: #EF4242;
+  opacity: 1;
+}
+
 .details .name a {
   color: inherit;
   text-decoration: none;

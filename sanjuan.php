@@ -145,6 +145,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                 </div>
                 
                 <button class="add-itinerary-btn" id="add-itinerary-btn-<?php echo $id; ?>"  data-id="<?php echo $id; ?>" onclick="checkNumDays(<?php echo $id; ?>, this)">Add to Itinerary</button>
+                <button class="remove-itinerary-btn" id="remove-itinerary-btn-<?php echo $id; ?>"  data-id="<?php echo $id; ?>" onclick=" removeFromItinerary(<?php echo $id; ?>, this)">Added</button>
             </div>
         </div>
         
