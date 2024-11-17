@@ -186,6 +186,12 @@ function updateBudgetPercentage() {
     } else {
         console.error('One or more elements not found in the DOM');
     }
+
+    // Change background color if percentage exceeds 100%
+    const budgetBox = document.getElementById('itineraries-budget-box');
+    if (budgetPercentage > 100) {
+        budgetBox.style.backgroundColor = '#D33C3D';
+    }
 }
 
 // FUNCTION: Edit Button on the Account Settings to make the Email and Password editable

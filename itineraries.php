@@ -44,7 +44,7 @@
 
 <div class="itineraries-budget-container">
 
-  <div class="itineraries-budget-box">
+    <div class="itineraries-budget-box" id="itineraries-budget-box">
       <div class="budget-summary-rows" style="margin: 15px 30px;">
           <div class="itineraries-budget-title">Budget</div>
           <div class="budget-limit-text"><div class="text-gray"> out of </div>₱ <div id="budget-limit-text"><?php echo number_format($user_budget, 2); ?> </div></div>
@@ -58,9 +58,9 @@
               <div class="progress-bar-status" id="progress-bar-status" style="width: <?php echo $budget_percentage; ?>%;"></div>
           </div>
       </div>
-      <div class="itineraries-budget-limit-box">
-          <img src="icons/within-budget.png"></div>
-      </div>
+    <div class="itineraries-budget-limit-box">
+        <img src="icons/<?php echo $budget_percentage > 100 ? 'over-budget.png' : 'within-budget.png'; ?>">
+    </div>
   </div>
 
 <script> updateBudgetPercentage(); </script>

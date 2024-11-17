@@ -851,6 +851,7 @@ cursor: pointer;
   width: 1200px;
   height: 383px;
   border-radius: 20px;
+  transition: background-color 0.3s ease; 
 }
 
 .budget-limit-text{
