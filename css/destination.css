@@ -301,6 +301,38 @@ nav ul li a{
   opacity: 1;
 }
 
+.save-itinerary-btn{
+  width: 130px; 
+  padding: 10px;
+  height: 45px;
+  background-color: #009213; 
+  color: white; 
+  border: none;
+  border-radius: 10px; 
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: none;
+  margin-top: 20px;
+}
+
+.save-itinerary-btn:hover {
+    background-color: #000000bb; 
+}
+
+.cancel-itinerary-btn{
+  width: 100px; 
+  height: 45px;
+  padding: 10px;
+  background-color: #D33C3D; 
+  color: white; 
+  border: none;
+  border-radius: 10px; 
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: none;
+  margin-top: 20px;
+}
+
 .details .name a {
   color: inherit;
   text-decoration: none;

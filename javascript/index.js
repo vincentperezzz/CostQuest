@@ -673,4 +673,7 @@ function cancelItineraryCardChanges(id) {
     if (removeButton) removeButton.style.display = 'inline-block';
     if (saveButton) saveButton.style.display = 'none';
     if (cancelButton) cancelButton.style.display = 'none';
+
+    //reload
+    location.reload();
 }
