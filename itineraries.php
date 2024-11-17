@@ -61,7 +61,7 @@
         <img src="icons/<?php echo $budget_percentage > 100 ? 'over-budget.png' : 'within-budget.png'; ?>">
     </div>
   </div>
-
+</div>
 <script> updateBudgetPercentage(); </script>
 
 <div class="itineraries-container">
