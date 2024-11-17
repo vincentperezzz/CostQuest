@@ -333,48 +333,6 @@ function deleteAccount() {
     xhr.send(`password=${encodeURIComponent(password)}`);
 }
 
-// FUNCTION: Calculate total cost based on selected number of people and days for each destination
-function updateTotalCost(id) {
-  // Get the values from the selected options for the number of people and days
-  const numPeople = parseInt(document.getElementById('num-people-' + id).value) || 1; // Default to 1 if no value
-  const numDays = parseInt(document.getElementById('num-days-' + id).value) || 1; // Default to 1 if no value
-
-  // Get prices and fees from destinations data
-  const destinationContainer = document.getElementById('destination-' + id);
-  const daytourPrice = parseFloat(destinationContainer.getAttribute('data-daytour-price')) || 0; // Default to 0 if not set
-  const overnightPrice = parseFloat(destinationContainer.getAttribute('data-overnight-price')) || 0; // Default to 0 if not set
-  const environmentalFee = parseFloat(destinationContainer.getAttribute('data-environmental-fee')) || 0; // Default to 0 if not set
-  const otherFees = parseFloat(destinationContainer.getAttribute('data-other-fees')) || 0; // Default to 0 if not set
-
-  // Calculate total cost
-  let totalCost = 0;
-
-  // Calculate cost for daytour (1 day)
-  if (numDays === 1) {
-      // Calculate base cost for two people, then add extra for additional people
-      let baseCost = daytourPrice;
-      if (numPeople > 2) {
-          const extraPeople = numPeople - 2; // Number of people beyond the first 2
-          baseCost += (daytourPrice / 2) * Math.ceil(extraPeople / 2); // Add extra cost for each additional person
-      }
-      totalCost = baseCost * Math.ceil(numPeople / 2) + environmentalFee + otherFees;
-  } else {
-      // For overnight (multiple days), calculate cost per two pax (same logic for extra people)
-      const numOvernights = numDays - 1; // Subtract 1 day for overnight calculation
-      let baseCost = overnightPrice;
-      if (numPeople > 2) {
-          const extraPeople = numPeople - 2; // Number of people beyond the first 2
-          baseCost += (overnightPrice / 2) * Math.ceil(extraPeople / 2); // Add extra cost for each additional person
-      }
-      totalCost = baseCost * numOvernights + environmentalFee + otherFees * numPeople;
-  }
-
-  // Update the displayed total cost in the price overlay
-  document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
-  // Update the displayed total cost in the price text
-  document.getElementById('price-text-' + id).textContent = "₱ " + totalCost.toFixed(2)
-}
-
 // FUNCTION: Update daytour or overnight text based on selected days for each destination
 function updateDaytourText(id) {
   const numDays = document.getElementById(`num-days-${id}`).value;
