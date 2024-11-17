@@ -120,7 +120,7 @@ function showInformation() {
 // FUNCTION: Edit Button on the Budget on the Settings to make the Budget editable
 function editBudget() {
     const button = document.getElementById('editButton');
-    const budgetLimit = document.getElementById('budget-limit');
+    const budgetLimit = document.getElementById('budget-limit-text');
     const budgetLimitTextbox = document.getElementById('budget-limit-textbox');
 
     if (button.textContent === 'Edit Budget') {
@@ -167,10 +167,10 @@ function editBudget() {
 
 // FUNCTION: Update the Budget Percentage on the Settings
 function updateBudgetPercentage() {
-    var budgetPriceElement = document.querySelector('.budget-price');
-    var budgetLimitElement = document.getElementById('budget-limit');
-    var budgetPercentageElement = document.getElementById('budget-percentage');
-    var progressBarStatusElement = document.getElementById('progress-bar-status');
+    const budgetPriceElement = document.getElementById('budget-price');
+    const budgetLimitElement = document.getElementById('budget-limit-text');
+    const budgetPercentageElement = document.getElementById('budget-percentage');
+    const progressBarStatusElement = document.getElementById('progress-bar-status');
 
     if (budgetPriceElement && budgetLimitElement && budgetPercentageElement && progressBarStatusElement) {
         var budgetPrice = parseFloat(budgetPriceElement.innerText.replace('₱', '').replace(',', ''));
@@ -195,7 +195,6 @@ function updateBudgetPercentage() {
         console.error('One or more elements not found in the DOM');
     }
 }
-
 // FUNCTION: Edit Button on the Account Settings to make the Email and Password editable
 
 function editEmail() {

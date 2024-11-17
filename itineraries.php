@@ -47,7 +47,7 @@
   <div class="itineraries-budget-box">
       <div class="budget-summary-rows" style="margin: 15px 30px;">
           <div class="itineraries-budget-title">Budget</div>
-          <div class="budget-limit-text" id="budget-limit-text"><div class="text-gray"> out of </div>₱ <?php echo number_format($user_budget, 2); ?></div>
+          <div class="budget-limit-text"><div class="text-gray"> out of </div>₱ <div id="budget-limit-text"><?php echo number_format($user_budget, 2); ?> </div></div>
       </div>
       <div class="itineraries-budget-summary-rows">
           <div class="itineraries-budget-price" id="budget-price">₱ <?php echo number_format($budget_price, 2); ?></div>

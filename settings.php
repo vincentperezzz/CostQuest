@@ -62,7 +62,7 @@
           </div>
       </div>
       <div class="budget-limit-box">
-          <div class="budget-limit" id="budget-limit">₱ <?php echo number_format($user_budget, 2); ?></div>
+          <div class="budget-limit" id="budget-limit-text">₱ <?php echo number_format($user_budget, 2); ?></div>
           <input type="text" placeholder="₱ 0.00" name="budget-limit-textbox" class="budget-limit-textbox" id="budget-limit-textbox">
       </div>
   </div>
