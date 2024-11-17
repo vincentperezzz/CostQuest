@@ -483,6 +483,7 @@ function updateItineraryButtons() {
                     totalAmountElement.value = item.total_amount;
                 }
                 calculateCost(item.id);
+                updateDaytourText(item.id);
             });
         } else {
             console.error('Error fetching itinerary data:', xhr.statusText);
