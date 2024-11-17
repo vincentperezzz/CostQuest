@@ -372,6 +372,8 @@ function updateTotalCost(id) {
 
   // Update the displayed total cost in the price overlay
   document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
+  // Update the displayed total cost in the price text
+  document.getElementById('price-text-' + id).textContent = "₱ " + totalCost.toFixed(2)
 }
 
 // FUNCTION: Update daytour or overnight text based on selected days for each destination
@@ -438,7 +440,6 @@ function calculateCost(id) {
             totalCost = baseCost + environmentalFee + otherFees;
         }
     }
-
     // Update the displayed total cost
     document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
 }
@@ -563,3 +564,42 @@ function removeFromItinerary(id, button) {
     const data = { id: id };
     xhr.send(JSON.stringify(data));
 }
+
+// FUNCTION: Update the number of people and days to stay in the itinerary cart page
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('php/already_in_itinerary.php')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(item => {
+                const numPeopleElement = document.getElementById(`num-people-${item.id}`);
+                const numDaysElement = document.getElementById(`num-days-${item.id}`);
+                const priceTextElement = document.getElementById(`price-text-${item.id}`);
+
+                if (numPeopleElement) {
+                    numPeopleElement.value = item.num_of_people;
+                }
+                if (numDaysElement) {
+                    numDaysElement.value = item.days_to_stay;
+                }
+                if (priceTextElement) {
+                    priceTextElement.textContent = `₱ ${parseFloat(item.total_amount).toFixed(2)}`;
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching itinerary data:', error));
+});
+
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const scrollToId = urlParams.get('scrollTo');
+    if (scrollToId) {
+        setTimeout(() => {
+            const element = document.getElementById(scrollToId);
+            if (element) {
+                const offset = -250;
+                const y = element.getBoundingClientRect().top + window.scrollY + offset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        }, 100); // Adjust the delay as needed
+    }
+};

@@ -101,61 +101,69 @@ while ($row = $result->fetch_assoc()) {
 ?>
 
 <!-- CARD -->
- <div class="itineraries-card">
-            <div class="itineraries-card-img">
-                <img src="<?php echo $image; ?>">
-            </div>
+<div class="itineraries-card" id="destination-<?php echo $id; ?>" data-daytour-price="<?php echo $daytour_price; ?>" data-overnight-price="<?php echo $overnight_price; ?>" data-environmental-fee="<?php echo $environmental_fee; ?>" data-other-fees="<?php echo $other_fees; ?>" data-total-estimated-cost="<?php echo $total_estimated_cost; ?>" data-location-type="<?php echo $location_type; ?>">
 
-            <div class="itineraries-card-text">
-                <div>
-                    <div class="itineraries-card-title"><?php echo $name; ?></div>
-                    <div class="itineraries-card-subtitle"><?php echo $address; ?></div>
-                </div>
+    <div class="itineraries-card-img">
+        <img src="<?php echo $image; ?>">
+    </div>
 
-                <div class="itineraries-card-price">
-                    <div class="itineraries-card-price-text">
-                        <div class="text-gray">from </div>
-                        <div class="price-text">₱ <?php echo number_format($total_estimated_cost, 2); ?></div>
-                    </div>
-
-                    <div class="itineraries-card-dropdown">
-                        <!-- Dropdown for number of people -->
-                        <select id="num-people-<?php echo $id; ?>" name="num-people" class="styled-dropdown">
-                            <option value="" disabled selected>Number of People</option>
-                            <?php for ($i = 1; $i <= 100; $i++): ?>
-                                <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'person' : 'people'; ?></option>
-                            <?php endfor; ?>
-                        </select>
-                        <!-- Dropdown for days to stay with onchange event -->
-                        <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" class="styled-dropdown" onchange="updateTotalCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)">
-                            <option value="" disabled selected>Days to Stay</option>
-                            <?php for ($i = 1; $i <= 100; $i++): ?>
-                                <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'day' : 'days'; ?></option>
-                            <?php endfor; ?>
-                        </select>
-                        <!-- Label for daytour -->
-                        <div>
-                            <input type="text" class="daytour" id="daytour-text-<?php echo $id; ?>" placeholder="Daytour" disabled>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="itineraries-btn-row">
-                <div>
-                    <button type="submit" class="view-itinerary-btn" onclick="">View Details</button>
-                </div>
-                <div>
-                    <button type="submit" class="remove-itinerary-btn" onclick=")">Remove</button>
-                </div>
-            </div>         
+    <div class="itineraries-card-text">
+        <div>
+            <div class="itineraries-card-title"><?php echo $name; ?></div>
+            <div class="itineraries-card-subtitle"><?php echo $address; ?></div>
         </div>
-        <?php
-            }
-        } else {
-            echo "<p>No destinations found.</p>";
-        }
-        ?>
-    </div>    <!-- Footer -->
+
+        <div class="itineraries-card-price">
+            <div class="itineraries-card-price-text">
+                <div class="text-gray">from </div>
+                <div class="price-text" id="total-cost-<?php echo $id; ?>">₱ <?php echo number_format($total_estimated_cost, 2); ?></div>
+            </div>
+
+            <div class="itineraries-card-dropdown">
+                <!-- Dropdown for number of people -->
+                    <select id="num-people-<?php echo $id; ?>" name="num-people" onchange="calculateCost(<?php echo $id; ?>)" class="styled-dropdown" required>
+                    <option value="" disabled selected>Number of People</option>
+                    <?php for ($i = 1; $i <= 100; $i++): ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'person' : 'people'; ?></option>
+                    <?php endfor; ?>
+                </select>
+                <!-- Dropdown for days to stay with onchange event -->
+                <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>)" class="styled-dropdown" required>
+                <option value="" disabled selected>Days to Stay</option>
+                    <?php for ($i = 1; $i <= 100; $i++): ?>
+                        <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'day' : 'days'; ?></option>
+                    <?php endfor; ?>
+                </select>
+                <!-- Label for daytour -->
+                <div>
+                    <input type="text" class="daytour" id="daytour-text-<?php echo $id; ?>" placeholder="Daytour" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="itineraries-btn-row">
+        <div>
+            <button type="submit" class="view-itinerary-btn" onclick="window.location.href='sanjuan.php?scrollTo=destination-<?php echo $id; ?>'">View Details</button>
+        </div>
+        <div>
+            <button type="submit" class="remove-itinerary-btn" onclick="removeFromItinerary(<?php echo $id; ?>, this)">Remove</button>
+        </div>
+    </div>         
+</div>
+
+
+
+
+<?php
+    }
+} else {
+    echo "<p>No destinations found.</p>";
+}
+?>
+    </div>  
+    
+
+    <!-- Footer -->
     <footer class="footer">
         <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
     </footer>
