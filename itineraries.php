@@ -139,7 +139,7 @@ while ($row = $result->fetch_assoc()) {
 <?php
     }
 } else {
-    echo "<p>No destinations found.</p>";
+    echo "<br> <br> <p>No destinations found.</p>";
 }
 ?>
     </div> 
