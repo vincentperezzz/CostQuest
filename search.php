@@ -57,13 +57,31 @@
 // PHP handling for search input
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit-search'])) {
     $searchInput = strtolower(trim($_POST['search']));
-        
-    if ($searchInput === "san juan") {
-        header("Location: sanjuan.php");
-        exit();
-    } else {
-        echo "<p style='text-align:center;color:red;'>No results found for: " . htmlspecialchars($searchInput) . "</p>";
+    
+    switch ($searchInput) {
+        case "san juan":
+            header("Location: sanjuan.php");
+            break;
+        case "nasugbu":
+            header("Location: nasugbu.php");
+            break;
+        case "taal":
+            header("Location: taal.php");
+            break;
+        case "calatagan":
+            header("Location: calatagan.php");
+            break;
+        case "lipa city":
+            header("Location: lipacity.php");
+            break;
+        case "bauan":
+            header("Location: bauan.php");
+            break;
+        default:
+            echo "<p style='text-align:center;color:red;'>No results found for: " . htmlspecialchars($searchInput) . "</p>";
+            break;
     }
+    exit();
 }
 ?>
     
