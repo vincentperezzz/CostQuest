@@ -114,7 +114,7 @@ function createAlert(title, summary, details, severity, dismissible, autoDismiss
 
 // FUNCTION: Toggle the Alerts when Info button is clicked on Sign Up Page
 function showInformation() {
-    createAlert('Information', '', "Enter the budget amount you can allocate <b> per person </b>. <br><br> This amount will represent each individual's budget and <br> will be used to calculate the total based on the number <br> of people traveling.", 'info', true, false, 'pageMessages');
+    createAlert('Information', '', "Please enter the budget amount you can allocate <br><b>per person (if you're traveling alone)</b> or for the <br><b>entire group.</b> <br><br>This amount will represent the <b>group's budget</b> and <br>will be used to calculate the total based on the <br>number of travelers.", 'info', true, false, 'pageMessages');
 }
 
 // FUNCTION: Edit Button on the Budget on the Settings to make the Budget editable
