@@ -1,13 +1,10 @@
 <?php
 session_start();
-
 // Assuming email is set during login or signup
 if (!isset($_SESSION['email'])) {
     die("Email not set. Please login or signup.");
 }
-
 $email = $_SESSION['email'];
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -21,6 +18,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch user data
 $sql = "SELECT first_name, last_name, num_people, budget FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
@@ -35,7 +33,7 @@ $user_last_name = $last_name;
 $user_number_of_people = $number_of_people;
 $user_budget = $budget_amount;
 
-// Placeholder value for budget price
+// Calculate budget percentage
 $sql = "SELECT SUM(total_amount) as total_amount FROM itinerary_cart WHERE email_of_the_user = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
@@ -59,6 +57,5 @@ $stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 $stmt->close();
-
 $conn->close();
 ?>

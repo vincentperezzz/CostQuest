@@ -68,8 +68,6 @@
 <div class="budget-title">Itinerary List</div>
 
 <?php
-if ($result->num_rows > 0) {
-// Loop through each destination
 while ($row = $result->fetch_assoc()) {
     $id = $row['id'];
     $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
@@ -79,7 +77,9 @@ while ($row = $result->fetch_assoc()) {
     $environmental_fee = isset($row['environmental_fee']) ? $row['environmental_fee'] : 0;
     $other_fees = isset($row['other_fees']) ? $row['other_fees'] : 0;
     $total_estimated_cost = isset($row['total_estimated_cost']) ? $row['total_estimated_cost'] : 0;
-    $image = "icons/sanjuan-d" . $id . ".png";
+    $image_filename = isset($row['image_filename']) ? $row['image_filename'] : 'default.png';
+    $image = "icons/" . $image_filename;
+    $town = isset($row['town']) ? strtolower(str_replace(' ', '', $row['town'])) : 'unknown';
 ?>
 
 <!-- CARD -->
@@ -124,7 +124,7 @@ while ($row = $result->fetch_assoc()) {
         </div>
     </div>
     <div class="itineraries-btn-row">
-            <button type="submit" class="view-itinerary-btn" id="view-itinerary-btn-<?php echo $id; ?>" onclick="window.location.href='sanjuan.php?scrollTo=destination-<?php echo $id; ?>'">View Details</button>
+            <button type="submit" class="view-itinerary-btn" id="view-itinerary-btn-<?php echo $id; ?>" onclick="window.location.href='<?php echo $town; ?>.php?scrollTo=destination-<?php echo $id; ?>'">View Details</button>
             <button type="submit" class="remove-itinerary-btn" id="remove-itinerary-btn-<?php echo $id; ?>" onclick="removeFromItineraryPHP(<?php echo $id; ?>, this)">Remove</button>
 
             <button type="submit" class="save-itinerary-btn" id="save-itinerary-btn-<?php echo $id; ?>" onclick="saveItineraryCardChanges(<?php echo $id; ?>, this)">Save</button>
@@ -136,8 +136,8 @@ while ($row = $result->fetch_assoc()) {
 
 
 <?php
-    }
-} else {
+}
+if ($result->num_rows == 0) {
     echo "<br> <br> <p>No destinations found.</p>";
 }
 ?>
