@@ -32,7 +32,7 @@ function toggle_Continue_SigningUp(event) {
   return true;
 }
 
-//FUNCTIONL: Change the Itinerary Buttons on dashboard to be dynamic with Budget in Itineraries.php
+//FUNCTION: Change the Itinerary Buttons on dashboard to be dynamic with Budget in Itineraries.php
 function updateItineraryStyle(numberOfDestinations, budgetPercentage) {
     const itineraryBtn = document.querySelector('.itinerary-btn');
     const itineraryBtnBox = document.querySelector('.itinerary-btn-box');
@@ -704,4 +704,29 @@ function cancelItineraryCardChanges(id) {
 
     //reload
     location.reload();
+}
+
+// FUNCTION: Add certain destinations to the itinerary when "Choose Package" button is clicked
+function choosePackage(packageType) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/choose_package.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.status === 'success') {
+                createAlert('Success!', '', 'Destinations added to itinerary successfully', 'success', true, true, 'pageMessages');
+                // Optionally, reload the page or update the itinerary card dynamically
+                location.reload();
+            } else {
+                createAlert('Oops!', '', response.message, 'danger', true, true, 'pageMessages');
+            }
+        } else {
+            createAlert('Oops!', '', 'Error adding destinations to itinerary.', 'danger', true, true, 'pageMessages');
+        }
+    };
+    
+    const data = JSON.stringify({ packageType: packageType });
+    xhr.send(data);
 }
