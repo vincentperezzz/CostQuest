@@ -47,12 +47,6 @@
         </button>
     </form>
 </div>
-
-<!------------Footer------------->
-<footer class="footer-search">
-  <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
-</footer>
-
 <?php
 // PHP handling for search input
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit-search'])) {
@@ -61,29 +55,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit-search'])) {
     switch ($searchInput) {
         case "san juan":
             header("Location: sanjuan.php");
-            break;
+            exit();
         case "nasugbu":
             header("Location: nasugbu.php");
-            break;
+            exit();
         case "taal":
             header("Location: taal.php");
-            break;
+            exit();
         case "calatagan":
             header("Location: calatagan.php");
-            break;
+            exit();
         case "lipa city":
             header("Location: lipacity.php");
-            break;
+            exit();
         case "bauan":
             header("Location: bauan.php");
-            break;
+            exit();
         default:
-            echo "<p style='text-align:center;color:red;'>No results found for: " . htmlspecialchars($searchInput) . "</p>";
+            echo "<div style='display: flex; justify-content: center; align-items: center; height: 50vh;'>
+                    <p style='text-align: center; color: red;'>No results found for: " . htmlspecialchars($searchInput) . "</p>
+                  </div>";
             break;
     }
-    exit();
 }
 ?>
+<!------------Footer------------->
+<footer class="footer-search">
+  <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
+</footer>
     
 </body>
 </html>
