@@ -14,8 +14,8 @@ if ($conn->connect_error) {
 }
 
 // Fetch destinations for San Juan
-$sql = "SELECT * FROM destinations WHERE town = 'San Juan'";
-$sanjuanResult = $conn->query($sql);
+$sql = "SELECT * FROM destinations WHERE town = 'Calatagan'";
+$calataganResult = $conn->query($sql);
 $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people : 1;
 ?>
 
@@ -58,7 +58,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
 
     <!-- San Juan Destinations -->
     <div class="destinations-img">
-        <img src="icons/search-sanjuan.png">
+        <img src="icons/search-calatagan.png">
     </div>
     <div id="pageMessages"> </div>
 
@@ -67,9 +67,9 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
         <?php
         $ids = [];
         // Check if there are destinations
-        if ($sanjuanResult->num_rows > 0) {
+        if ($calataganResult->num_rows > 0) {
             // Loop through each destination
-            while ($row = $sanjuanResult->fetch_assoc()) {
+            while ($row = $calataganResult->fetch_assoc()) {
                 $id = $row['id'];
                 $ids[] = $id; 
                 $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
@@ -79,7 +79,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                 $environmental_fee = isset($row['environmental_fee']) ? $row['environmental_fee'] : 0;
                 $other_fees = isset($row['other_fees']) ? $row['other_fees'] : 0;
                 $total_estimated_cost = isset($row['total_estimated_cost']) ? $row['total_estimated_cost'] : 0;
-                $image = "icons/sanjuan-d" . $id . ".png";
+                $image = "icons/calatagan-d" . $id . ".png";
                 $url = isset($row['url']) ? $row['url'] : 'N/A';
 
                 // Fetch location type
@@ -126,7 +126,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                     </select>
                 
                     <!-- Dropdown for days to stay with onchange event -->
-                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>);" required>
+                    <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>); " required>
                         <option value="" disabled selected>Days to Stay</option>
                         <?php 
                         // Limit days based on location type
@@ -148,10 +148,11 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                     </div>
                 </div>
                 
-                <button class="add-itinerary-btn" id="add-itinerary-btn-<?php echo $id; ?>" data-id="<?php echo $id; ?>" onclick="checkNumDays(<?php echo $id; ?>, this)">Add to Itinerary</button>
-                <button class="remove-itinerary-btn" id="remove-itinerary-btn-<?php echo $id; ?>" data-id="<?php echo $id; ?>" onclick="removeFromItinerary(<?php echo $id; ?>, this)">Added</button>
-                <button class="save-itinerary-btn" id="save-itinerary-btn-<?php echo $id; ?>" data-id="<?php echo $id; ?>" onclick="checkNumDays(<?php echo $id; ?>, this)">Save</button>
-                <button class="cancel-itinerary-btn" id="cancel-itinerary-btn-<?php echo $id; ?>" data-id="<?php echo $id; ?>" onclick="cancelItineraryCardChanges(<?php echo $id; ?>)">Cancel</button>
+                <button class="add-itinerary-btn" id="add-itinerary-btn-<?php echo $id; ?>"  data-id="<?php echo $id; ?>" onclick="checkNumDays(<?php echo $id; ?>, this)">Add to Itinerary</button>
+                <button class="remove-itinerary-btn" id="remove-itinerary-btn-<?php echo $id; ?>"  data-id="<?php echo $id; ?>" onclick=" removeFromItinerary(<?php echo $id; ?>, this)">Added</button>
+                <button class="save-itinerary-btn" id="save-itinerary-btn-<?php echo $id; ?>"  data-id="<?php echo $id; ?>" onclick="checkNumDays(<?php echo $id; ?>, this)">Save</button>
+                <button class="cancel-itinerary-btn" id="cancel-itinerary-btn-<?php echo $id; ?>"  data-id="<?php echo $id; ?>" onclick="cancelItineraryCardChanges(<?php echo $id; ?>)">Cancel</button>
+
             </div>
         </div>
         
@@ -173,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     return true;
 });
+
 </script>
 
 <!-- Footer -->
