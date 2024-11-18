@@ -460,36 +460,49 @@ function updateItineraryButtons() {
             const data = JSON.parse(xhr.responseText);
 
             data.forEach(item => {
-                const button = document.getElementById(`add-itinerary-btn-${item.id}`);
-                if (button) {
-                    document.getElementById('add-itinerary-btn-' + item.id).style.display = 'none';
-                    document.getElementById('remove-itinerary-btn-' + item.id).style.display = 'inline-block';
+                // Safely try to update buttons
+                const addButton = document.getElementById(`add-itinerary-btn-${item.id}`);
+                const removeButton = document.getElementById(`remove-itinerary-btn-${item.id}`);
+
+                // Handle add and remove buttons
+                if (addButton) {
+                    addButton.style.display = 'none';
                 }
 
-                // Update num_of_people, days_to_stay, and total_amount
-                const numOfPeopleElement = document.getElementById(`num-people-${item.id}`);
-                const daysToStayElement = document.getElementById(`num-days-${item.id}`);
-                const totalAmountElement = document.getElementById(`total-cost-${item.id}`);
+                if (removeButton) {
+                    removeButton.style.display = 'inline-block';
+                }
 
-                if (numOfPeopleElement) {
-                    numOfPeopleElement.value = item.num_of_people;
+                // Safely update num_of_people, days_to_stay, and total_amount
+                try {
+                    const numOfPeopleElement = document.getElementById(`num-people-${item.id}`);
+                    if (numOfPeopleElement) {
+                        numOfPeopleElement.value = item.num_of_people;
+                    }
+
+                    const daysToStayElement = document.getElementById(`num-days-${item.id}`);
+                    if (daysToStayElement) {
+                        daysToStayElement.value = item.days_to_stay;
+                    }
+
+                    const totalAmountElement = document.getElementById(`total-cost-${item.id}`);
+                    if (totalAmountElement) {
+                        totalAmountElement.innerText = '₱ ' + parseFloat(item.total_amount).toFixed(2);
+                    }
+
+                    // calculateCost(item.id); // Uncomment if this function is necessary
+                    updateDaytourText(item.id);
+                } catch (error) {
+                    console.error(`Error updating item ${item.id}:`, error);
                 }
-                if (daysToStayElement) {
-                    daysToStayElement.value = item.days_to_stay;
-                }
-                if (totalAmountElement) {
-                    totalAmountElement.value = item.total_amount;
-                }
-                calculateCost(item.id);
-                updateDaytourText(item.id);
             });
         } else {
-            console.error('Error fetching itinerary data:', xhr.statusText);
+            console.error(`Request failed with status: ${xhr.status}`);
         }
     };
 
     xhr.onerror = function() {
-        console.error('Request error');
+        console.error('Request failed due to network error');
     };
 
     xhr.send();
