@@ -32,6 +32,36 @@ function toggle_Continue_SigningUp(event) {
   return true;
 }
 
+//FUNCTIONL: Change the Itinerary Buttons on dashboard to be dynamic with Budget in Itineraries.php
+function updateItineraryStyle(numberOfDestinations, budgetPercentage) {
+    const itineraryBtn = document.querySelector('.itinerary-btn');
+    const itineraryBtnBox = document.querySelector('.itinerary-btn-box');
+    const boldElements = itineraryBtn.querySelectorAll('b');
+
+    if (numberOfDestinations === 0) {
+        itineraryBtn.style.color = '#000000'; 
+        itineraryBtnBox.style.backgroundColor = '#000000'; 
+        boldElements.forEach(element => {
+            element.style.color = '#000000';
+        });
+    } else if (numberOfDestinations >= 1) {
+        itineraryBtn.style.color = '#11A711'; // Green
+        itineraryBtnBox.style.backgroundColor = '#11A711'; // Green
+        boldElements.forEach(element => {
+            element.style.color = '#11A711';
+        });
+    }
+
+    if (budgetPercentage > 100) {
+        itineraryBtn.style.color = '#B42121'; // Red
+        itineraryBtnBox.style.backgroundColor = '#B42121'; // Red
+        boldElements.forEach(element => {
+            element.style.color = '#B42121';
+        });
+    }
+}
+
+
 // FUNCTION: Toggle the Alerts functions and animations
 function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
   var iconMap = {
@@ -437,7 +467,7 @@ function addToItinerary(id, button) {
         if (xhr.status === 200) {
             console.log(xhr.responseText); // Log the raw response
             if (xhr.responseText === 'success') {
-                createAlert(' Success!', '', 'New itinerary added successfully', 'success', true, true, 'pageMessages');
+                location.reload();
             } else {
                 createAlert(' Oops!', '', 'Error adding itinerary.', 'danger', true, true, 'pageMessages');
             }

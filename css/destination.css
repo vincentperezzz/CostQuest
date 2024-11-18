@@ -77,7 +77,6 @@ body {
 
 .itinerary-btn-box {
   cursor: pointer;
-  background-color: #11A711;
   border-radius: 12px;
   width: 85px;
   height: 40px;
@@ -103,7 +102,7 @@ body {
   }
 
 .itinerary-btn {
-    color: #11A711;
+    color: #ffffff;
     font-size: 18px;
     font-weight: 500;
     text-decoration: none;

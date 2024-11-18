@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Reenie+Beanie&display=swap" rel="stylesheet">
     <script src="javascript/index.js"> </script>
+    <?php include 'php/data_database.php'; ?>
     </head>
     <body>
         <nav class="navbar">
@@ -26,8 +27,8 @@
 
             
                 <div class="itinerary">
-                <div class="itinerary-btn">Itinerary Cart</div>
-                <div class="itinerary-btn-box"><a href="itineraries.php"><img class="loc-ico" src="icons/itineraries-location-icon.png">0</a></div>
+                    <div class="itinerary-btn">Itinerary Car</div>
+                    <div class="itinerary-btn-box"><a href="itineraries.php"><img class="loc-ico" src="icons/itineraries-location-icon.png"><?php echo $number_of_destinations; ?></a></div>
                 </div>
             </div>
 
@@ -83,7 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit-search'])) {
 <footer class="footer-search">
   <h4>Copyright © 2024 CostQuest. All Rights Reserved.</h4>
 </footer>
-    
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    updateItineraryStyle(<?php echo $number_of_destinations; ?>, <?php echo $budget_percentage; ?>);
+});
+</script>
 </body>
 </html>
     

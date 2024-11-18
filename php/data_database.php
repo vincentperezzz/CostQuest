@@ -58,4 +58,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $stmt->close();
 $conn->close();
+
+// Fetch the number of destinations in the cart for the itinerary badge with email
+$number_of_destinations = $result->num_rows;
 ?>
