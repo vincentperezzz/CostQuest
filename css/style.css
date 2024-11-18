@@ -155,7 +155,7 @@ nav ul li a{
 }
 
 .best-choice-card{
-  width: 558px;
+  width: 587px;
   height: 420px;
   border-radius: 20px;
   background-color: white;
@@ -165,7 +165,6 @@ nav ul li a{
 }
 
 .best-choice-card img{
-  width: 558px;
   height: 260px;
   border-radius: 20px 20px 0px 0px;
 }
