@@ -27,7 +27,7 @@
 
             
                 <div class="itinerary">
-                    <div class="itinerary-btn">Itinerary Car</div>
+                    <div class="itinerary-btn">Itinerary Cart</div>
                     <div class="itinerary-btn-box"><a href="itineraries.php"><img class="loc-ico" src="icons/itineraries-location-icon.png"><?php echo $number_of_destinations; ?></a></div>
                 </div>
             </div>
