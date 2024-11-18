@@ -71,7 +71,6 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
             // Loop through each destination
             while ($row = $calataganResult->fetch_assoc()) {
                 $id = $row['id'];
-                $ids[] = $id; 
                 $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
                 $address = isset($row['address']) ? $row['address'] : 'Unknown Address';
                 $daytour_price = isset($row['daytour_price']) ? $row['daytour_price'] : 0;
@@ -81,8 +80,6 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
                 $total_estimated_cost = isset($row['total_estimated_cost']) ? $row['total_estimated_cost'] : 0;
                 $image = "icons/calatagan-d" . $id . ".png";
                 $url = isset($row['url']) ? $row['url'] : 'N/A';
-
-                // Fetch location type
                 $location_type = isset($row['location_type']) ? $row['location_type'] : 'default';
         ?>
         
