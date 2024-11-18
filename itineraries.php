@@ -70,6 +70,7 @@
 <?php
 while ($row = $result->fetch_assoc()) {
     $id = $row['id'];
+    $ids[] = $id; 
     $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
     $address = isset($row['address']) ? $row['address'] : 'Unknown Address';
     $daytour_price = isset($row['daytour_price']) ? $row['daytour_price'] : 0;
@@ -77,9 +78,13 @@ while ($row = $result->fetch_assoc()) {
     $environmental_fee = isset($row['environmental_fee']) ? $row['environmental_fee'] : 0;
     $other_fees = isset($row['other_fees']) ? $row['other_fees'] : 0;
     $total_estimated_cost = isset($row['total_estimated_cost']) ? $row['total_estimated_cost'] : 0;
-    $image_filename = isset($row['image_filename']) ? $row['image_filename'] : 'default.png';
-    $image = "icons/" . $image_filename;
-    $town = isset($row['town']) ? strtolower(str_replace(' ', '', $row['town'])) : 'unknown';
+    $town = isset($row['town']) ? str_replace(' ', '', $row['town']) : 'default';
+    $image = "icons/" . strtolower($town) . "-d" . $id . ".png";
+    $url = isset($row['url']) ? $row['url'] : 'N/A';
+
+    // Fetch location type
+    $location_type = isset($row['location_type']) ? $row['location_type'] : 'default';
+
 ?>
 
 <!-- CARD -->
@@ -112,9 +117,18 @@ while ($row = $result->fetch_assoc()) {
                 <!-- Dropdown for days to stay with onchange event -->
                 <select id="num-days-<?php echo $id; ?>" name="num-days-<?php echo $id; ?>" onchange="calculateCost(<?php echo $id; ?>); updateDaytourText(<?php echo $id; ?>); editItineraryCard(<?php echo $id; ?>);" class="styled-dropdown" required>
                 <option value="" disabled selected>Days to Stay</option>
-                    <?php for ($i = 1; $i <= 100; $i++): ?>
-                        <option value="<?php echo $i; ?>"><?php echo $i; ?> <?php echo $i === 1 ? 'day' : 'days'; ?></option>
-                    <?php endfor; ?>
+                    <?php 
+                    // Limit days based on location type
+                    if ($location_type == 'spot') {
+                        // Only allow one day for 'spot'
+                        echo '<option value="1" selected>1 day</option>';
+                    } else {
+                        // For 'adventure' and other location types, allow multiple days up to 100
+                        for ($i = 1; $i <= 100; $i++) {
+                            echo '<option value="' . $i . '">' . $i . ' day' . ($i > 1 ? 's' : '') . '</option>';
+                        }
+                    }
+                    ?>
                 </select>
                 <!-- Label for daytour -->
                 <div>
