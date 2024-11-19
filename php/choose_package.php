@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve the destination IDs from the database
     $packageType = $data['packageType'];
     $destinations = [
-        'travelersFavorites' => [13, 14, 16, 17],
-        'adventure' => [5, 11, 13, 21, 23, 26]
+        'travelersFavorites' => [5, 13, 19, 24],
+        'adventure' => [5, 11, 13, 23]
     ];
 
     if (!array_key_exists($packageType, $destinations)) {
