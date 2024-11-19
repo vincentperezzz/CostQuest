@@ -2,7 +2,7 @@
 session_start();
 // Assuming email is set during login or signup
 if (!isset($_SESSION['email'])) {
-    die("Email not set. Please login or signup.");
+    $_SESSION['email'] = 'NO@EMAIL';
 }
 $email = $_SESSION['email'];
 $servername = "localhost";

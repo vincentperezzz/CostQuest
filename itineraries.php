@@ -161,8 +161,13 @@ if ($result->num_rows == 0) {
 <script src="javascript/index.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        updateItineraryStyle(<?php echo $number_of_destinations; ?>, <?php echo $budget_percentage; ?>);
-        return true;
+        checkLoginStatus(function(isLoggedIn) {
+            if (!isLoggedIn) {
+                window.location.href = 'signup.php';
+            } else {
+                updateItineraryStyle(<?php echo $number_of_destinations; ?>, <?php echo $budget_percentage; ?>);
+            }
+        });
     });
     </script>
 </body>

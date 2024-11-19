@@ -257,6 +257,20 @@ function cancelEdit() {
   deleteBox.style.display = 'none';
 }
 
+function logout() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'php/logout.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+    if (xhr.status === 200) {
+        window.location.href = 'index.html';
+    } else {
+        console.error('Logout failed.');
+    }
+    };
+    xhr.send();
+}
+
 // FUNCTION: Update the number of people in database from settings
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -432,14 +446,35 @@ function calculateCost(id) {
     document.getElementById('total-cost-' + id).textContent = "₱ " + totalCost.toFixed(2);
 }
 
+function checkLoginStatus(callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'php/check_login_status.php', true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            callback(response.loggedIn);
+        } else {
+            console.error('Error checking login status.');
+            callback(false);
+        }
+    };
+    xhr.send();
+}
+
 function checkNumDays(id, button) {
-    const numDaysElement = document.getElementById('num-days-' + id);
-    if (!numDaysElement.value) {
-        numDaysElement.setAttribute('required', 'required');
-        createAlert('Warning', '', 'Please select the number of <b>days to stay.</b>', 'warning', true, true, 'pageMessages');
-    } else {
-        addToItinerary(id, button);
-    }
+    checkLoginStatus(function(isLoggedIn) {
+        if (isLoggedIn) {
+            const numDaysElement = document.getElementById('num-days-' + id);
+            if (!numDaysElement.value) {
+                numDaysElement.setAttribute('required', 'required');
+                createAlert('Warning', '', 'Please select the number of <b>days to stay.</b>', 'warning', true, true, 'pageMessages');
+            } else {
+                addToItinerary(id, button);
+            }
+        } else {
+            window.location.href = 'signup.php';
+        }
+    });
 }
 
 // FUNCTION: Add the selected destination to the itinerary and database

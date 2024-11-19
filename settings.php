@@ -108,7 +108,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="logout-btn" onclick="window.location.href='index.html'">Logout</button>               
+                <button type="submit" class="logout-btn" onclick="logout()">Logout</button>               
  </div>
 
  <div class="email-box" id="email-box">
@@ -192,8 +192,15 @@
 <script src="javascript/index.js"> </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    updateItineraryStyle(<?php echo $number_of_destinations; ?>, <?php echo $budget_percentage; ?>);
+    checkLoginStatus(function(isLoggedIn) {
+        if (!isLoggedIn) {
+            window.location.href = 'signup.php';
+        } else {
+            updateItineraryStyle(<?php echo $number_of_destinations; ?>, <?php echo $budget_percentage; ?>);
+        }
+    });
 });
+</script>
 </script>
 </body>
 </html>
