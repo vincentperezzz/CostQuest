@@ -49,7 +49,7 @@
                 </div>
                 <div class="best-choice-price">
                     <div class="best-choice-subtitle">From <h4> ₱ 8,789</h4> 
-                    <div class="best-choice-title">₱ 2,300</div></div>     
+                    <div class="best-choice-title">₱ 2,320</div></div>     
                 </div>
             </div>
         </a>
