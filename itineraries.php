@@ -70,7 +70,6 @@
 <?php
 while ($row = $result->fetch_assoc()) {
     $id = $row['id'];
-    $ids[] = $id; 
     $name = isset($row['name']) ? $row['name'] : 'Unknown Destination';
     $address = isset($row['address']) ? $row['address'] : 'Unknown Address';
     $daytour_price = isset($row['daytour_price']) ? $row['daytour_price'] : 0;
@@ -81,8 +80,6 @@ while ($row = $result->fetch_assoc()) {
     $town = isset($row['town']) ? str_replace(' ', '', $row['town']) : 'default';
     $image = "icons/" . strtolower($town) . "-d" . $id . ".png";
     $url = isset($row['url']) ? $row['url'] : 'N/A';
-
-    // Fetch location type
     $location_type = isset($row['location_type']) ? $row['location_type'] : 'default';
 
 ?>
