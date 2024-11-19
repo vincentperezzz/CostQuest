@@ -716,9 +716,7 @@ function choosePackage(packageType) {
         if (xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
             if (response.status === 'success') {
-                createAlert('Success!', '', 'Destinations added to itinerary successfully', 'success', true, true, 'pageMessages');
-                // Optionally, reload the page or update the itinerary card dynamically
-                location.reload();
+                window.location.href = 'itineraries.php';
             } else {
                 createAlert('Oops!', '', response.message, 'danger', true, true, 'pageMessages');
             }
