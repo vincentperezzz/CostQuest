@@ -45,6 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->begin_transaction();
 
     try {
+        $clearQuery = $conn->prepare("DELETE FROM itinerary_cart WHERE email_of_the_user = ?");
+        $clearQuery->bind_param("s", $email);
+        $clearQuery->execute();
+        $clearQuery->close();
+        
         foreach ($selectedDestinations as $destination_id) {
             // Retrieve the location type and fees for the destination
             $location_type_query = $conn->prepare("
