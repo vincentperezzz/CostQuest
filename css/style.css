@@ -1048,14 +1048,17 @@ cursor: pointer;
   gap: 10px; 
 }
 
-.itineraries-btn-row {
+.itineraries-btn-row{
   display: flex;
+  flex-direction: column;
   gap: 10px;
   align-items: center;
+  margin-left: 55px;
+  margin-top: 23px;
 }
 
 .view-itinerary-btn{
-  width: 130px; 
+  width: 150px; 
   padding: 10px;
   height: 45px;
   background-color: #000000; 
@@ -1071,7 +1074,7 @@ cursor: pointer;
 }
 
 .remove-itinerary-btn{
-  width: 100px; 
+  width: 150px; 
   height: 45px;
   padding: 10px;
   background-color: #D33C3D; 
