@@ -11,7 +11,7 @@
 body {
   width: 100%;
   height: 100%;
-  background: white;
+  background: url('../icons/background.png');
   background-size: cover; 
   background-repeat: no-repeat;
   background-position: center; 
@@ -148,7 +148,7 @@ nav ul li a{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 120px;
 }
 
 .counter-container {
@@ -192,24 +192,16 @@ nav ul li a{
   align-items: center;
   font-size: 16px;
   font-weight: 250;
+  text-align: center;
+  padding-top: 10px;
 }
 
 .popular-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 120px;
+  padding-top: 130px;
   text-align: center;
-}
-
-.popular-container {
-  padding-top: 120px;
-  text-align: center;
-}
-
-.subtitle-container{
-  text-align: center;
-  padding-top: 10px;
 }
 
 .popular-card-container {
@@ -232,6 +224,11 @@ nav ul li a{
 .popular-card-r1 {
   flex: 1;
   margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.popular-card-r1:hover {
+  transform: scale(1.05);
 }
 
 .popular-card-r2-container {
@@ -239,6 +236,11 @@ nav ul li a{
   justify-content: center;
   align-items: center;
   width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.popular-card-r2:hover {
+  transform: scale(1.05);
 }
 
 .popular-card-r2 {
@@ -246,13 +248,33 @@ nav ul li a{
   margin: 10px;
 }
 
+.bottom-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 70px;
+  text-align: center;
+}
+
+.can-get-title {
+  text-align: center;
+  width: 100%;
+  font-size: 28px;
+  font-weight: 600;
+}
+
 .can-get-container {
   display: flex;
   justify-content: center;
   text-align: center;
   flex-wrap: wrap; 
-  gap: 120px; 
-  padding: 20px 0; 
+  gap: 0 120px; 
+  padding: 30px 0; 
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #F5F5F5;
+  border-radius: 25px;
 }
 
 .can-get-card {
