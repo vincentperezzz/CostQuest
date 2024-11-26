@@ -763,3 +763,28 @@ function choosePackage(packageType) {
     const data = JSON.stringify({ packageType: packageType });
     xhr.send(data);
 }
+
+function showSuggestions(input) {
+    const towns = ["San Juan", "Nasugbu", "Taal", "Calatagan", "Lipa City", "Bauan"];
+    const suggestionBox = document.getElementById("suggestion-box");
+        suggestionBox.innerHTML = "";
+        if (input.length === 0) {
+            towns.forEach(town => createSuggestionItem(town));
+        } else {
+            towns
+                .filter(town => town.toLowerCase().includes(input.toLowerCase()))
+                .forEach(town => createSuggestionItem(town));
+        }
+}
+
+function createSuggestionItem(town) {
+    const suggestionBox = document.getElementById("suggestion-box");
+    const div = document.createElement("div");
+    div.textContent = town;
+    div.className = "suggestion-item";
+    div.onclick = () => {
+        document.getElementById("search").value = town;
+        suggestionBox.innerHTML = "";
+    };
+    suggestionBox.appendChild(div);
+}

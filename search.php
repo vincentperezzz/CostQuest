@@ -41,7 +41,8 @@
 <div class="search-container">
     <form method="POST" action="search.php">
         <div class="search-textbox">
-            <input type="text" name="search" placeholder="Enter town name" required>
+            <input type="text" id="search" name="search" placeholder="Enter town name" oninput="showSuggestions(this.value)" onclick="showSuggestions('')" autocomplete="off" required>
+            <div id="suggestion-box" class="suggestion-box"></div>
         </div>
         <button type="submit" name="submit-search" class="search-btn">
             <img src="icons/search-ico.svg" alt="Search Icon" style="width: 16px; height: 16px; margin-right: 5px;">Search

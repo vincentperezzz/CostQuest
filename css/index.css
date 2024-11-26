@@ -236,16 +236,17 @@ nav ul li a{
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+
+.popular-card-r2 {
+  flex: 1;
+  margin: 10px;
   transition: transform 0.3s ease;
 }
 
 .popular-card-r2:hover {
   transform: scale(1.05);
-}
-
-.popular-card-r2 {
-  flex: 1;
-  margin: 10px;
 }
 
 .bottom-container {
