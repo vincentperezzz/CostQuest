@@ -385,7 +385,7 @@ nav ul li a{
 }
 
 .suggestion-box {
-  border: 1px solid #ccc;
+  border: 1px solid transparent;
   max-height: 150px;
   overflow-y: auto;
   position: absolute;
@@ -393,6 +393,10 @@ nav ul li a{
   z-index: 1000;
   width: 500px;
   border-radius: 10px;
+}
+
+.search-textbox input:focus + .suggestion-box {
+  border: 1px solid #ccc; 
 }
 
 .suggestion-item {
