@@ -136,7 +136,7 @@ while ($row = $result->fetch_assoc()) {
     </div>
     <div class="itineraries-btn-row">
             <button type="submit" class="view-itinerary-btn" id="view-itinerary-btn-<?php echo $id; ?>" onclick="window.location.href='<?php echo $town; ?>.php?scrollTo=destination-<?php echo $id; ?>'">View Details</button>
-            <button type="submit" class="remove-itinerary-btn" id="remove-itinerary-btn-<?php echo $id; ?>" onclick="removeFromItineraryPHP(<?php echo $id; ?>, this)">Remove</button>
+            <button type="submit" class="remove-itinerary-btn" id="remove-itinerary-btn-<?php echo $id; ?>" onclick="removeFromItineraryPHP(<?php echo $id; ?>, this)"><img src="icons/del_ico.svg" alt="Trash Icon"></button>
 
             <button type="submit" class="save-itinerary-btn" id="save-itinerary-btn-<?php echo $id; ?>" onclick="saveItineraryCardChanges(<?php echo $id; ?>, this)">Save</button>
             <button type="submit" class="cancel-itinerary-btn" id="cancel-itinerary-btn-<?php echo $id; ?>" onclick="cancelItineraryCardChanges(<?php echo $id; ?>)">Cancel</button>

@@ -477,6 +477,28 @@ function checkNumDays(id, button) {
     });
 }
 
+// FUNCTION: Update the itinerary count on the dashboard without refreshing the page
+function updateItineraryCount() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'php/get_itinerary_count.php', true);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            const count = xhr.responseText;
+            document.getElementById('itinerary-count').textContent = count;
+        } else {
+            console.error('Failed to fetch itinerary count');
+        }
+    };
+
+    xhr.onerror = function() {
+        console.error('Request failed due to network error');
+    };
+
+    xhr.send();
+}
+
+
 // FUNCTION: Add the selected destination to the itinerary and database
 function addToItinerary(id, button) {
     document.getElementById('add-itinerary-btn-' + id).style.display = 'none';
@@ -502,7 +524,8 @@ function addToItinerary(id, button) {
         if (xhr.status === 200) {
             console.log(xhr.responseText); // Log the raw response
             if (xhr.responseText === 'success') {
-                location.reload();
+                createAlert(' Success!', '', 'Itinerary added successfully', 'success', true, true, 'pageMessages');
+                updateItineraryCount(); 
             } else {
                 createAlert(' Oops!', '', 'Error adding itinerary.', 'danger', true, true, 'pageMessages');
             }
@@ -591,7 +614,7 @@ function removeFromItinerary(id, button) {
             console.log(xhr.responseText); // Log the raw response
             if (xhr.responseText === 'success') {
                 createAlert(' Success!', '', 'Itinerary removed successfully', 'success', true, true, 'pageMessages');
-                location.reload();
+                updateItineraryCount(); 
             } else {
                 createAlert(' Oops!', '', 'Error removing itinerary.', 'danger', true, true, 'pageMessages');
             }
