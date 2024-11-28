@@ -32,13 +32,13 @@ function toggle_Continue_SigningUp(event) {
   return true;
 }
 
-//FUNCTION: Change the Itinerary Buttons on dashboard to be dynamic with Budget in Itineraries.php
+// FUNCTION: Change the Itinerary Buttons on dashboard to be dynamic with Budget in Itineraries.php
 function updateItineraryStyle(numberOfDestinations, budgetPercentage) {
     const itineraryBtn = document.querySelector('.itinerary-btn');
     const itineraryBtnBox = document.querySelector('.itinerary-btn-box');
     const boldElements = itineraryBtn.querySelectorAll('b');
 
-    if (numberOfDestinations === 0) {
+    if (numberOfDestinations === 0 && budgetPercentage === 0) {
         itineraryBtn.style.color = '#000000'; 
         itineraryBtnBox.style.backgroundColor = '#000000'; 
         boldElements.forEach(element => {
@@ -60,7 +60,6 @@ function updateItineraryStyle(numberOfDestinations, budgetPercentage) {
         });
     }
 }
-
 
 // FUNCTION: Toggle the Alerts functions and animations
 function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
@@ -477,27 +476,26 @@ function checkNumDays(id, button) {
     });
 }
 
-// FUNCTION: Update the itinerary count on the dashboard without refreshing the page
 function updateItineraryCount() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'php/get_itinerary_count.php', true);
 
     xhr.onload = function() {
         if (xhr.status === 200) {
-            const count = xhr.responseText;
-            document.getElementById('itinerary-count').textContent = count;
+            const response = xhr.responseText.split('<br>');
+            const numberOfDestinations = parseInt(response[0], 10);
+            const budgetPercentage = parseFloat(response[1]);
+
+            document.getElementById('itinerary-count').textContent = numberOfDestinations;
+            updateItineraryStyle(numberOfDestinations, budgetPercentage);
+            console.log("Update Itinerary: " + numberOfDestinations + " " + budgetPercentage);
         } else {
             console.error('Failed to fetch itinerary count');
         }
     };
 
-    xhr.onerror = function() {
-        console.error('Request failed due to network error');
-    };
-
     xhr.send();
 }
-
 
 // FUNCTION: Add the selected destination to the itinerary and database
 function addToItinerary(id, button) {
