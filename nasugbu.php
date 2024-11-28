@@ -51,7 +51,7 @@ $user_number_of_people = isset($user_number_of_people) ? $user_number_of_people 
 
             <div class="itinerary">
                 <div class="itinerary-btn">Itinerary Cart</div>
-                <div class="itinerary-btn-box"><a id="itinerary-count" href="itineraries.php"><img class="loc-ico" src="icons/itineraries-location-icon.png"><?php echo $number_of_destinations; ?></a></div>
+                <div class="itinerary-btn-box"><a><img class="loc-ico" src="icons/itineraries-location-icon.png"><a id="itinerary-count" href="itineraries.php"><?php echo $number_of_destinations; ?></a></a></div>
             </div>
         </div>
     </nav>
