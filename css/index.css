@@ -153,23 +153,26 @@ nav ul li a{
 
 .counter-container {
   position: absolute;
-  top: 620px; 
-  left: 50%; 
+  top: 620px;
+  left: 50%;
   display: flex;
-  transform: translate(-50%, -50%); 
-  width: 45%;
-  height: 20%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  max-width: 90%;
+  height: auto;
+  padding: 12px 8px;
   border-radius: 20px;
   background-color: white;
   box-shadow: 0 20px 30px #1d1c1c50;
-  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
 }
 
 .counter-square, .counter-square-left, .counter-square-right {
   width: 216px;
-  height: 80px;
+  min-height: 80px;
+  height: auto;
+  padding: 8px 12px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -200,7 +203,7 @@ nav ul li a{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 130px;
+  padding-top: 80px;
   text-align: center;
 }
 
@@ -209,9 +212,10 @@ nav ul li a{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
-  padding-left: 400px;
-  padding-right: 400px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding: 0 24px;
 }
 
 .popular-card-r1-container {
