@@ -26,7 +26,9 @@ Without a tool like this, travelers may underestimate fees (environmental charge
 
 The landing page (`index.html`) is the first touchpoint for every visitor. It is designed to inspire exploration, communicate scale, and funnel users toward signup or town browsing.
 
-![Cost Quest homepage — full landing page](docs/screenshots/homepage.png)
+![Cost Quest homepage — hero, statistics, and popular destinations](docs/screenshots/homepage.png)
+
+The screenshot above shows the primary homepage view: the navigation bar, hero banner, statistics card, and the full six-town destination grid.
 
 ### 1. Navigation bar
 
@@ -99,7 +101,7 @@ The homepage communicates this purpose visually: the stats card shows scale, the
 
 ### Landing page
 
-The public homepage introduces the app, highlights destination statistics, and links to town pages and account creation. See [Homepage overview](#homepage-overview) above for a section-by-section breakdown.
+The public homepage introduces the app with the hero banner, destination statistics, and a six-town card grid. Guests can click any town to explore destinations or use **Login** / **Signup** to start budget tracking.
 
 ![Cost Quest homepage](docs/screenshots/homepage.png)
 
